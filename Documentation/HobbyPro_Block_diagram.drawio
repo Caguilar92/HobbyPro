@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" modified="2024-02-22T02:10:45.536Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="Q-l_Yc2ZXOuXV_yKC8FC" version="23.1.5" type="google">
+  <diagram name="Page-1" id="wMrBdpwySFSNeQ0J9RMU">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WwppcEb2CmySjrDaz2Xb-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="75" y="120" width="390" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="WwppcEb2CmySjrDaz2Xb-2" value="Hobby Pro" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="240" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WwppcEb2CmySjrDaz2Xb-3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="95" y="165" width="350" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="WwppcEb2CmySjrDaz2Xb-4" value="Vue.js (User Interface)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="230" y="130" width="80" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="140" y="210" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-2" value="Vue Component" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="240" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-3" value="HTML" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-4" value="CSS" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="235" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-5" value="JavaScript" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.984;exitY=0.93;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.017;entryY=0.654;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Vziv--_wt-yByRZc5Zbk-1" target="Vziv--_wt-yByRZc5Zbk-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="250" as="sourcePoint" />
+            <mxPoint x="570" y="272.1856512348577" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-7" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="620" y="120" width="120" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-8" value="Fire Base" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="650" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-10" value="Fire Base DataStore" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" vertex="1" parent="1">
+          <mxGeometry x="650" y="165" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-13" value="Fire Base&lt;br&gt;Auth" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" vertex="1" parent="1">
+          <mxGeometry x="650" y="270" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="Vziv--_wt-yByRZc5Zbk-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="210" as="sourcePoint" />
+            <mxPoint x="510" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-15" value="response" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vziv--_wt-yByRZc5Zbk-17" value="request" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="300" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
