@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainDashboard from '../views/MainDashboard.vue'
 import ProfileView from '../views/ProfileView.vue'
-import ProjectView from '../views/ProjectView.vue'
+import ProjectDetailsView from '../views/ProjectDetailsView.vue'
+import StageDetailsView from '../views/StageDetailsView.vue'
 import CompletedProjectView from '../views/CompletedProjectViewView.vue'
 
 const router = createRouter({
@@ -18,14 +19,21 @@ const router = createRouter({
       component: ProfileView
     },
     {
-      path: '/project',
-      name: 'project',
-      component: ProjectView
+      path: '/project/:id',
+      name: 'projectDetails',
+      component: ProjectDetailsView,
+      prop: true
     },
     {
       path: '/completedProject',
       name: 'completedProject',
       component: CompletedProjectView
+    },
+    {
+      path: '/stage/:id',
+      name: 'StageDetails',
+      components: StageDetailsView,
+      props: true
     }
   ]
 })
