@@ -4,6 +4,7 @@ import ProfileView from '../views/ProfileView.vue'
 import ProjectDetailsView from '../views/project/ProjectDetailsView.vue'
 import StageDetailsView from '../views/project/StageDetailsView.vue'
 import CompletedProjectView from '../views/CompletedProjectView.vue'
+import CreateProjectView from '../views/CreateProjectView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,11 @@ const router = createRouter({
       name: 'StageDetails',
       components: StageDetailsView,
       props: true
+    },
+    {
+      path: '/createProject',
+      name: 'CreateProject',
+      components: CreateProjectView
     }
   ]
 })
