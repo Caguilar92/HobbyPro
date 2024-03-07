@@ -5,6 +5,7 @@ import MainDashboard from "@/components/MainDashboard.vue";
 import ProfileView from "@/components/Profile.vue";
 import CompletedProjectView from "@/components/CompletedProject.vue";
 import DashBoard from "@/views/DashBoardView.vue";
+import CreateProject from "@/components/CreateProject.vue";
 const auth = getAuth();
 export const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +33,9 @@ export const router = createRouter({
       }, {
         path:'completed_projects',
         component:CompletedProjectView
+      }, {
+        path:'/create_project',
+        component:'/create_project'
       }
 
       ]
