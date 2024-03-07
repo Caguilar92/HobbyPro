@@ -1,0 +1,64 @@
+<script setup>
+import {firebaseApp} from "@/firebase_config.js";
+import {ref} from "vue";
+import {getAuth,signInWithEmailAndPassword} from "firebase/auth";
+import {useRouter} from 'vue-router'
+
+const email = ref('');
+const password = ref('');
+const error_message = ref('');
+const auth = getAuth();
+const router = useRouter();
+
+
+function logIn(event) {
+  event.preventDefault();
+  signInWithEmailAndPassword(auth,email.value,password.value)
+      .then((userCredentials)=> {
+        const user = userCredentials.user;
+        router.replace('/dashboard')
+      })
+      .catch((error) => {
+        error_message.value = formatErrorMessage(error.code);
+
+      })
+}
+
+function formatErrorMessage(message) {
+
+ return  message = message.substring(message.indexOf('/')+1,message.length)
+}
+
+</script>
+
+<template>
+  <div class="justify-content-around d-flex mt-5">
+    <form class="border border-lg p-5">
+      <h4 class="text-center">Log In</h4>
+      <div class="text-center text-danger ">{{error_message}}</div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input v-model="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input v-model="password" type="password" class="form-control" id="password">
+      </div>
+      <div class="text-center">
+        <button @click="logIn" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+
+
+</template>
+
+<style scoped>
+@media (max-width: 576px) {
+  .border-lg {
+    border: none !important; /* Remove border on small screens */
+  }
+}
+</style>

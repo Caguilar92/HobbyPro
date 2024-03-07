@@ -1,47 +1,68 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainDashboard from '../views/MainDashboard.vue'
-import ProfileView from '../views/ProfileView.vue'
-import ProjectDetailsView from '../views/project/ProjectDetailsView.vue'
-import StageDetailsView from '../views/project/StageDetailsView.vue'
-import CompletedProjectView from '../views/CompletedProjectView.vue'
-import CreateProjectView from '../views/CreateProjectView.vue'
-
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+import {getAuth,onAuthStateChanged} from "firebase/auth";
+import LogInView from "@/views/LogInView.vue";
+import MainDashboard from "@/components/MainDashboard.vue";
+import ProfileView from "@/components/Profile.vue";
+import CompletedProjectView from "@/components/CompletedProject.vue";
+import DashBoard from "@/views/DashBoardView.vue";
+import CreateProject from "@/components/CreateProject.vue";
+const auth = getAuth();
+export const router = createRouter({
+  history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'mainDashboard',
-      component: MainDashboard
+      path:'/',redirect:'/dashboard',
+
+    },
+
+    {
+      path:'/login',
+      name:'login',
+      component: LogInView
     },
     {
-      path: '/profile',
-      name: 'profile',
-      component: ProfileView
-    },
-    {
-      path: '/project/:id',
-      name: 'projectDetails',
-      component: ProjectDetailsView,
-      prop: true
-    },
-    {
-      path: '/completedProject',
-      name: 'completedProject',
-      component: CompletedProjectView
-    },
-    {
-      path: '/stage/:id',
-      name: 'StageDetails',
-      components: StageDetailsView,
-      props: true
-    },
-    {
-      path: '/createProject',
-      name: 'CreateProject',
-      components: CreateProjectView
+      path:'/dashboard',
+      component:DashBoard,
+      redirect:'/dashboard/main',
+      children:[{
+        path:'main',
+        component:MainDashboard,
+      }, {
+        path:'profile',
+        component:ProfileView
+      }, {
+        path:'completed_projects',
+        component:CompletedProjectView
+      }, {
+        path:'/create_project',
+        component:'/create_project'
+      }
+
+      ]
     }
+
+
   ]
 })
 
-export default router
+router.beforeEach((to, from, next) => {
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // User is not authenticated
+      if (to.name !== 'login') {
+        // If user is not authenticated and trying to access a page other than login, redirect to login
+        next({ path: '/login' });
+      } else {
+        // Otherwise, allow navigation
+        next();
+      }
+    } else {
+      // User is authenticated, allow navigation to the requested page
+      next();
+    }
+  });
+});
+
+
+
