@@ -13,6 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
           <li><RouterLink to="/completedProject">Completed Project</RouterLink></li>
         </ul>
       </nav>
+      <div>
+        <a></a>
+      </div>
     </div>
   </header>
   <div class="content">
@@ -25,13 +28,12 @@ import HelloWorld from './components/HelloWorld.vue'
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 200px; /* Width of the sidebar */
-  position: fixed; /* Fixed position on the left */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  width: 200px;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
 }
 
-/* Style the links */
 #sidebar ul li a {
   display: block;
   color: #AAA;
@@ -39,16 +41,14 @@ import HelloWorld from './components/HelloWorld.vue'
   text-decoration: none;
 }
 
-/* Change color on hover */
 #sidebar ul li a:hover {
   background-color: #555;
   color: white;
 }
 
-/* Style for the rest of the content */
 .content {
-  margin-left: 200px; /* Same as sidebar width */
+  margin-left: 200px;
   padding: 1px 16px;
-  height: 1000px; /* Sample height */
+  height: 1000px;
 }
 </style>
