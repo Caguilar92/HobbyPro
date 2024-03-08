@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getAuth} from "firebase/auth";
+import {getDatabase} from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,11 +15,13 @@ const firebaseConfig = {
     storageBucket: "hobbypro-7fa90.appspot.com",
     messagingSenderId: "712636777336",
     appId: "1:712636777336:web:3aab6ea364039d003fbe8d",
-    measurementId: "G-CL61H6M0JN"
+    measurementId: "G-CL61H6M0JN",
+    databaseURL: "https://hobbypro-7fa90-default-rtdb.firebaseio.com"
 };
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
 const  auth = getAuth(firebaseApp);
+const database = getDatabase(firebaseApp);
 
-export {firebaseApp,analytics,auth}
+export {firebaseApp,analytics,auth,database}
