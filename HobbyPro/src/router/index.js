@@ -35,7 +35,7 @@ export const router = createRouter({
         component:CompletedProjectView
       }, {
         path:'/create_project',
-        component:'/create_project'
+        component:CreateProject
       }
 
       ]
