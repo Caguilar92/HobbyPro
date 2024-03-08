@@ -6,6 +6,8 @@ import ProfileView from "@/components/Profile.vue";
 import CompletedProjectView from "@/components/CompletedProject.vue";
 import DashBoard from "@/views/DashBoardView.vue";
 import CreateProject from "@/components/CreateProject.vue";
+import ForgotPasswordView from "@/views/ForgotPasswordView.vue";
+import RegisterView from "@/views/RegisterView.vue";
 const auth = getAuth();
 export const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +21,16 @@ export const router = createRouter({
       path:'/login',
       name:'login',
       component: LogInView
+    },
+    {
+      path:'/forgot-password',
+      name:'forgot-password',
+      component: ForgotPasswordView
+    },
+    {
+      path:'/register',
+      name:'register',
+      component: RegisterView
     },
     {
       path:'/dashboard',
@@ -50,7 +62,10 @@ router.beforeEach((to, from, next) => {
   onAuthStateChanged(auth, (user) => {
     if (!user) {
       // User is not authenticated
-      if (to.name !== 'login') {
+      if(to.name === 'forgot-password' || to.name==='register') {
+        next();
+      }
+      else if (to.name !== 'login') {
         // If user is not authenticated and trying to access a page other than login, redirect to login
         next({ path: '/login' });
       } else {

@@ -26,12 +26,13 @@ function logIn(event) {
 
 function formatErrorMessage(message) {
 
- return  message = message.substring(message.indexOf('/')+1,message.length)
+ return  message.substring(message.indexOf('/')+1,message.length)
 }
 
 </script>
 
 <template>
+  <h1 class="mt-5 text-center">Hobby Pro</h1>
   <div class="justify-content-around d-flex mt-5">
     <form class="border border-lg p-5">
       <h4 class="text-center">Log In</h4>
@@ -45,12 +46,17 @@ function formatErrorMessage(message) {
         <label for="password" class="form-label">Password</label>
         <input v-model="password" type="password" class="form-control" id="password">
       </div>
+      <div class="text-center mb-1">
+        <router-link to="register" class="text-decoration-none">Register</router-link>
+      </div>
+      <div class="text-center mb-3 text-decoration-none">
+        <router-link to="forgot-password">forgot password?</router-link>
+      </div>
       <div class="text-center">
         <button @click="logIn" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
-
 
 
 </template>
