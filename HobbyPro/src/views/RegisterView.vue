@@ -9,13 +9,15 @@ let password= ref('');
 const database = getDatabase();
 function register(event) {
   event.preventDefault();
-
+   //TODO: first call firebase auth to create email and password. If successful save user info to database, with email as id
   set(dbref(database,'users/'), {
     firstname: firstname.value,
     lastname: lastname.value,
     email: email.value,
     password: password.value
   })
+
+  //TODO: validate firstname and lastname before saving to database.
 
 }
 
@@ -63,5 +65,9 @@ function validate(data) {
 </template>
 
 <style scoped>
-
+@media (max-width: 576px) {
+  .border-lg {
+    border: none !important; /* Remove border on small screens */
+  }
+}
 </style>
