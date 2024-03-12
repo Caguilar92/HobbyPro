@@ -6,6 +6,8 @@
   }
 
   //TODO: import database referances
+  import { initializeApp } from "firebase/app";
+  import { getFirestore } from "firebase/firestore";
 
   //TODO: setup db "struct"
 
