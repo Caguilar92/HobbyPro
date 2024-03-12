@@ -6,7 +6,7 @@
 </template>
 
 <style>
-@media (min-width: 1024px) {
+@media (min-width: 576px) {
   .completed {
     min-height: 100vh;
     display: flex;

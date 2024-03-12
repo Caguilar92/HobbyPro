@@ -10,7 +10,7 @@
 </template>
 
 <style scoped>
-@media (min-width: 1024px) {
+@media (min-width: 576px) {
   .CP_formatting {
     min-height: 100vh;
     display: flex;

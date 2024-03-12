@@ -19,7 +19,6 @@ export default {
     <h1 class="title"><RouterLink to="/dashboard/main">Hobby Pro</RouterLink></h1>
     <div class="search-bar">
       <input type="text" placeholder="Search...">
-      <button type="submit">Search</button>
     </div>
     <button class="hamburger">&#9776;</button>
     <RouterLink to="/dashboard/profile"><div class="profile-icon"></div></RouterLink>
@@ -54,18 +53,18 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px; /* Adjust height as needed */
+  height: 60px;
   display: flex;
-  align-items: center;
-  padding: 0 5px 0 5px;
+  padding: 10px 5px 10px 5px;
   border-top: 2px solid #000;
   border-left: 2px solid #000;
   border-bottom: 2px solid #000;
 }
 
 .title {
-  font-size: 42px;
+  font-size: 30px;
   margin-right: auto;
+  position: absolute;
 }
 
 .title a{
@@ -75,27 +74,18 @@ header {
 
 .search-bar {
   margin: 0 auto;
-  width: 50%;
+  width: 100%;
   display: flex;
-  align-items: center;
+
 }
 
 .search-bar input[type="text"] {
-  width: 100%;
+  width: 50%;
   padding: 8px;
+  margin: 0 200px;
   border: none;
   border-radius: 5px;
   border: 2px solid #000;
-}
-
-.search-bar button {
-  padding: 8px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
 }
 
 .profile-icon {
@@ -176,7 +166,6 @@ main {
 @media (max-width: 576px) {
     .hamburger {
       visibility: visible;
-
     }
 }
 </style>
