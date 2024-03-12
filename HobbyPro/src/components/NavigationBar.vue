@@ -1,14 +1,6 @@
 <script>
 export default {
-  data() {
-    return {
-      showMenu: false
-    };
-  },
   methods: {
-    toggleMenu() {
-      this.showMenu = !this.showMenu;
-    }
   }
 };
 </script>
@@ -24,17 +16,13 @@ export default {
     <RouterLink to="/dashboard/profile"><div class="profile-icon"></div></RouterLink>
   </header>
 
-
-
   <nav>
       <ul>
         <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
         <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
         <li><RouterLink to="/dashboard/completed_projects"><div>Completed Project</div></RouterLink></li>
       </ul>
-    <div class="cp_button">
-      <RouterLink to="/dashboard/create_project">Create Project</RouterLink>
-    </div>
+      <RouterLink class="cp_button" to="/dashboard/create_project">Create Project</RouterLink>
   </nav>
   </div>
 </template>
@@ -73,10 +61,10 @@ header {
 }
 
 .search-bar {
+  flex: 1;
   margin: 0 auto;
   width: 100%;
   display: flex;
-
 }
 
 .search-bar input[type="text"] {
