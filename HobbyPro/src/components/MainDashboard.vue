@@ -16,10 +16,18 @@ function log_out(event) {
 </script>
 
 <template>
-  <h1>Main Dashboard</h1>
-<button @click="log_out" class="btn btn-primary">sign out</button>
+  <div class="MP_formatting">
+    <h1>Main Dashboard</h1>
+    <button @click="log_out" class="btn btn-primary">sign out</button>
+  </div>
 </template>
 
 <style scoped>
-
+@media (min-width: 1024px) {
+  .MP_formatting {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
 </style>
