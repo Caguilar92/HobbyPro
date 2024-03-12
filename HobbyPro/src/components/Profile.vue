@@ -1,4 +1,10 @@
 <script setup>
+//TODO: set google auth and database referances
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+//TODO: going to need some data functions
+
 
 </script>
 

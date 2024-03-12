@@ -1,4 +1,8 @@
 <script setup>
+/*TODO: import database setup stuff*/
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+/*TODO: create a mock "strut" for database referances - learn to spell referances*/
 
 </script>
 
