@@ -4,6 +4,12 @@
   function changeEmail(){
     email.value = "this works!";
   }
+
+  //TODO: import database referances
+
+  //TODO: setup db "struct"
+
+  
 </script>
 <template>
     <div class="completed">

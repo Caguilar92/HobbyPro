@@ -1,5 +1,7 @@
 <script setup>
+//TODO: set google auth and database referances
 
+//TODO: going to need some data functions
 </script>
 
 <template>

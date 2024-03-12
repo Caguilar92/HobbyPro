@@ -2,6 +2,7 @@
 
 import {getAuth,signOut} from "firebase/auth";
 import {useRouter} from "vue-router";
+//TODO: import database referances
 
 const auth = getAuth();
 const router = useRouter();
