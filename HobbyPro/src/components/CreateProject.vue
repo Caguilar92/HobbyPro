@@ -4,21 +4,28 @@
 
 <template>
   <div class="CP_formatting">
-    <h1>create project page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, laborum qui obcaecati blanditiis cumque sapiente distinctio animi ad neque fuga sit suscipit? Commodi, minus id ullam aperiam similique ad vero!</p>
+    <h1>create project pagefhhf</h1>
+    <p>Lorem ipsum</p>
   </div>
-  <form name="createProject">
-        <div>
-            <div class="inputElement">
-                <label for="projectName">Project Name: </label>
+  <form name="createProject" id="createProjectForm">
+        
+        <div class="center">
+          <h2 class="heading">Create a New Project</h2>
+          <div class="inputElement">
+                <label for="projectName">Project Name:  </label>
                 <input type="text" name="projectName" id="projectName">
             </div>
             <div class="inputElement">
                 <label for="startDate">Start Date: </label>
                 <input type="date" name="startDate" id="startDate">
-                
+                <button>Deadline</button>
+                <button>Add Tags +</button>
+            </div>
+            <div class="inputElement">
+              <textarea rows="5" cols="60" placeholder="Add a description or some helpful notes"></textarea>
             </div>
         </div>
+            
     </form>
   
 </template>
@@ -29,4 +36,23 @@
     align-items: center;
   }
 }
+.center {
+  margin: auto;
+  width: 60%;
+  border: 1px solid black;
+  padding: 10px;
+}
+.heading{
+  text-align: center;
+}
+
+.inputElement{
+  padding: 10px;
+  margin: 5px;
+  text-align: left;
+}
+button{
+  margin: 5px;
+}
+
 </style>
