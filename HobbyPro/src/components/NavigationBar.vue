@@ -21,7 +21,7 @@ export default {
       <input type="text" placeholder="Search...">
       <button type="submit">Search</button>
     </div>
-    <button class="hamburger_menu">&#9776;</button>
+    <button class="hamburger">&#9776;</button>
     <RouterLink to="/dashboard/profile"><div class="profile-icon"></div></RouterLink>
   </header>
 
@@ -147,12 +147,17 @@ main {
   text-decoration: none;
   color: #333;
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  padding: 10px 20px;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px 85px 10px 5px;
+  margin: 5px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.cp_button:hover {
+  background-color: #ddd;
 }
 
 .cp_button a {
@@ -160,31 +165,18 @@ main {
   color: #333;
 }
 
+.cp_button a:hover {
+  color: #333;
+}
+
 .hamburger {
-  display: none;
+  visibility: hidden;
 }
 
 @media (max-width: 576px) {
-  .hamburger {
-    display: block; /* Show the hamburger button */
-    margin-right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
+    .hamburger {
+      visibility: visible;
 
-  nav {
-    display: none; /* Hide the navigation links */
-    position: absolute;
-    top: 50px;
-    left: 0;
-    background-color: #f2f2f2;
-    width: 100%;
-  }
-
-  nav.open {
-    display: block; /* Show the navigation links when the menu is open */
-  }
+    }
 }
 </style>
