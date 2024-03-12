@@ -1,4 +1,7 @@
 <script setup>
+/*TODO: import database setup stuff*/
+ 
+/*TODO: create a mock "strut" for database referances - learn to spell referances*/
 
 </script>
 
