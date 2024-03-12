@@ -9,19 +9,26 @@ const password = ref('');
 const error_message = ref('');
 const auth = getAuth();
 const router = useRouter();
-
+let show_spinner = ref(false);
 
 function logIn(event) {
   event.preventDefault();
-  signInWithEmailAndPassword(auth,email.value,password.value)
-      .then((userCredentials)=> {
-        const user = userCredentials.user;
-        router.replace('/dashboard')
-      })
-      .catch((error) => {
-        error_message.value = formatErrorMessage(error.code);
+    show_spinner.value = true;
+    error_message.value = '';
+    setTimeout(function () {
+      signInWithEmailAndPassword(auth,email.value,password.value)
+          .then((userCredentials)=> {
+            const user = userCredentials.user;
+            router.replace('/dashboard')
+          })
+          .catch((error) => {
+            show_spinner.value = false;
+            error_message.value = formatErrorMessage(error.code);
+            password.value = '';
 
-      })
+          })
+    },1000)
+
 }
 
 function formatErrorMessage(message) {
@@ -53,7 +60,13 @@ function formatErrorMessage(message) {
         <router-link to="forgot-password">forgot password?</router-link>
       </div>
       <div class="text-center">
-        <button @click="logIn" class="btn btn-primary">Submit</button>
+        <button v-if="!show_spinner" @click="logIn" class="btn btn-primary">Submit</button>
+
+        <div v-else class="text-center d-flex justify-content-center">
+          <button id="spinner" class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
     </form>
   </div>
