@@ -1,20 +1,24 @@
 <script setup>
 import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 
 
-let projectName = ref('');
-let startDate = ref('');
-const firestore = getFirestore(); 
+// let projectName = ref('');
+// let startDate = ref('');
+// const firestore = getFirestore(); 
 
 function saveToFireStore(event) {
-  event.preventDefault();
-  setDoc(doc(firestore, "Projects", projectName.value), {
-    projectName: projectName.value,
-    startDate: startDate.value,
-})};
+//   event.preventDefault();
+//   setDoc(doc(firestore, "Projects", projectName.value), {
+//     projectName: projectName.value,
+//     startDate: Timestamp.fromDate(startDate.value),
+// })
+
+console.log("button clicked");
+};
+
 
 
 
