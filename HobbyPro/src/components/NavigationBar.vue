@@ -12,7 +12,17 @@ export default {
     <div class="search-bar">
       <input type="text" placeholder="Search...">
     </div>
-    <button class="hamburger">&#9776;</button>
+    <div class="dropDown">
+      <button class="hamburger">&#9776;</button>
+      <div class="dropDownContent">
+        <ul>
+          <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
+          <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
+          <li><RouterLink to="/dashboard/completed_projects"><div>Completed Project</div></RouterLink></li>
+        </ul>
+        <RouterLink class="cp_button" to="/dashboard/create_project">Create Project</RouterLink>
+      </div>
+    </div>
     <RouterLink to="/dashboard/profile"><div class="profile-icon"></div></RouterLink>
   </header>
 
@@ -41,6 +51,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  bottom: 60px;
   height: 60px;
   display: flex;
   padding: 10px 5px 10px 5px;
@@ -60,20 +71,25 @@ header {
 }
 
 .search-bar {
-  width: 100px;
+  height: 40px;
+  width: auto;
   position: fixed;
   left: 200px;
   right: 500px;
 }
 
 .search-bar input[type="text"] {
-  padding: 8px;
-  border: none;
+  margin: auto;
+  width: auto;
+  padding: 8px 8px 2px 8px;
   border-radius: 5px;
   border: 2px solid #000;
 }
 
 .profile-icon {
+  position: fixed;
+  right: 10px;
+  top: 10px;
   width: 40px;
   height: 40px;
   background-color: #000;
@@ -139,23 +155,33 @@ nav ul li a:hover {
 }
 
 .hamburger {
+  visibility: visible;
+  background-color: #fff;
+  border: 2px solid #000;
+  padding: 2px 7px 2px 7px;
+  margin: 5px 5px 5px 8px;
+  position: fixed;
+  right: 55px;
+  top: 10px;
+}
+
+.dropDown {
   visibility: hidden;
 }
 
 @media (max-width: 576px) {
-    
-  
+  nav {
+      display: none !important;
+    }
     .hamburger {
       visibility: visible;
       background-color: #fff;
       border: 2px solid #000;
-      padding: 8px 8px 10px 8px;
-      margin: 0px 5px 0px 8px;
+      padding: 2px 7px 2px 7px;
+      margin: 5px 5px 5px 8px;
 
     }
 
-    nav {
-      visibility: hidden;
-    }
+    
 }
 </style>

@@ -9,30 +9,45 @@ import NavigationBar from "@/components/NavigationBar.vue";
 </script>
 
 <template>
-  <NavigationBar/>
+  <div>
+    <NavigationBar/>
   <div class="content">
-    <router-view></router-view>
+      <router-view></router-view>
   </div>
+  </div>
+  
 
 </template>
 
 <style scoped>
 /* Style for the rest of the content */
 .content {
-  position: static;
-  overflow-y: auto;
+  margin-top: 60px;
+  margin-left: 200px;
+ /* overflow-y: auto;
+ 
   top: 60px;
-  left: 200px; /* Same as sidebar width */
+  left: 200px; /* Same as sidebar width 
   right: 0px;
   bottom: 0px;
   padding: 1px 16px;
-  height: 1000px; /* Sample height */
+  height: 1000px; Sample height */
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px){
   .content {
-    position: fixed;
-    top: 60px;
-  }
+  margin-left: 0px;
+ /* overflow-y: auto;
+ 
+  top: 60px;
+  left: 200px; /* Same as sidebar width 
+  right: 0px;
+  bottom: 0px;
+  padding: 1px 16px;
+  height: 1000px; Sample height */
 }
+
+}
+
+
 </style>
