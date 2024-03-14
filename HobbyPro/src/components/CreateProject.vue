@@ -14,7 +14,11 @@ function saveToFireStore(event) {
   setDoc(doc(firestore, "Projects", projectName.value), {
     projectName: projectName.value,
     startDate: startDate.value,
-})};
+})
+
+console.log("button clicked");
+};
+
 
 
 
@@ -22,7 +26,7 @@ function saveToFireStore(event) {
 
 <template>
   <div class="CP_formatting">
-    <h1>create project pagefhhf</h1>
+    <h1>create project page</h1>
     <p>Lorem ipsum</p>
   </div>
   <form name="createProject" id="createProjectForm">
@@ -31,11 +35,11 @@ function saveToFireStore(event) {
           <h2 class="heading">Create a New Project</h2>
           <div class="inputElement">
                 <label for="projectName">Project Name:  </label>
-                <input type="text" name="projectName" id="projectName">
+                <input v-model="projectName" type="text" name="projectName" id="projectName">
             </div>
             <div class="inputElement">
                 <label for="startDate">Start Date: </label>
-                <input type="date" name="startDate" id="startDate">
+                <input v-model="startDate" type="date" name="startDate" id="startDate">
                 <button>Deadline</button>
                 <button>Add Tags +</button>
             </div>
@@ -49,7 +53,7 @@ function saveToFireStore(event) {
             
             
             <div class="inputElement">
-              <button @click = "saveToFireStore">Create Project</button>
+              <button @click="saveToFireStore">Create Project</button>
               <button>Cancel</button>
             </div>
         </div>
