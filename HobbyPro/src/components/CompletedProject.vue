@@ -24,8 +24,6 @@
 <style>
 @media (min-width: 576px) {
   .completed {
-    min-height: 100vh;
-    display: flex;
     align-items: center;
   }
 }

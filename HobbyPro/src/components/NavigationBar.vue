@@ -37,7 +37,7 @@ header {
   background-color: #fff;
   color: #000;
   border: 1px #000 ;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -51,7 +51,6 @@ header {
 
 .title {
   font-size: 30px;
-  margin-right: auto;
   position: absolute;
 }
 
@@ -61,16 +60,14 @@ header {
 }
 
 .search-bar {
-  flex: 1;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
+  width: 100px;
+  position: fixed;
+  left: 200px;
+  right: 500px;
 }
 
 .search-bar input[type="text"] {
-  width: 50%;
   padding: 8px;
-  margin: 0 200px;
   border: none;
   border-radius: 5px;
   border: 2px solid #000;
@@ -85,7 +82,7 @@ header {
 
 nav {
   background-color: #fff;
-  position: absolute;
+  position: fixed;
   top: 60px;
   bottom: 0;
   width: 200px; /* Adjust width as needed */
@@ -116,11 +113,6 @@ nav ul li a:hover {
   color: white;
 }
 
-main {
-  margin-left: 220px; /* Adjust as per your nav width */
-  padding: 20px;
-}
-
 .cp_button {
   text-decoration: none;
   color: #333;
@@ -129,7 +121,6 @@ main {
   left: 0px;
   padding: 10px 85px 10px 5px;
   margin: 5px;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -152,8 +143,19 @@ main {
 }
 
 @media (max-width: 576px) {
+    
+  
     .hamburger {
       visibility: visible;
+      background-color: #fff;
+      border: 2px solid #000;
+      padding: 8px 8px 10px 8px;
+      margin: 0px 5px 0px 8px;
+
+    }
+
+    nav {
+      visibility: hidden;
     }
 }
 </style>

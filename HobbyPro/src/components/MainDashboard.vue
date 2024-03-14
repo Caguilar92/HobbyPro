@@ -28,8 +28,6 @@ function log_out(event) {
 <style scoped>
 @media (min-width: 576px) {
   .MP_formatting {
-    min-height: 100vh;
-    display: flex;
     align-items: center;
   }
 }
