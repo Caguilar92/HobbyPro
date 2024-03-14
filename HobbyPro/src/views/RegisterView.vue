@@ -1,8 +1,8 @@
 <script setup>
 import {ref} from "vue";
-import {getDatabase,ref as dbref,set} from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import {getAuth,createUserWithEmailAndPassword} from "firebase/auth";
 
 
 
@@ -11,18 +11,30 @@ let lastname= ref('');
 let email= ref('');
 let password= ref('');
 const firestore = getFirestore();
+function  createUser() {
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+      .then((userCredential) => {
 
-function saveToFireStore(event) {
-  event.preventDefault();
-   //TODO: first call firebase auth to create email and password. If successful save user info to database, with email as id
+        const user = userCredential.user;
+        //TODO: update profile
+        saveToFireStore();
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+      });
+}
+
+function saveToFireStore() {
   setDoc(doc(firestore, "users", email.value), {
     firstname: firstname.value,
     lastname: lastname.value,
     email: email.value,
     password: password.value
   });
-
-  //TODO: validate firstname and lastname before saving to database.
 
 }
 
@@ -32,11 +44,11 @@ function validate(data) {
 </script>
 
 <template>
-
+<h1> {{displayName}}</h1>
   <h1 class="mt-5 text-center">Hobby Pro</h1>
   <div class="justify-content-around d-flex mt-5">
     <form class="border border-lg p-5">
-      <h4 class="text-center">Log In</h4>
+      <h4 class="text-center">Register</h4>
       <div class="d-flex">
         <div class="mb-3 me-2">
           <label  for="firstname" class="form-label">First Name</label>
@@ -62,7 +74,7 @@ function validate(data) {
       </div>
 
       <div class="text-center">
-        <button @click="register" class="btn btn-primary">Register</button>
+        <button @click="createUser" class="btn btn-primary">Register</button>
       </div>
     </form>
   </div>
