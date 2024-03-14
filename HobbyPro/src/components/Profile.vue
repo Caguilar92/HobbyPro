@@ -15,8 +15,6 @@
 <style>
 @media (min-width: 576px) {
   .about {
-    min-height: 100vh;
-    display: flex;
     align-items: center;
   }
 }
