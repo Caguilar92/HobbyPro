@@ -1,6 +1,22 @@
 <script setup>
+import {ref} from "vue";
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
-/*TODO: create a mock "strut" for database referances*/
+
+
+let projectName = ref('');
+let startDate = ref('');
+const firestore = getFirestore(); 
+
+function saveToFireStore(event) {
+  event.preventDefault();
+  setDoc(doc(firestore, "Projects", projectName.value), {
+    projectName: projectName.value,
+    startDate: startDate.value,
+})};
+
+
 
 </script>
 
@@ -33,7 +49,7 @@
               placeholder="Choose a file or drop it here..." 
               drop-placeholder="Drop file here..."></b-form-file>
             <div class="inputElement">
-              <button>Create Project</button>
+              <button @click = "saveToFireStore">Create Project</button>
               <button>Cancel</button>
             </div>
         </div>
