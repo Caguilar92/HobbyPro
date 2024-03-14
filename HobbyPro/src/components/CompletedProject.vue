@@ -5,9 +5,6 @@
     email.value = "this works!";
   }
 
-  //TODO: import database referances
-  import { initializeApp } from "firebase/app";
-  import { getFirestore } from "firebase/firestore";
 
   //TODO: setup db "struct" && test WEB modular vs NODE.js calls, node is easier
 

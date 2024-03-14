@@ -1,21 +1,26 @@
 <script setup>
 import {ref} from "vue";
 import {getDatabase,ref as dbref,set} from "firebase/database";
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+
+
 
 let firstname= ref('');
 let lastname= ref('');
 let email= ref('');
 let password= ref('');
-const database = getDatabase();
-function register(event) {
+const firestore = getFirestore();
+
+function saveToFireStore(event) {
   event.preventDefault();
    //TODO: first call firebase auth to create email and password. If successful save user info to database, with email as id
-  set(dbref(database,'users/'), {
+  setDoc(doc(firestore, "users", email.value), {
     firstname: firstname.value,
     lastname: lastname.value,
     email: email.value,
     password: password.value
-  })
+  });
 
   //TODO: validate firstname and lastname before saving to database.
 
