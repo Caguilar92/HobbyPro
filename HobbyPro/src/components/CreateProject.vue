@@ -1,20 +1,20 @@
 <script setup>
 import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 
 
-// let projectName = ref('');
-// let startDate = ref('');
-// const firestore = getFirestore(); 
+let projectName = ref('');
+let startDate = ref('');
+const firestore = getFirestore(); 
 
 function saveToFireStore(event) {
   event.preventDefault();
-//   setDoc(doc(firestore, "Projects", projectName.value), {
-//     projectName: projectName.value,
-//     startDate: Timestamp.fromDate(startDate.value),
-// })
+  setDoc(doc(firestore, "Projects", projectName.value), {
+    projectName: projectName.value,
+    startDate: startDate.value,
+})
 
 console.log("button clicked");
 };
@@ -35,11 +35,11 @@ console.log("button clicked");
           <h2 class="heading">Create a New Project</h2>
           <div class="inputElement">
                 <label for="projectName">Project Name:  </label>
-                <input type="text" name="projectName" id="projectName">
+                <input v-model="projectName" type="text" name="projectName" id="projectName">
             </div>
             <div class="inputElement">
                 <label for="startDate">Start Date: </label>
-                <input type="date" name="startDate" id="startDate">
+                <input v-model="startDate" type="date" name="startDate" id="startDate">
                 <button>Deadline</button>
                 <button>Add Tags +</button>
             </div>
