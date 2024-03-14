@@ -26,7 +26,7 @@ console.log("button clicked");
 
 <template>
   <div class="CP_formatting">
-    <h1>create project pagefhhf</h1>
+    <h1>create project page</h1>
     <p>Lorem ipsum</p>
   </div>
   <form name="createProject" id="createProjectForm">
