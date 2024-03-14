@@ -19,15 +19,20 @@ import NavigationBar from "@/components/NavigationBar.vue";
 <style scoped>
 /* Style for the rest of the content */
 .content {
-  position: fixed;
+  position: static;
+  overflow-y: auto;
   top: 60px;
   left: 200px; /* Same as sidebar width */
+  right: 0px;
+  bottom: 0px;
   padding: 1px 16px;
   height: 1000px; /* Sample height */
 }
 
 @media (min-width: 576px) {
   .content {
+    position: fixed;
+    top: 60px;
   }
 }
 </style>
