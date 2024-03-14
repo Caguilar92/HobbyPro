@@ -11,6 +11,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-vue": "^2.23.1",
     "firebase": "^10.8.1",
     "firebaseui": "^6.1.0",
     "pinia": "^2.1.7",

@@ -43,6 +43,10 @@ function saveToFireStore(event) {
               <textarea rows="5" cols="60" placeholder="Add a description or some helpful notes"></textarea>
             </div>
             <input type="file" name="fileName" id="fileName">
+            </div>
+
+    
+            
             
             <div class="inputElement">
               <button @click = "saveToFireStore">Create Project</button>
