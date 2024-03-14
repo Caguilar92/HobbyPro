@@ -28,6 +28,16 @@ import { getFirestore } from "firebase/firestore";
             <div class="inputElement">
               <textarea rows="5" cols="60" placeholder="Add a description or some helpful notes"></textarea>
             </div>
+            <!--Accept specific image formats-->
+            <b-form-file accept=".jpg, .png, .gif" 
+              v-model="file1"
+              :state="Boolean(file1)"
+              placeholder="Choose a file or drop it here..." 
+              drop-placeholder="Drop file here..."></b-form-file>
+            <div class="inputElement">
+              <button>Create Project</button>
+              <button>Cancel</button>
+            </div>
         </div>
             
     </form>
