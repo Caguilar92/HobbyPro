@@ -42,12 +42,8 @@ function saveToFireStore(event) {
             <div class="inputElement">
               <textarea rows="5" cols="60" placeholder="Add a description or some helpful notes"></textarea>
             </div>
-            <!--Accept specific image formats-->
-            <b-form-file accept=".jpg, .png, .gif" 
-              v-model="file1"
-              :state="Boolean(file1)"
-              placeholder="Choose a file or drop it here..." 
-              drop-placeholder="Drop file here..."></b-form-file>
+            <input type="file" name="fileName" id="fileName">
+            
             <div class="inputElement">
               <button @click = "saveToFireStore">Create Project</button>
               <button>Cancel</button>
