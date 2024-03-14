@@ -10,7 +10,7 @@ import { doc, setDoc, Timestamp } from "firebase/firestore";
 // const firestore = getFirestore(); 
 
 function saveToFireStore(event) {
-//   event.preventDefault();
+  event.preventDefault();
 //   setDoc(doc(firestore, "Projects", projectName.value), {
 //     projectName: projectName.value,
 //     startDate: Timestamp.fromDate(startDate.value),
@@ -49,7 +49,7 @@ console.log("button clicked");
             <input type="file" name="fileName" id="fileName">
             
             <div class="inputElement">
-              <button @click = "saveToFireStore">Create Project</button>
+              <button @click="saveToFireStore">Create Project</button>
               <button>Cancel</button>
             </div>
         </div>
