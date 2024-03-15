@@ -24,27 +24,12 @@ import NavigationBar from "@/components/NavigationBar.vue";
 .content {
   margin-top: 60px;
   margin-left: 200px;
- /* overflow-y: auto;
- 
-  top: 60px;
-  left: 200px; /* Same as sidebar width 
-  right: 0px;
-  bottom: 0px;
-  padding: 1px 16px;
-  height: 1000px; Sample height */
+  padding: 5px;
 }
 
 @media (max-width: 576px){
   .content {
   margin-left: 0px;
- /* overflow-y: auto;
- 
-  top: 60px;
-  left: 200px; /* Same as sidebar width 
-  right: 0px;
-  bottom: 0px;
-  padding: 1px 16px;
-  height: 1000px; Sample height */
 }
 
 }

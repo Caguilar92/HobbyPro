@@ -1,7 +1,17 @@
 <script>
 export default {
+  data() {
+    return {
+      // State to track if the dropdown is visible
+      isDropdownVisible: false,
+    };
+  },
   methods: {
-  }
+    // Method to toggle the visibility of the dropdown
+    toggleDropdown() {
+      this.isDropdownVisible = !this.isDropdownVisible;
+    },
+  },
 };
 </script>
 
@@ -12,15 +22,19 @@ export default {
     <div class="search-bar">
       <input type="text" placeholder="Search...">
     </div>
-    <div class="dropDown">
-      <button class="hamburger">&#9776;</button>
-      <div class="dropDownContent">
+    
+    <div>
+      <!-- Dropdown Menu Button -->
+      <button class="hamburger" @click="toggleDropdown">&#9776;</button>
+
+      <!-- Dropdown Menu Items -->
+      <div v-if="isDropdownVisible" class="dropDown-menu">
         <ul>
           <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
           <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
           <li><RouterLink to="/dashboard/completed_projects"><div>Completed Project</div></RouterLink></li>
+          <li><RouterLink to="/dashboard/create_project">Create Project</RouterLink></li>
         </ul>
-        <RouterLink class="cp_button" to="/dashboard/create_project">Create Project</RouterLink>
       </div>
     </div>
     <RouterLink to="/dashboard/profile"><div class="profile-icon"></div></RouterLink>
@@ -117,7 +131,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-  background-color: #ddd; /* Highlight color */
+  background-color: #ddd;
 }
 
 nav ul li a {
@@ -158,6 +172,7 @@ nav ul li a:hover {
   visibility: visible;
   background-color: #fff;
   border: 2px solid #000;
+  border-radius: 5px;
   padding: 2px 7px 2px 7px;
   margin: 5px 5px 5px 8px;
   position: fixed;
@@ -165,23 +180,73 @@ nav ul li a:hover {
   top: 10px;
 }
 
-.dropDown {
-  visibility: hidden;
+.dropDown-menu {
+  visibility: visible;
+  position: fixed;
+  right: 60px;
+  top: 47px;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.dropDown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.dropDown-menu ul li a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropDown-menu ul li a:hover {
+  background-color: #ddd;
 }
 
 @media (max-width: 576px) {
   nav {
-      display: none !important;
-    }
-    .hamburger {
-      visibility: visible;
-      background-color: #fff;
-      border: 2px solid #000;
-      padding: 2px 7px 2px 7px;
-      margin: 5px 5px 5px 8px;
+    display: none !important;
+  }
 
-    }
+  .hamburger {
+    visibility: visible;
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 2px 7px 2px 7px;
+     margin: 5px 5px 5px 8px;
+  }
 
-    
+  .dropDown-menu {
+    visibility: visible;
+    position: fixed;
+    right: 60px;
+    top: 47px;
+    border: 2px solid #000;
+    border-radius: 5px;
+  }
+
+  .dropDown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+
+  .dropDown-menu ul li a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+  }
+
+  .dropDown-menu ul li a:hover {
+    background-color: #ddd;
+  }
 }
 </style>
