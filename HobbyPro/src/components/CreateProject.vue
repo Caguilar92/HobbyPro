@@ -2,12 +2,24 @@
 import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import { getStorage, ref as firebaseRef, uploadBytes } from "firebase/storage";
 
 
 
 let projectName = ref('');
 let startDate = ref('');
+let fileName = ref('');
 const firestore = getFirestore(); 
+const storage = getStorage();
+const storageRef = firebaseRef(storage, 'images');
+
+function saveToStorage(event){
+  event.preventDefault();
+  // 'file' comes from the Blob or File API
+  uploadBytes(storageRef, fileName.value).then((snapshot) => {
+  console.log('Uploaded a blob or file!');
+});
+}
 
 function saveToFireStore(event) {
   event.preventDefault();
@@ -15,7 +27,10 @@ function saveToFireStore(event) {
     projectName: projectName.value,
     startDate: startDate.value,
 })
-
+  // 'file' comes from the Blob or File API
+  uploadBytes(storageRef, fileName.value).then((snapshot) => {
+  console.log('Uploaded a blob or file!');
+});
 console.log("button clicked");
 };
 
