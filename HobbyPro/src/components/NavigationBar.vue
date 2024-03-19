@@ -58,12 +58,8 @@ export default {
     <div v-if="isProfileDropdownVisible" class="dropDown-profile-menu">
       <ul>
         <li><RouterLink to="/dashboard/profile">Profile</RouterLink></li>
-        <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
+        <li><button @click="log_out" class="btn btn-primary">sign out</button></li>
       </ul>
-
-      <div class="MP_formatting">
-        <button @click="log_out" class="btn btn-primary">sign out</button>
-      </div>
     </div>
   </header>
 
