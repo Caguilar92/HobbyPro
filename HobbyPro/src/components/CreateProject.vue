@@ -40,7 +40,22 @@ console.log("button clicked");
             <div class="inputElement">
                 <label for="startDate">Start Date: </label>
                 <input v-model="startDate" type="date" name="startDate" id="startDate">
-                <button>Deadline</button>
+                <!-- <div id="deadlineButton">
+                  <button v-on:click="isHidden = !isHidden">Deadline</button>
+                  <h1 v-if="!isHidden"> Hello</h1>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="" class="form-label">Set Deadline</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="deadline"
+                    id="dealine"
+                    aria-describedby="helpId"
+                  />
+                </div> -->
+                
                 <button>Add Tags +</button>
             </div>
             <div class="inputElement">
