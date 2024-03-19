@@ -1,7 +1,5 @@
 <script setup>
-//TODO: import database refeances
 
-//TODO: set up "struct" for db calls
 
 
 import NavigationBar from "@/components/NavigationBar.vue";

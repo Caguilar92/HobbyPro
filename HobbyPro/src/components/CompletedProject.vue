@@ -6,7 +6,7 @@
   }
 
 
-  //TODO: setup db "struct" && test WEB modular vs NODE.js calls, node is easier
+  
 
   
 </script>
