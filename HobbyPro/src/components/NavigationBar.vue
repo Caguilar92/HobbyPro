@@ -3,13 +3,17 @@ export default {
   data() {
     return {
       // State to track if the dropdown is visible
-      isDropdownVisible: false,
+      isRouterDropdownVisible: false,
+      isProfileDropdownVisible: false,
     };
   },
   methods: {
     // Method to toggle the visibility of the dropdown
-    toggleDropdown() {
-      this.isDropdownVisible = !this.isDropdownVisible;
+    toggleRouterDropdown() {
+      this.isRouterDropdownVisible = !this.isRouterDropdownVisible;
+    },
+    toggleProfileDropdown() {
+      this.isProfileDropdownVisible = !this.isProfileDropdownVisible;
     },
   },
 };
@@ -23,12 +27,9 @@ export default {
       <input type="text" placeholder="Search...">
     </div>
     
-    <div>
-      <!-- Dropdown Menu Button -->
-      <button class="hamburger" @click="toggleDropdown">&#9776;</button>
+      <button class="hamburger" @click="toggleRouterDropdown">&#9776;</button>
 
-      <!-- Dropdown Menu Items -->
-      <div v-if="isDropdownVisible" class="dropDown-menu">
+      <div v-if="isRouterDropdownVisible" class="dropDown-router-menu">
         <ul>
           <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
           <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
@@ -36,8 +37,14 @@ export default {
           <li><RouterLink to="/dashboard/create_project">Create Project</RouterLink></li>
         </ul>
       </div>
+    <div class="profile-icon" @click="toggleProfileDropdown"></div>
+
+    <div v-if="isProfileDropdownVisible" class="dropDown-profile-menu">
+      <ul>
+        <li><RouterLink to="/dashboard/profile">Profile</RouterLink></li>
+        <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
+      </ul>
     </div>
-    <RouterLink to="/dashboard/profile"><div class="profile-icon"></div></RouterLink>
   </header>
 
   <nav>
@@ -180,7 +187,7 @@ nav ul li a:hover {
   top: 10px;
 }
 
-.dropDown-menu {
+.dropDown-router-menu {
   visibility: visible;
   position: fixed;
   right: 60px;
@@ -189,7 +196,7 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-.dropDown-menu ul {
+.dropDown-router-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -197,14 +204,42 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-.dropDown-menu ul li a {
+.dropDown-router-menu ul li a {
   display: block;
   padding: 8px;
   text-decoration: none;
   color: black;
 }
 
-.dropDown-menu ul li a:hover {
+.dropDown-router-menu ul li a:hover {
+  background-color: #ddd;
+}
+
+.dropDown-profile-menu {
+  visibility: visible;
+  position: fixed;
+  right: 15px;
+  top: 47px;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.dropDown-profile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.dropDown-profile-menu ul li a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropDown-profile-menu ul li a:hover {
   background-color: #ddd;
 }
 
