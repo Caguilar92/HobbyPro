@@ -46,7 +46,7 @@ console.log("button clicked");
             <div class="inputElement">
               <textarea placeholder="Add a description or some helpful notes"></textarea>
             </div>
-            <input type="file" name="fileName" id="fileName"> 
+            <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif"> 
             
             
             
