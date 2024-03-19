@@ -4,7 +4,6 @@ import {getAuth,signOut} from "firebase/auth";
 import {useRouter} from "vue-router";
 
 
-
 const auth = getAuth();
 const router = useRouter();
 function log_out(event) {

@@ -1,10 +1,16 @@
 <script>
+import {getAuth,signOut} from "firebase/auth";
+import {useRouter} from "vue-router";
+
 export default {
   data() {
     return {
       // State to track if the dropdown is visible
       isRouterDropdownVisible: false,
       isProfileDropdownVisible: false,
+      auth: getAuth(),
+      router: useRouter()
+
     };
   },
   methods: {
@@ -15,6 +21,16 @@ export default {
     toggleProfileDropdown() {
       this.isProfileDropdownVisible = !this.isProfileDropdownVisible;
     },
+
+    log_out(event) {
+      event.preventDefault();
+
+      signOut(this.auth).then(() => {
+        this.router.replace('/login');
+      }).catch((error) => {
+        console.log("something went wrong")
+      });
+    }
   },
 };
 </script>
@@ -42,7 +58,7 @@ export default {
     <div v-if="isProfileDropdownVisible" class="dropDown-profile-menu">
       <ul>
         <li><RouterLink to="/dashboard/profile">Profile</RouterLink></li>
-        <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
+        <li><button @click="log_out" class="btn btn-primary">sign out</button></li>
       </ul>
     </div>
   </header>
