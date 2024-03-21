@@ -44,42 +44,40 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
   <header>
-    <h1 class="title"><RouterLink to="/dashboard/main">Hobby Pro</RouterLink></h1>
-    <div class="search-bar">
+    <h1 class="title"><router-link to="/dashboard/main">Hobby Pro</router-link></h1>
+    <div class="searchBar">
       <input type="text" placeholder="Search...">
     </div>
     
       <button class="hamburger" @click="toggleDropdown(1)">&#9776;</button>
 
-      <div v-if="dropdownOpen[1]" class="dropDown-router-menu">
+      <div v-if="dropdownOpen[1]" class="dropDownRouterMenu">
         <ul>
-          <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
-          <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
-          <li><RouterLink to="/dashboard/completed_projects"><div>Completed Project</div></RouterLink></li>
-          <li><RouterLink to="/dashboard/create_project">Create Project</RouterLink></li>
+          <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
+          <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+          <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
+          <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
         </ul>
       </div>
-    <div class="profile-icon" @click="toggleDropdown(2)"></div>
+    <div class="profileIcon" @click="toggleDropdown(2)"></div>
 
-    <div v-if="dropdownOpen[2]" class="dropDown-profile-menu">
+    <div v-if="dropdownOpen[2]" class="dropDownProfileMenu">
       <ul>
-        <li><RouterLink to="/dashboard/profile">Profile</RouterLink></li>
-        <li><button @click="log_out" class="btn btn-primary">sign out</button></li>
+        <li><router-link to="/dashboard/profile">Profile</router-link></li>
+        <li><button @click="logOut" class="btn btnPrimary">Sign Out</button></li>
       </ul>
     </div>
   </header>
 
   <nav>
       <ul>
-        <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
-        <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
-        <li><RouterLink to="/dashboard/completed_projects"><div>Completed Project</div></RouterLink></li>
+        <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
+        <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+        <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
       </ul>
-      <RouterLink class="cp_button" to="/dashboard/create_project">Create Project</RouterLink>
+      <router-link class="cpButton" to="/dashboard/create_project">Create Project</router-link>
   </nav>
-  </div>
 </template>
 
 <style scoped>
@@ -115,13 +113,14 @@ header {
   color: black;
 }
 
-.search-bar {
+.searchBar {
   height: 40px;
-  width: 300px;
-  margin-left: 200px
+  width: 500px;
+  margin-left: 200px;
+  margin-right: 60px;
 }
 
-.search-bar input[type="text"] {
+.searchBar input[type="text"] {
   margin: auto;
   width: 100%;
   padding: 8px 8px 2px 8px;
@@ -129,7 +128,7 @@ header {
   border: 2px solid #000;
 }
 
-.profile-icon {
+.profileIcon {
   position: fixed;
   right: 10px;
   top: 10px;
@@ -172,7 +171,7 @@ nav ul li a:hover {
   color: white;
 }
 
-.cp_button {
+.cpButton {
   text-decoration: none;
   color: #333;
   position: fixed;
@@ -184,16 +183,16 @@ nav ul li a:hover {
   cursor: pointer;
 }
 
-.cp_button:hover {
+.cpButton:hover {
   background-color: #ddd;
 }
 
-.cp_button a {
+.cpButton a {
   text-decoration: none;
   color: #333;
 }
 
-.cp_button a:hover {
+.cpButton a:hover {
   color: #333;
 }
 
@@ -209,7 +208,7 @@ nav ul li a:hover {
   top: 10px;
 }
 
-.dropDown-router-menu {
+.dropDownRouterMenu {
   visibility: visible;
   position: fixed;
   right: 60px;
@@ -218,7 +217,7 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-.dropDown-router-menu ul {
+.dropDownRouterMenu ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -226,18 +225,18 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-.dropDown-router-menu ul li a {
+.dropDownRouterMenu ul li a {
   display: block;
   padding: 8px;
   text-decoration: none;
   color: black;
 }
 
-.dropDown-router-menu ul li a:hover {
+.dropDownRouterMenu ul li a:hover {
   background-color: #ddd;
 }
 
-.dropDown-profile-menu {
+.dropDownProfileMenu {
   visibility: visible;
   position: fixed;
   right: 15px;
@@ -246,7 +245,7 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-.dropDown-profile-menu ul {
+.dropDownProfileMenu ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -254,14 +253,14 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-.dropDown-profile-menu ul li a {
+.dropDownProfileMenu ul li a {
   display: block;
   padding: 8px;
   text-decoration: none;
   color: black;
 }
 
-.dropDown-profile-menu ul li a:hover {
+.dropDownProfileMenu ul li a:hover {
   background-color: #ddd;
 }
 
@@ -270,14 +269,14 @@ nav ul li a:hover {
     height: 100px;
   }
 
-  .search-bar {
+  .searchBar {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 42px;
     width: 576px;
   }
 
-  .search-bar input {
+  .searchBar input {
     width: 100%;
   }
 
