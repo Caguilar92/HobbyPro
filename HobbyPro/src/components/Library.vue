@@ -10,5 +10,9 @@
 </template>
 
 <style>
-
+@media (min-width: 576px) {
+  .library_formatting {
+    align-items: center;
+  }
+}
 </style>
