@@ -35,8 +35,6 @@ console.log("button clicked");
 };
 
 
-
-
 </script>
 
 <template>
@@ -45,50 +43,42 @@ console.log("button clicked");
     <p>Lorem ipsum</p>
   </div>
   <form name="createProject" id="createProjectForm">
-        
-        <div class="center">
-          <h2 class="heading">Create a New Project</h2>
-          <div class="inputElement">
-                <label for="projectName">Project Name:  </label>
-                <input v-model="projectName" type="text" name="projectName" id="projectName">
-            </div>
-            <div class="inputElement">
-                <label for="startDate">Start Date: </label>
-                <input v-model="startDate" type="date" name="startDate" id="startDate">
-                <!-- <div id="deadlineButton">
-                  <button v-on:click="isHidden = !isHidden">Deadline</button>
-                  <h1 v-if="!isHidden"> Hello</h1>
-                </div>
-                
-                <div class="mb-3">
-                  <label for="" class="form-label">Set Deadline</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    name="deadline"
-                    id="dealine"
-                    aria-describedby="helpId"
-                  />
-                </div> -->
-                
-                <button>Add Tags +</button>
-            </div>
-            <div class="inputElement">
-              <textarea placeholder="Add a description or some helpful notes"></textarea>
-            </div>
-            <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif"> 
-            
-            
-            
-            <div class="inputElement">
-              <button @click="saveToFireStore">Create Project</button>
-              <button>Cancel</button>
-            </div>
 
-        </div>
-            
-    </form>
-  
+    <div class="center">
+      <h2 class="heading">Create a New Project</h2>
+      <div class="inputElement">
+        <label for="projectName">Project Name: </label>
+        <input v-model="projectName" type="text" name="projectName" id="projectName" required>
+      </div>
+      <div class="inputElement">
+        <label for="startDate">Start Date: </label>
+        <input v-model="startDate" type="date" name="startDate" id="startDate" required>
+        <button
+          id="selectDealine"
+          name="selectDealine"
+          type="button"
+          class="btn btn-secondary"
+        >Deadline</button>
+        
+        <input type="date" name="deadline" id="deadline">
+        <button>Add Tags +</button>
+      </div> 
+
+      <div class="inputElement">
+        <textarea placeholder="Add a description or some helpful notes"></textarea>
+      </div>
+
+      <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif">
+
+      <div class="inputElement">
+        <button @click="saveToFireStore">Create Project</button>
+        <button>Cancel</button>
+      </div>
+
+    </div>
+
+  </form>
+
 </template>
 
 <style scoped>
