@@ -117,13 +117,13 @@ header {
 
 .search-bar {
   height: 40px;
-  width: auto;
+  width: 300px;
   margin-left: 200px
 }
 
 .search-bar input[type="text"] {
   margin: auto;
-  width: auto;
+  width: 100%;
   padding: 8px 8px 2px 8px;
   border-radius: 5px;
   border: 2px solid #000;
@@ -270,12 +270,16 @@ nav ul li a:hover {
     height: 100px;
   }
 
-  
   .search-bar {
-    margin-left: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 42px;
+    width: 576px;
   }
-  
+
+  .search-bar input {
+    width: 100%;
+  }
 
   nav {
     display: none !important;
