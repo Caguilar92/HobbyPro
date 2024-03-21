@@ -6,8 +6,10 @@ export default {
   data() {
     return {
       // State to track if the dropdown is visible
-      isRouterDropdownVisible: false,
-      isProfileDropdownVisible: false,
+      dropdownOpen: {
+        1: false,
+        2: false
+      },
       auth: getAuth(),
       router: useRouter()
 
@@ -15,12 +17,18 @@ export default {
   },
   methods: {
     // Method to toggle the visibility of the dropdown
-    toggleRouterDropdown() {
-      this.isRouterDropdownVisible = !this.isRouterDropdownVisible;
+    toggleDropdown(dropdownId) {
+      // Close all dropdowns
+      for (let id in this.dropdownOpen) {
+        if (id != dropdownId) {
+          this.dropdownOpen[id] = false;
+        }
+      }
+
+      // Toggle the clicked dropdown
+      this.dropdownOpen[dropdownId] = !this.dropdownOpen[dropdownId];
     },
-    toggleProfileDropdown() {
-      this.isProfileDropdownVisible = !this.isProfileDropdownVisible;
-    },
+    
 
     log_out(event) {
       event.preventDefault();
@@ -43,9 +51,9 @@ export default {
       <input type="text" placeholder="Search...">
     </div>
     
-      <button class="hamburger" @click="toggleRouterDropdown">&#9776;</button>
+      <button class="hamburger" @click="toggleDropdown(1)">&#9776;</button>
 
-      <div v-if="isRouterDropdownVisible" class="dropDown-router-menu">
+      <div v-if="dropdownOpen[1]" class="dropDown-router-menu">
         <ul>
           <li><RouterLink to="/dashboard/main"><div>Main Dashboard</div></RouterLink></li>
           <li><RouterLink to="/dashboard/profile"><div>Profile</div></RouterLink></li>
@@ -53,9 +61,9 @@ export default {
           <li><RouterLink to="/dashboard/create_project">Create Project</RouterLink></li>
         </ul>
       </div>
-    <div class="profile-icon" @click="toggleProfileDropdown"></div>
+    <div class="profile-icon" @click="toggleDropdown(2)"></div>
 
-    <div v-if="isProfileDropdownVisible" class="dropDown-profile-menu">
+    <div v-if="dropdownOpen[2]" class="dropDown-profile-menu">
       <ul>
         <li><RouterLink to="/dashboard/profile">Profile</RouterLink></li>
         <li><button @click="log_out" class="btn btn-primary">sign out</button></li>
@@ -110,9 +118,7 @@ header {
 .search-bar {
   height: 40px;
   width: auto;
-  position: fixed;
-  left: 200px;
-  right: 500px;
+  margin-left: 200px
 }
 
 .search-bar input[type="text"] {
@@ -192,7 +198,7 @@ nav ul li a:hover {
 }
 
 .hamburger {
-  visibility: visible;
+  visibility: hidden;
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 5px;
@@ -260,6 +266,17 @@ nav ul li a:hover {
 }
 
 @media (max-width: 576px) {
+  header {
+    height: 100px;
+  }
+
+  
+  .search-bar {
+    margin-left: 0px;
+    margin-top: 42px;
+  }
+  
+
   nav {
     display: none !important;
   }
@@ -270,34 +287,6 @@ nav ul li a:hover {
     border: 2px solid #000;
     padding: 2px 7px 2px 7px;
      margin: 5px 5px 5px 8px;
-  }
-
-  .dropDown-menu {
-    visibility: visible;
-    position: fixed;
-    right: 60px;
-    top: 47px;
-    border: 2px solid #000;
-    border-radius: 5px;
-  }
-
-  .dropDown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-  }
-
-  .dropDown-menu ul li a {
-    display: block;
-    padding: 8px;
-    text-decoration: none;
-    color: black;
-  }
-
-  .dropDown-menu ul li a:hover {
-    background-color: #ddd;
   }
 }
 </style>

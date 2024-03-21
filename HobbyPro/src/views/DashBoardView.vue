@@ -27,8 +27,9 @@ import NavigationBar from "@/components/NavigationBar.vue";
 
 @media (max-width: 576px){
   .content {
-  margin-left: 0px;
-}
+    margin-top: 100px;
+    margin-left: 0px;
+  }
 
 }
 
