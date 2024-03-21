@@ -6,6 +6,7 @@ import ProfileView from "@/components/Profile.vue";
 import CompletedProjectView from "@/components/CompletedProject.vue";
 import DashBoard from "@/views/DashBoardView.vue";
 import CreateProject from "@/components/CreateProject.vue";
+import Library from "@/components/Library.vue";
 import ForgotPasswordView from "@/views/ForgotPasswordView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 const auth = getAuth();
@@ -48,6 +49,9 @@ export const router = createRouter({
       }, {
         path:'create_project',
         component:CreateProject
+      }, {
+        path: 'library',
+        component:Library
       }
 
       ]

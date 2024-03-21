@@ -57,6 +57,7 @@ export default {
           <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
           <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
           <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
+          <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
           <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
         </ul>
       </div>
@@ -74,6 +75,7 @@ export default {
       <ul>
         <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
         <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+        <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
         <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
       </ul>
       <router-link class="cpButton" to="/dashboard/create_project">Create Project</router-link>
