@@ -8,12 +8,12 @@ import NavigationBar from "@/components/NavigationBar.vue";
 
 <template>
   <div>
-    <NavigationBar/>
-  <div class="content">
+    <NavigationBar />
+    <div class="content">
       <router-view></router-view>
+    </div>
   </div>
-  </div>
-  
+
 
 </template>
 

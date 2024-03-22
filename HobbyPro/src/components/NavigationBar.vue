@@ -141,7 +141,7 @@ header {
 }
 
 nav {
-  background-color: #fff;
+  background-color: #31363F;
   position: fixed;
   top: 60px;
   bottom: 0;
@@ -166,11 +166,11 @@ nav ul li:hover {
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: white;
 }
 
 nav ul li a:hover {
-  color: white;
+  color: black;
 }
 
 .cpButton {
