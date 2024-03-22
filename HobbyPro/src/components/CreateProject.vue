@@ -60,8 +60,7 @@ console.log("button clicked");
           class="btn btn-secondary"
         >Deadline</button>
         
-        <input type="date" name="deadline" id="deadline">
-        <button>Add Tags +</button>
+        <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
       </div> 
 
       <div class="inputElement">
