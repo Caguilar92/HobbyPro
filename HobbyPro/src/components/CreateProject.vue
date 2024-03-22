@@ -42,41 +42,37 @@ console.log("button clicked");
     <h1>create project page</h1>
     <p>Lorem ipsum</p>
   </div>
-  <form name="createProject" id="createProjectForm">
 
-    <div class="center">
-      <h2 class="heading">Create a New Project</h2>
-      <div class="inputElement">
-        <label for="projectName">Project Name: </label>
-        <input v-model="projectName" type="text" name="projectName" id="projectName" required>
+  <div class="formElement">
+    <form name="createProject" id="createProjectForm">
+      <div class="formItems">
+        <h2 class="heading">Create a New Project</h2>
+
+        <div class="inputElementOne">
+          <label for="projectName">Project Name:</label>
+          <input v-model="projectName" type="text" name="projectName" id="projectName" required>
+        </div>
+        <div class="inputElementTwo">
+          <label for="startDate">Start Date: </label>
+          <input v-model="startDate" type="date" name="startDate" id="startDate" required>
+          <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
+          <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
+        </div>
+        <div class="inputElementThree">
+          <textarea placeholder="Add a description or some helpful notes" rows="6"></textarea>
+        </div>
+        <div class="inputElementFour">
+          <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif">
+        </div>
+        <div class="inputElementFive">
+          <button @click="saveToFireStore" class="btn btn-secondary">Create Project</button>
+          <button class="btn btn-secondary">Cancel</button>
+        </div>
+
       </div>
-      <div class="inputElement">
-        <label for="startDate">Start Date: </label>
-        <input v-model="startDate" type="date" name="startDate" id="startDate" required>
-        <button
-          id="selectDealine"
-          name="selectDealine"
-          type="button"
-          class="btn btn-secondary"
-        >Deadline</button>
-        
-        <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
-      </div> 
+    </form>
+  </div>
 
-      <div class="inputElement">
-        <textarea placeholder="Add a description or some helpful notes"></textarea>
-      </div>
-
-      <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif">
-
-      <div class="inputElement">
-        <button @click="saveToFireStore">Create Project</button>
-        <button>Cancel</button>
-      </div>
-
-    </div>
-
-  </form>
 
 </template>
 
@@ -86,23 +82,63 @@ console.log("button clicked");
     align-items: center;
   }
 }
-.center {
+.formElement{
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 30px;
   margin: auto;
   width: 60%;
-  border: 1px solid black;
-  padding: 10px;
+  font-size: 18px;
 }
-.heading{
+.formItems h2{
   text-align: center;
-}
-
-.inputElement{
   padding: 10px;
-  margin: 5px;
-  text-align: left;
+  margin-bottom: 10px;
 }
-button{
-  margin: 5px;
+.formItems{
+  margin: auto;
+  width: 80%;
+}
+.inputElementOne label{
+  padding-right: 5px;
+  display:inline-block;
+  margin: 5px 0;
+}
+.inputElementOne input{
+  width: 63%
+}
+.inputElementTwo{
+  display: inline;
+}
+.inputElementTwo label{
+  padding-right: 5px;
+  display:inline-block;
+  margin: 15px 0;
 }
 
+.inputElementTwo button{
+  margin: 0 5px 0 25px
+}
+
+.inputElementThree {
+  margin: 15px 0;
+}
+
+textarea {
+  font-size: 20px;
+  width: 100%;
+}
+
+.inputElementFour{
+  margin: auto;
+  width: 100%;
+  border: 1px solid black;
+}
+.inputElementFive{
+  margin: auto;
+  width: 50%;
+}
+.inputElementFive button{
+  margin: 20px 5px;
+}
 </style>
