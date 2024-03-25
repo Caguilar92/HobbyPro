@@ -35,6 +35,33 @@ function log_out(event) {
         </li>
       </ul>
     </div>
+
+    <div id="cardTest">
+      <div class="content">
+        <div class="card" id="one">
+          <img src="" alt="image here">
+          <div class="info">
+            <h3>Test Project Name</h3>
+            <h5 id="startDate">March 01, 2024</h5>
+            <p id="updateDate">Last updated: 03/15/2024</p>
+            <p id="deadline">Deadline: 04/01/2024   Days Left: X</p>
+            <p id="tagName">Tag Name</p>
+            <p id="progressBar">Test progress bar layout</p>
+            </div>          
+        </div>
+        <div class="card" id="two">
+          <img src="" alt="image here">
+          <div class="info">
+            <h3>Test Project Name</h3>
+            <h5 id="startDate">March 01, 2024</h5>
+            <p id="updateDate">Last updated: 03/15/2024</p>
+            <p id="deadline">Deadline: 04/01/2024   Days Left: X</p>
+            <p id="tagName">Tag Name</p>
+            <p id="progressBar">Test progress bar layout</p>
+            </div>          
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,5 +70,40 @@ function log_out(event) {
   .MP_formatting {
     align-items: center;
   }
+}
+.content{
+  display: flex;
+}
+
+.card{
+  background: #EEEEEE;
+  border: 2px solid #E6E6E6;
+  border-radius: 25px;
+  width: 300px;
+  margin: 0 15px;
+}
+.info{
+  padding: 10px 20px;
+}
+.card img{
+  border: 1px solid black;
+  border-radius: 25px 25px 0 0;
+  height: 200px;
+  background-color: lightslategray;
+}
+#tagName{
+  background-color: lightslategray;
+  border: 2px solid #E6E6E6;
+  border-radius: 50px;
+  position: absolute;
+  top: 215px;
+  right: 10px;
+}
+#progressBar{
+  background-color: lightslategray;
+  border: 2px solid #E6E6E6;
+  border-radius: 50px;
+  text-align: center;
+  margin: 0px
 }
 </style>
