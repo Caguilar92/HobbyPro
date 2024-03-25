@@ -174,7 +174,7 @@ nav ul li a:hover {
   color: black;
 }
 
-/* createProject button font color */
+/* createProject button font color #76ABAE */
 .cpButton {
   text-decoration: none;
   background-color: #76ABAE;

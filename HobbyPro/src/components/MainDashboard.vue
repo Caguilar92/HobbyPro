@@ -83,7 +83,7 @@ function log_out(event) {
   margin: 0 15px;
 }
 .info{
-  padding: 10px 20px;
+  padding: 15px 20px;
 }
 .card img{
   border: 1px solid black;
