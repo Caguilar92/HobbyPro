@@ -87,9 +87,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-
+/* change top nav background color; original header background color #fff */
 header {
-  background-color: #fff;
+  background-color: #222831;
   color: #000;
   border: 1px #000 ;
   position: fixed;
@@ -112,7 +112,7 @@ header {
 
 .title a{
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .searchBar {
@@ -140,6 +140,7 @@ header {
   border-radius: 50%;
 }
 
+/* change side nav bar background color here */
 nav {
   background-color: #31363F;
   position: fixed;
@@ -173,9 +174,11 @@ nav ul li a:hover {
   color: black;
 }
 
+/* createProject button font color */
 .cpButton {
   text-decoration: none;
-  color: #333;
+  background-color: #76ABAE;
+  color: white;
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -195,7 +198,7 @@ nav ul li a:hover {
 }
 
 .cpButton a:hover {
-  color: #333;
+  color: black;
 }
 
 .hamburger {
