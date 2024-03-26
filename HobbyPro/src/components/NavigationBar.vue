@@ -263,7 +263,7 @@ nav ul li a:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #EEEEEE;
   border-radius: 5px;
 }
 

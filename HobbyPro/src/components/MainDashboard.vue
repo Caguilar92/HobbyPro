@@ -106,7 +106,7 @@ function log_out(event) {
 h1{
   text-align: left;
   padding: 10px 0 10px 20px;
-  border-bottom: 2px solid #31363F;
+  border-bottom: 3px solid #31363F;
   margin-bottom: 20px;
 }
 .dashboardInfo{
