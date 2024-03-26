@@ -27,7 +27,7 @@ function logIn(event) {
             password.value = '';
 
           })
-    },1000)
+    },250)
 
 }
 
