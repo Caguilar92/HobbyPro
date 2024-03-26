@@ -14,34 +14,48 @@ let password= ref('');
 const firestore = getFirestore();
 const auth = getAuth();
 const router = useRouter();
+const errorMessage = ref('');
 function  createUser(event) {
  event.preventDefault();
-  createUserWithEmailAndPassword(auth, email.value, password.value)
-      .then((userCredential) => {
-        saveToFireStore();
+  errorMessage.value = '';
+  if(validate(firstname.value) && validate(lastname.value)) {
+    createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+          saveToFireStore();
 
-        const auth = getAuth();
-        updateProfile(auth.currentUser, {
-          displayName: firstname.value + " " + lastname.value
-        }).then(() => {
-          // Profile updated!
-          // ...
-        }).catch((error) => {
-          // An error occurred
-          // ...
+          const auth = getAuth();
+          updateProfile(auth.currentUser, {
+            displayName: firstname.value + " " + lastname.value
+          }).then(() => {
+            // Profile updated!
+            // ...
+          }).catch((error) => {
+            // An error occurred
+            // ...
+          });
+
+          router.replace("/login")
+        })
+        .catch((error) => {
+          errorMessage.value = formatErrorMessage(error.code)
+          password.value = '';
         });
+  } else {
+    setTimeout(function () {
+      errorMessage.value = "name fields cannot be blank"
+      password.value = '';
+    },250)
 
-        router.replace("/login")
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
 
-      });
+  }
+
 
 
 }
+function formatErrorMessage(message) {
 
+  return  message.substring(message.indexOf('/')+1,message.length)
+}
 
 function saveToFireStore() {
   setDoc(doc(firestore, "users", email.value), {
@@ -59,9 +73,11 @@ function validate(data) {
 </script>
 
 <template>
+
   <h1 class="mt-5 text-center">Hobby Pro</h1>
   <div class="justify-content-around d-flex mt-5">
     <form class="border border-lg p-5">
+      <p class="text-danger text-center">{{errorMessage}}</p>
       <h4 class="text-center">Register</h4>
       <div class="d-flex">
         <div class="mb-3 me-2">
