@@ -2,7 +2,8 @@
 import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
-import {getAuth,createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth,createUserWithEmailAndPassword,updateProfile} from "firebase/auth";
+import {useRouter} from "vue-router";
 
 
 
@@ -11,22 +12,36 @@ let lastname= ref('');
 let email= ref('');
 let password= ref('');
 const firestore = getFirestore();
-function  createUser() {
-  const auth = getAuth();
+const auth = getAuth();
+const router = useRouter();
+function  createUser(event) {
+ event.preventDefault();
   createUserWithEmailAndPassword(auth, email.value, password.value)
       .then((userCredential) => {
-
-        const user = userCredential.user;
-        //TODO: update profile
         saveToFireStore();
 
+        const auth = getAuth();
+        updateProfile(auth.currentUser, {
+          displayName: firstname.value + " " + lastname.value
+        }).then(() => {
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+
+        router.replace("/login")
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
       });
+
+
 }
+
 
 function saveToFireStore() {
   setDoc(doc(firestore, "users", email.value), {
@@ -44,7 +59,6 @@ function validate(data) {
 </script>
 
 <template>
-<h1> {{displayName}}</h1>
   <h1 class="mt-5 text-center">Hobby Pro</h1>
   <div class="justify-content-around d-flex mt-5">
     <form class="border border-lg p-5">
