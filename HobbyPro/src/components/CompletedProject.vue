@@ -6,8 +6,8 @@
   
   // gets user info from auth 
   const auth = getAuth();
-  const user = auth.currentUser()
-  const userEmail = user.email;
+  //const user = auth.currentUser() TODO:fix, is breaking navigation within the dashboard
+  //const userEmail = user.email; TODO: fix, is breaking navigation within the dashboard
   
   function loadDocument(file){
     // 'file' comes from the Blob or File API
