@@ -1,32 +1,57 @@
 <script setup>
-
+import { onMounted } from "vue";
 import {getAuth,signOut} from "firebase/auth";
 import {useRouter} from "vue-router";
-import { collection, doc, setDoc, getDoc } from "firebase/firestore"; 
+import { collection, doc, getDocs, getFirestore } from "firebase/firestore"; 
 
+//this is the database refferance - I don't know why it has to be this way but it works
+const firestore = getFirestore();
 
+//this is a class to organize the return from the database
 class Project {
-  constructor(name, startDate, endDate){
+  constructor(name, startDate, endDate = null){
     this.projectName = name;
     this.startDate = startDate;
     this.endDate = endDate;
   }
 }
 
+//a project converter -- a work in progress
 const projectConverter = {
   toFireStore: (project) => {
     return {
-      projectName: project.name,
+      projectName: project.projectName,
       startDate: project.startDate,
       endDate: project.endDate
     };
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
-    return new Project(data.name, data.startDate, data.endDate);
+    return new Project(data.projectName, data.startDate, data.endDate);
   }
 }
 
+
+// function to get data from database
+async function getDocFromDatabase() {
+  try {
+    const querySnapshot = await getDocs(collection(firestore, 'Projects'));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      //this is placeholder functionallity for testing
+      console.log(doc.id, " => ", doc.data());
+    });
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+    // Handle errors gracefully, you can also throw the error if you want to handle it in the calling function
+  }
+}
+
+
+//this works!
+onMounted(() => {
+  getDocFromDatabase();
+})
 //tester for list of projects
 const projects = [
   {title: 'ninja UX Designer', id: 1, details: 'lorem', deadline: "10/24/2024" },
@@ -37,6 +62,8 @@ const projects = [
 
 const auth = getAuth();
 const router = useRouter();
+
+
 function log_out(event) {
   event.preventDefault();
   signOut(auth).then(() => {
@@ -45,6 +72,8 @@ function log_out(event) {
     console.log("something went wrong")
   });
 }
+
+
 </script>
 
 <template>

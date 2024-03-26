@@ -1,7 +1,7 @@
 <script setup>
   import { getAuth } from "firebase/auth";
   import {ref} from "vue";
-  const email = ref('uNITIAL DATA');
+  
   
   
   // gets user info from auth 
