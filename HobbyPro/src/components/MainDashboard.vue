@@ -2,6 +2,30 @@
 
 import {getAuth,signOut} from "firebase/auth";
 import {useRouter} from "vue-router";
+import { collection, doc, setDoc, getDoc } from "firebase/firestore"; 
+
+
+class Project {
+  constructor(name, startDate, endDate){
+    this.projectName = name;
+    this.startDate = startDate;
+    this.endDate = endDate;
+  }
+}
+
+const projectConverter = {
+  toFireStore: (project) => {
+    return {
+      projectName: project.name,
+      startDate: project.startDate,
+      endDate: project.endDate
+    };
+  },
+  fromFirestore: (snapshot, options) => {
+    const data = snapshot.data(options);
+    return new Project(data.name, data.startDate, data.endDate);
+  }
+}
 
 //tester for list of projects
 const projects = [
