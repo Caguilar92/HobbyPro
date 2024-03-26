@@ -11,7 +11,8 @@ export default {
         2: false
       },
       auth: getAuth(),
-      router: useRouter()
+      router: useRouter(),
+      displayName: "Welcome, " + getAuth().currentUser.displayName.toString()
 
     };
   },
@@ -39,7 +40,7 @@ export default {
         console.log("something went wrong")
       });
     }
-  },
+  }
 };
 </script>
 
@@ -49,7 +50,10 @@ export default {
     <div class="searchBar">
       <input type="text" placeholder="Search...">
     </div>
-    
+      <div class="displayName">
+        <p class="text-white">{{displayName}}</p>
+
+      </div>
       <button class="hamburger" @click="toggleDropdown(1)">&#9776;</button>
 
       <div v-if="dropdownOpen[1]" class="dropDownRouterMenu">
@@ -129,7 +133,10 @@ header {
   border-radius: 5px;
   border: 2px solid #000;
 }
-
+.displayName {
+  position: fixed;
+  right: 8em;
+}
 .profileIcon {
   position: fixed;
   right: 10px;
