@@ -56,6 +56,8 @@ console.log("button clicked");
           <label for="startDate">Start Date: </label>
           <input v-model="startDate" type="date" name="startDate" id="startDate" required>
           <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
+          <input type="date" name="testDeadline" id="testDeadline">
+          <input type="text" name="testTagName" id="testTagName">
           <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
         </div>
         <div class="inputElementThree">

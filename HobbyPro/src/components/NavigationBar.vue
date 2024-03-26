@@ -79,7 +79,7 @@ export default {
   <nav>
       <ul>
         <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-        <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+        <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
         <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
         <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
       </ul>
