@@ -39,42 +39,40 @@ console.log("button clicked");
 
 <template>
   <div class="CP_formatting">
-    <h1>create project page</h1>
-    <p>Lorem ipsum</p>
+    <div class="space"></div>
+    <div class="formElement">
+      <form name="createProject" id="createProjectForm">
+        <div class="formItems">
+          <h2 class="heading">Create a New Project</h2>
+
+          <div class="inputElementOne">
+            <label for="projectName">Project Name:</label>
+            <input v-model="projectName" type="text" name="projectName" id="projectName" required>
+          </div>
+          <div class="inputElementTwo">
+            <label for="startDate">Start Date: </label>
+            <input v-model="startDate" type="date" name="startDate" id="startDate" required>
+            <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
+            <input type="date" name="testDeadline" id="testDeadline">
+            <input type="text" name="testTagName" id="testTagName">
+            <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
+          </div>
+          <div class="inputElementThree">
+            <textarea placeholder="Add a description or some helpful notes" rows="6"></textarea>
+          </div>
+          <div class="inputElementFour">
+            <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif">
+          </div>
+          <div class="inputElementFive">
+            <button @click="saveToFireStore" class="btn btn-secondary">Create Project</button>
+            <button class="btn btn-secondary">Cancel</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
   </div>
-
-  <div class="formElement">
-    <form name="createProject" id="createProjectForm">
-      <div class="formItems">
-        <h2 class="heading">Create a New Project</h2>
-
-        <div class="inputElementOne">
-          <label for="projectName">Project Name:</label>
-          <input v-model="projectName" type="text" name="projectName" id="projectName" required>
-        </div>
-        <div class="inputElementTwo">
-          <label for="startDate">Start Date: </label>
-          <input v-model="startDate" type="date" name="startDate" id="startDate" required>
-          <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
-          <input type="date" name="testDeadline" id="testDeadline">
-          <input type="text" name="testTagName" id="testTagName">
-          <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
-        </div>
-        <div class="inputElementThree">
-          <textarea placeholder="Add a description or some helpful notes" rows="6"></textarea>
-        </div>
-        <div class="inputElementFour">
-          <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif">
-        </div>
-        <div class="inputElementFive">
-          <button @click="saveToFireStore" class="btn btn-secondary">Create Project</button>
-          <button class="btn btn-secondary">Cancel</button>
-        </div>
-
-      </div>
-    </form>
-  </div>
-
 
 </template>
 
@@ -83,6 +81,9 @@ console.log("button clicked");
   .CP_formatting {
     align-items: center;
   }
+}
+.space{
+  padding: 20px;
 }
 .formElement{
   border: 2px solid black;
