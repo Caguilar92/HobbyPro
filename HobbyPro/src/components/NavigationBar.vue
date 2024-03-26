@@ -66,7 +66,7 @@ export default {
     <div v-if="dropdownOpen[2]" class="dropDownProfileMenu">
       <ul>
         <li><router-link to="/dashboard/profile">Profile</router-link></li>
-        <li><button @click="logOut" class="btn btnPrimary">Sign Out</button></li>
+        <li><button @click="log_out" class="btn btnPrimary">Sign Out</button></li>
       </ul>
     </div>
   </header>
