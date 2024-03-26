@@ -185,13 +185,14 @@ nav ul li a:hover {
 /* createProject button font color #76ABAE */
 .cpButton {
   text-decoration: none;
-  background-color: #76ABAE;
+  background-color: lightslategray;
   color: white;
+  font-weight: bolder;
   position: fixed;
   bottom: 0px;
   left: 0px;
-  padding: 10px 85px 10px 5px;
-  margin: 5px;
+  padding: 10px 70px 10px 5px;
+  margin: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
 }

@@ -25,7 +25,18 @@ function log_out(event) {
 
 <template>
   <div class="MP_formatting">
-    
+    <header>
+      <h1>Main Dashboard</h1>
+    </header>
+    <div class="dashboardInfo">
+        <div class="dashboardItems">
+          <label>All </label>
+          <label>Favorites </label>
+          <button class="btn btn-secondary">Filter</button>
+          <button class="btn btn-secondary">Sort</button>
+        </div>
+
+      </div>
 
     <div id="cardTest">
       <div class="content">
@@ -65,7 +76,36 @@ function log_out(event) {
 }
 .content{
   display: flex;
+  margin: 10px;
 }
+
+h1{
+  text-align: left;
+  padding: 10px 0 10px 20px;
+  border-bottom: 2px solid #31363F;
+  margin-bottom: 20px;
+}
+.dashboardInfo{
+  margin-bottom: 20px;
+}
+.dashboardItems{
+  font-size: 20px;
+}
+.dashboardItems label{
+  padding: 10px;
+}
+.dashboardItems button{
+  font-size: 18px;
+  font-weight: 500;
+  background-color: lightslategray;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  float: right;
+}
+
 
 .card{
   background: #EEEEEE;
