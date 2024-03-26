@@ -49,16 +49,7 @@ function log_out(event) {
 
 <template>
   <div class="MP_formatting">
-    <h1>Main Dashboard</h1>
-    <button @click="log_out" class="btn btn-primary">sign out</button>
-    <div>
-      <ul class="project-list" v-for="project in projects" :key="project.id">
-        <li>
-            <h3>{{ project.title }}</h3>
-            <p>deadline: {{ project.deadline }}</p>
-        </li>
-      </ul>
-    </div>
+    
 
     <div id="cardTest">
       <div class="content">
@@ -86,6 +77,7 @@ function log_out(event) {
         </div>
       </div>
     </div>
+
   </div>
 </template>
 

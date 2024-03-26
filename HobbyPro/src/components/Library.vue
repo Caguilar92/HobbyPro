@@ -1,12 +1,13 @@
 <script>
 
+
 </script>
 
 <template>
   <div class="library_formatting">
       <h1>Library</h1>
       <div class="dropdown">
-        <button class="dropbtn">Library<i class="fa-duotone fa-caret-down"></i> </button>
+        <button class="dropbtn">Library</button>
         <div class="dropdown-content">
           <a href="#">Action One</a>
           <a href="#">Action One</a>
@@ -91,7 +92,7 @@
 .libraryItems button{
   background-color: lightgrey;
   color: black;
-  padding: 10px 18px;
+  padding: 8px 12px;
   text-align: center;
   text-decoration: none;
   margin: 4px 2px;
