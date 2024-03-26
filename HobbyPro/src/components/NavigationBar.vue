@@ -42,6 +42,7 @@ export default {
     }
   }
 };
+//TODO: Title and display name do not fit on mobile view
 </script>
 
 <template>
@@ -303,5 +304,13 @@ nav ul li a:hover {
     padding: 2px 7px 2px 7px;
      margin: 5px 5px 5px 8px;
   }
+}
+
+@media(max-width: 576px) {
+  .displayName {
+    display: inline-block;
+    position: relative !important;
+  }
+
 }
 </style>
