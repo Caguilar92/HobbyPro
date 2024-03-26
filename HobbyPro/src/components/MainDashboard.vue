@@ -32,32 +32,34 @@ const projectConverter = {
 }
 
 
-// function to get data from database
+
+// Retrieve data from Firestore and populate projects array
 async function getDocFromDatabase() {
-  try {
-    const querySnapshot = await getDocs(collection(firestore, 'Projects'));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      //this is placeholder functionallity for testing
-      console.log(doc.id, " => ", doc.data());
-    });
-  } catch (error) {
-    console.error("Error getting documents: ", error);
-    // Handle errors gracefully, you can also throw the error if you want to handle it in the calling function
-  }
+  const projectsCollectionRef = collection(firestore, 'projects');
+  const querySnapshot = await getDocs(projectsCollectionRef);
+  
+  const projects = [];
+  querySnapshot.forEach(doc => {
+    // Process each document and create Project instances
+    const projectData = doc.data();
+    const projectInstance = new Project(projectData.name, projectData.startDate, projectData.endDate);
+    projects.push(projectInstance);
+  });
+
+  return projects;
 }
 
 
 //this works!
 onMounted(() => {
-  getDocFromDatabase();
+  const projects = getDocFromDatabase();
 })
 //tester for list of projects
-const projects = [
-  {title: 'ninja UX Designer', id: 1, details: 'lorem', deadline: "10/24/2024" },
-  {title: 'ninja Web Developer', id: 2, details: 'lorem', deadline: "11/27/2030"},
-  {title: 'ninja Vue Developer', id: 3, details: 'lorem', deadline: "05/18/2027" },
-]
+// const projects = [
+//   {title: 'ninja UX Designer', id: 1, details: 'lorem', deadline: "10/24/2024" },
+//   {title: 'ninja Web Developer', id: 2, details: 'lorem', deadline: "11/27/2030"},
+//   {title: 'ninja Vue Developer', id: 3, details: 'lorem', deadline: "05/18/2027" },
+// ]
 
 
 const auth = getAuth();
