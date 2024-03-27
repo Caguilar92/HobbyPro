@@ -1,18 +1,71 @@
 <script setup>
-
+import { onMounted } from "vue";
 import {getAuth,signOut} from "firebase/auth";
 import {useRouter} from "vue-router";
+import { collection, doc, getDocs, getFirestore } from "firebase/firestore"; 
 
+//this is the database refferance - I don't know why it has to be this way but it works
+const firestore = getFirestore();
+
+//this is a class to organize the return from the database
+class Project {
+  constructor(name, startDate, endDate = null){
+    this.projectName = name;
+    this.startDate = startDate;
+    this.endDate = endDate;
+  }
+}
+
+//a project converter -- a work in progress
+const projectConverter = {
+  toFireStore: (project) => {
+    return {
+      projectName: project.projectName,
+      startDate: project.startDate,
+      endDate: project.endDate
+    };
+  },
+  fromFirestore: (snapshot, options) => {
+    const data = snapshot.data(options);
+    return new Project(data.projectName, data.startDate, data.endDate);
+  }
+}
+
+
+
+// Retrieve data from Firestore and populate projects array
+async function getDocFromDatabase() {
+  const projectsCollectionRef = collection(firestore, 'projects');
+  const querySnapshot = await getDocs(projectsCollectionRef);
+  
+  const projects = [];
+  querySnapshot.forEach(doc => {
+    // Process each document and create Project instances
+    const projectData = doc.data();
+    const projectInstance = new Project(projectData.name, projectData.startDate, projectData.endDate);
+    projects.push(projectInstance);
+  });
+
+  return projects;
+}
+
+
+//this works!
+onMounted(() => {
+  const projects = getDocFromDatabase();
+})
 //tester for list of projects
-const projects = [
-  {title: 'ninja UX Designer', id: 1, details: 'lorem', deadline: "10/24/2024" },
-  {title: 'ninja Web Developer', id: 2, details: 'lorem', deadline: "11/27/2030"},
-  {title: 'ninja Vue Developer', id: 3, details: 'lorem', deadline: "05/18/2027" },
-]
+// const projects = [
+//   {title: 'ninja UX Designer', id: 1, details: 'lorem', deadline: "10/24/2024" },
+//   {title: 'ninja Web Developer', id: 2, details: 'lorem', deadline: "11/27/2030"},
+//   {title: 'ninja Vue Developer', id: 3, details: 'lorem', deadline: "05/18/2027" },
+// ]
 
 
 const auth = getAuth();
 const router = useRouter();
+
+
 function log_out(event) {
   event.preventDefault();
   signOut(auth).then(() => {
@@ -21,20 +74,24 @@ function log_out(event) {
     console.log("something went wrong")
   });
 }
+
+
 </script>
 
 <template>
   <div class="MP_formatting">
-    <h1>Main Dashboard</h1>
-    <button @click="log_out" class="btn btn-primary">sign out</button>
-    <div>
-      <ul class="project-list" v-for="project in projects" :key="project.id">
-        <li>
-            <h3>{{ project.title }}</h3>
-            <p>deadline: {{ project.deadline }}</p>
-        </li>
-      </ul>
-    </div>
+    <header>
+      <h1>Main Dashboard</h1>
+    </header>
+    <div class="dashboardInfo">
+        <div class="dashboardItems">
+          <label>All </label>
+          <label>Favorites </label>
+          <button class="btn btn-secondary">Filter</button>
+          <button class="btn btn-secondary">Sort</button>
+        </div>
+
+      </div>
 
     <div id="cardTest">
       <div class="content">
@@ -62,6 +119,7 @@ function log_out(event) {
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -73,7 +131,36 @@ function log_out(event) {
 }
 .content{
   display: flex;
+  margin: 10px;
 }
+
+h1{
+  text-align: left;
+  padding: 10px 0 10px 20px;
+  border-bottom: 3px solid #31363F;
+  margin-bottom: 20px;
+}
+.dashboardInfo{
+  margin-bottom: 20px;
+}
+.dashboardItems{
+  font-size: 20px;
+}
+.dashboardItems label{
+  padding: 10px;
+}
+.dashboardItems button{
+  font-size: 18px;
+  font-weight: 500;
+  background-color: lightslategray;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  float: right;
+}
+
 
 .card{
   background: #EEEEEE;

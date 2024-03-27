@@ -79,7 +79,7 @@ export default {
   <nav>
       <ul>
         <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-        <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+        <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
         <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
         <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
       </ul>
@@ -185,13 +185,14 @@ nav ul li a:hover {
 /* createProject button font color #76ABAE */
 .cpButton {
   text-decoration: none;
-  background-color: #76ABAE;
+  background-color: lightslategray;
   color: white;
+  font-weight: bolder;
   position: fixed;
   bottom: 0px;
   left: 0px;
-  padding: 10px 85px 10px 5px;
-  margin: 5px;
+  padding: 10px 70px 10px 5px;
+  margin: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -262,7 +263,7 @@ nav ul li a:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #EEEEEE;
   border-radius: 5px;
 }
 
