@@ -35,7 +35,7 @@ async function getDocFromDatabase() {
 // Declare projects as a reactive reference
 const projects = ref([]);
 
-//this works!
+//populates projects array when page is loaded. 
 onMounted(async () => {
   // Fetch projects and assign them to the reactive reference
   projects.value = await getDocFromDatabase();
@@ -43,7 +43,6 @@ onMounted(async () => {
 
 const auth = getAuth();
 const router = useRouter();
-
 
 function log_out(event) {
   event.preventDefault();
@@ -53,7 +52,6 @@ function log_out(event) {
     console.log("something went wrong")
   });
 }
-
 
 </script>
 
@@ -74,7 +72,7 @@ function log_out(event) {
     <div id="cardTest">
       <div class="content">
         <!-- Loop through projects and display each project in a card -->
-        <div class="card" v-for="project in projects" :key="project.projectName">
+        <div class="card" v-for="project in projects" :key="project.projectName"> <!--I'm not sure what "key" does but it doesnt work without it-->
           <img src="" alt="image here">
           <div class="info">
             <h3>{{ project.projectName }}</h3>
