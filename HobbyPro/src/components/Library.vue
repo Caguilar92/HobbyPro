@@ -85,8 +85,8 @@ onMounted(()=> {
 
       </div>
 
-    <div>
-      <div v-for="(url, index) in imageUrls" :key="index">
+    <div class="row">
+      <div class="col-5" v-for="(url, index) in imageUrls" :key="index">
         <div class="card" style="width: 18rem;">
           <img :src="url" alt="Image" />
           <div class="card-body">
