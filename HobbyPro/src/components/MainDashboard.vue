@@ -159,13 +159,13 @@ h1{
   margin-bottom: 20px;
 }
 .dashboardItems{
-  font-size: 20px;
+  font-size: 15px;
 }
 .dashboardItems label{
   padding: 10px;
 }
 .dashboardItems button{
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 500;
   background-color: lightslategray;
   color: white;
@@ -181,7 +181,6 @@ h1{
   background: #EEEEEE;
   border: 2px solid #E6E6E6;
   border-radius: 25px;
-  width: 300px;
   margin: 0 15px;
 }
 .info{
