@@ -70,18 +70,22 @@ function log_out(event) {
     </div>
 
     <div id="cardTest">
-      <div class="content">
+      <div class="content-grid">
         <!-- Loop through projects and display each project in a card -->
         <div class="card" v-for="project in projects" :key="project.projectName"> <!--I'm not sure what "key" does but it doesnt work without it-->
           <img src="" alt="image here">
           <div class="info">
+            <div class="tagarea">
+              <button id = "tagName" :disabled>Tag Name</button>
+            </div>
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date: {{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
             <p >Deadline: {{ project.endDate }}   Days Left: X</p>
-            <p id = "tagName">Tag Name</p>
+            
             <p id = progressBar>Test progress bar layout</p>
           </div>
+
         </div>
       </div>
     </div>
@@ -94,9 +98,11 @@ function log_out(event) {
     align-items: center;
   }
 }
-.content{
-  display: flex;
+.content-grid{
+  display: grid;
+  grid-template-columns: auto auto auto;
   margin: 10px;
+  grid-gap: 20px 10px;
 }
 
 h1{
@@ -136,6 +142,12 @@ h1{
 .info{
   padding: 15px 20px;
 }
+
+.info h3{
+  padding-top: 30px;
+  padding-right: 75px;
+}
+
 .card img{
   border: 1px solid black;
   border-radius: 25px 25px 0 0;
@@ -146,9 +158,12 @@ h1{
   background-color: lightslategray;
   border: 2px solid #E6E6E6;
   border-radius: 50px;
+  text-align: center;
+  padding: 3px 10px;
   position: absolute;
-  top: 215px;
-  right: 10px;
+  top: 212px;
+  right: 14px;
+  cursor: default;
 }
 #progressBar{
   background-color: lightslategray;
