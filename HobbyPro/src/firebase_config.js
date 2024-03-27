@@ -29,4 +29,4 @@ const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
 
-export {firebaseApp,analytics,auth,database,firestore}
+export {firebaseApp,analytics,auth,database,firestore,storage}
