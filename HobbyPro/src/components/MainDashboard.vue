@@ -35,7 +35,7 @@ const projectConverter = {
 
 // Retrieve data from Firestore and populate projects array
 async function getDocFromDatabase() {
-  const projectsCollectionRef = collection(firestore, 'projects');
+  const projectsCollectionRef = collection(firestore, 'Projects/');
   const querySnapshot = await getDocs(projectsCollectionRef);
   
   const projects = [];
@@ -52,7 +52,7 @@ async function getDocFromDatabase() {
 
 //this works!
 onMounted(() => {
-  const projects = getDocFromDatabase();
+  getDocFromDatabase();
 })
 //tester for list of projects
 // const projects = [
@@ -117,6 +117,21 @@ function log_out(event) {
             <p id="progressBar">Test progress bar layout</p>
             </div>          
         </div>
+        <ul>
+          <li v-for = 'project in projects'>
+            <div class="card">
+              <img src="" alt="image here">
+              <div class="info">
+                <h3>{{project.projectName}}</h3>
+                <h5 id="startDate">{{project.startDate}}</h5>
+                <p id="updateDate">Last updated: 03/15/2024</p>
+                <p id="deadline">{{project.endDate}}   Days Left: X</p>
+                <p id="tagName">Tag Name</p>
+                <p id="progressBar">Test progress bar layout</p>
+              </div>          
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
 
