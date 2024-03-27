@@ -4,6 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import {getAuth,createUserWithEmailAndPassword,updateProfile} from "firebase/auth";
 import {useRouter} from "vue-router";
+import computeOffsets from "@popperjs/core/lib/utils/computeOffsets.js";
 
 
 
@@ -11,6 +12,7 @@ let firstname= ref('');
 let lastname= ref('');
 let email= ref('');
 let password= ref('');
+let confirm_password = ref('');
 const firestore = getFirestore();
 const auth = getAuth();
 const router = useRouter();
@@ -18,7 +20,7 @@ const errorMessage = ref('');
 function  createUser(event) {
  event.preventDefault();
   errorMessage.value = '';
-  if(validate(firstname.value) && validate(lastname.value)) {
+  if(validateName(firstname.value) && validateName(lastname.value) && validatePassword(password.value,confirm_password.value)) {
     createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
           saveToFireStore();
@@ -27,11 +29,9 @@ function  createUser(event) {
           updateProfile(auth.currentUser, {
             displayName: firstname.value + " " + lastname.value
           }).then(() => {
-            // Profile updated!
-            // ...
+
           }).catch((error) => {
-            // An error occurred
-            // ...
+
           });
 
           router.replace("/login")
@@ -39,11 +39,22 @@ function  createUser(event) {
         .catch((error) => {
           errorMessage.value = formatErrorMessage(error.code)
           password.value = '';
+          confirm_password.value = '';
         });
   } else {
     setTimeout(function () {
-      errorMessage.value = "name fields cannot be blank"
+     if(!validateName(firstname.value)) {
+       errorMessage.value = "first name cannot be blank and must be an alphabetic character"
+     }else if(!validateName(lastname.value)) {
+       errorMessage.value ="last name cannot be blank and must be an alphabetic character"
+     }else if(password.value !== confirm_password.value) {
+       errorMessage.value = "passwords do not match"
+     } else if(!validatePassword(password.value,confirm_password.value)) {
+       errorMessage.value = "password must not be blank and must be 8-20 characters long"
+     }
       password.value = '';
+      confirm_password.value = '';
+
     },250)
 
 
@@ -67,8 +78,16 @@ function saveToFireStore() {
 
 }
 
-function validate(data) {
-  return data !== null && data.length !== 0  && data.trim() !== 0
+function validatePassword(password, confirm_password) {
+
+ let passwordRegex = /^\S{8,25}/
+
+    return passwordRegex.test(password) && password === confirm_password;
+}
+
+function validateName(data) {
+  let regex = /[a-zA-Z]+/
+  return regex.test(data)
 }
 </script>
 
@@ -98,6 +117,10 @@ function validate(data) {
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input v-model="password" type="password" class="form-control" id="password">
+      </div>
+      <div class="mb-3">
+        <label for="confirm-password" class="form-label">Confirm Password</label>
+        <input v-model="confirm_password" type="password" class="form-control" id="confirm-password">
       </div>
       <div class="text-center mb-5">
         <router-link to="login" class="text-decoration-none">Log In</router-link>
