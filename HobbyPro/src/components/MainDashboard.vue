@@ -1,66 +1,45 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import {getAuth,signOut} from "firebase/auth";
 import {useRouter} from "vue-router";
-import { collection, doc, getDocs, getFirestore } from "firebase/firestore"; 
+import { collection, getDocs, getFirestore } from "firebase/firestore"; 
 
 //this is the database refferance - I don't know why it has to be this way but it works
 const firestore = getFirestore();
 
 //this is a class to organize the return from the database
 class Project {
-  constructor(name, startDate, endDate = null){
-    this.projectName = name;
+  constructor(projectName, startDate, endDate = null){
+    this.projectName = projectName;
     this.startDate = startDate;
     this.endDate = endDate;
   }
 }
 
-//a project converter -- a work in progress
-const projectConverter = {
-  toFireStore: (project) => {
-    return {
-      projectName: project.projectName,
-      startDate: project.startDate,
-      endDate: project.endDate
-    };
-  },
-  fromFirestore: (snapshot, options) => {
-    const data = snapshot.data(options);
-    return new Project(data.projectName, data.startDate, data.endDate);
-  }
-}
-
-
-
 // Retrieve data from Firestore and populate projects array
 async function getDocFromDatabase() {
-  const projectsCollectionRef = collection(firestore, 'Projects/');
+  const projectsCollectionRef = collection(firestore, 'Projects');
   const querySnapshot = await getDocs(projectsCollectionRef);
-  
+
   const projects = [];
+  //fills projects array from firestore
   querySnapshot.forEach(doc => {
-    // Process each document and create Project instances
     const projectData = doc.data();
-    const projectInstance = new Project(projectData.name, projectData.startDate, projectData.endDate);
+    const projectInstance = new Project(projectData.projectName, projectData.startDate, projectData.endDate);
     projects.push(projectInstance);
   });
 
+  // Return projects array
   return projects;
 }
-
+// Declare projects as a reactive reference
+const projects = ref([]);
 
 //this works!
-onMounted(() => {
-  getDocFromDatabase();
-})
-//tester for list of projects
-// const projects = [
-//   {title: 'ninja UX Designer', id: 1, details: 'lorem', deadline: "10/24/2024" },
-//   {title: 'ninja Web Developer', id: 2, details: 'lorem', deadline: "11/27/2030"},
-//   {title: 'ninja Vue Developer', id: 3, details: 'lorem', deadline: "05/18/2027" },
-// ]
-
+onMounted(async () => {
+  // Fetch projects and assign them to the reactive reference
+  projects.value = await getDocFromDatabase();
+});
 
 const auth = getAuth();
 const router = useRouter();
@@ -84,57 +63,30 @@ function log_out(event) {
       <h1>Main Dashboard</h1>
     </header>
     <div class="dashboardInfo">
-        <div class="dashboardItems">
-          <label>All </label>
-          <label>Favorites </label>
-          <button class="btn btn-secondary">Filter</button>
-          <button class="btn btn-secondary">Sort</button>
-        </div>
-
-      </div>
-
-    <div id="cardTest">
-      <div class="content">
-        <div class="card" id="one">
-          <img src="" alt="image here">
-          <div class="info">
-            <h3>Test Project Name</h3>
-            <h5 id="startDate">March 01, 2024</h5>
-            <p id="updateDate">Last updated: 03/15/2024</p>
-            <p id="deadline">Deadline: 04/01/2024   Days Left: X</p>
-            <p id="tagName">Tag Name</p>
-            <p id="progressBar">Test progress bar layout</p>
-            </div>          
-        </div>
-        <div class="card" id="two">
-          <img src="" alt="image here">
-          <div class="info">
-            <h3>Test Project Name</h3>
-            <h5 id="startDate">March 01, 2024</h5>
-            <p id="updateDate">Last updated: 03/15/2024</p>
-            <p id="deadline">Deadline: 04/01/2024   Days Left: X</p>
-            <p id="tagName">Tag Name</p>
-            <p id="progressBar">Test progress bar layout</p>
-            </div>          
-        </div>
-        <ul>
-          <li v-for = 'project in projects'>
-            <div class="card">
-              <img src="" alt="image here">
-              <div class="info">
-                <h3>{{project.projectName}}</h3>
-                <h5 id="startDate">{{project.startDate}}</h5>
-                <p id="updateDate">Last updated: 03/15/2024</p>
-                <p id="deadline">{{project.endDate}}   Days Left: X</p>
-                <p id="tagName">Tag Name</p>
-                <p id="progressBar">Test progress bar layout</p>
-              </div>          
-            </div>
-          </li>
-        </ul>
+      <div class="dashboardItems">
+        <label>All </label>
+        <label>Favorites </label>
+        <button class="btn btn-secondary">Filter</button>
+        <button class="btn btn-secondary">Sort</button>
       </div>
     </div>
 
+    <div id="cardTest">
+      <div class="content">
+        <!-- Loop through projects and display each project in a card -->
+        <div class="card" v-for="project in projects" :key="project.projectName">
+          <img src="" alt="image here">
+          <div class="info">
+            <h3>{{ project.projectName }}</h3>
+            <h5>Start Date: {{ project.startDate }}</h5>
+            <p>Last updated: 03/15/2024</p>
+            <p >Deadline: {{ project.endDate }}   Days Left: X</p>
+            <p id = "tagName">Tag Name</p>
+            <p id = progressBar>Test progress bar layout</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
