@@ -8,29 +8,20 @@ import { getStorage, ref as firebaseRef, uploadBytes } from "firebase/storage";
 
 let projectName = ref('');
 let startDate = ref('');
+let deadline = ref('');
 let fileName = ref('');
 const firestore = getFirestore(); 
 const storage = getStorage();
 const storageRef = firebaseRef(storage, 'images');
 
-function saveToStorage(event){
-  event.preventDefault();
-  // 'file' comes from the Blob or File API
-  uploadBytes(storageRef, fileName.value).then((snapshot) => {
-  console.log('Uploaded a blob or file!');
-});
-}
-
+//saves a new project to firestore
 function saveToFireStore(event) {
   event.preventDefault();
   setDoc(doc(firestore, "Projects", projectName.value), {
     projectName: projectName.value,
     startDate: startDate.value,
-})
-  // 'file' comes from the Blob or File API
-  uploadBytes(storageRef, fileName.value).then((snapshot) => {
-  console.log('Uploaded a blob or file!');
-});
+    deadline: deadline.value
+  })
 console.log("button clicked");
 };
 
@@ -53,7 +44,7 @@ console.log("button clicked");
             <label for="startDate">Start Date: </label>
             <input v-model="startDate" type="date" name="startDate" id="startDate" required>
             <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
-            <input type="date" name="testDeadline" id="testDeadline">
+            <input v-model = "deadline" type="date" name="testDeadline" id="testDeadline">
             <input type="text" name="testTagName" id="testTagName">
             <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
           </div>

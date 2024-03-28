@@ -16,7 +16,7 @@ class Project {
   }
 }
 
-// Retrieve data from Firestore and populate projects array
+// Retrieve data from Firestore and populate 'projects' array
 async function getDocFromDatabase() {
   const projectsCollectionRef = collection(firestore, 'Projects');
   const querySnapshot = await getDocs(projectsCollectionRef);
@@ -32,7 +32,7 @@ async function getDocFromDatabase() {
   // Return projects array
   return projects;
 }
-// Declare projects as a reactive reference
+// Allows for reference by Vue in <template> area
 const projects = ref([]);
 
 //populates projects array when page is loaded. 
