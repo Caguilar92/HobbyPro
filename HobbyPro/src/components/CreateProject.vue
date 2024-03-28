@@ -12,19 +12,33 @@ let deadline = ref('');
 let description = ref('');
 const firestore = getFirestore(); 
 
-//saves a new project to firestore
-function saveToFireStore(event) {
+
+
+import { addDoc, collection } from "firebase/firestore";
+// saves a new Project to the data base
+async function saveToFireStore(event) {
   event.preventDefault();
-  setDoc(doc(firestore, "Projects", projectName.value), {
-    projectName: projectName.value,
-    startDate: startDate.value,
-    deadline: deadline.value,
-    description: description.value
-  })
-console.log("project uploaded" + projectName.value);
-};
+  try {
+    const projectsCollectionRef = collection(firestore, "Projects");
+
+    // Add a new document to the "Projects" collection with auto-generated ID
+    const docRef = await addDoc(projectsCollectionRef, {
+      projectName: projectName.value,
+      startDate: startDate.value,
+      deadline: deadline.value,
+      description: description.value,
+      // Include any other properties you've added to the Project class
+    });
+
+    console.log("Document written with ID: ", docRef.id);
+    console.log("Project uploaded:", projectName.value);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+}
 
 
+//end of scripts 
 </script>
 
 <template>
