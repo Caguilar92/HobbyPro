@@ -132,6 +132,7 @@ header {
   border-top: 2px solid #000;
   border-left: 2px solid #000;
   border-bottom: 2px solid #000;
+  z-index: 2;
 }
 
 .titleColumn {
@@ -207,6 +208,7 @@ header {
   overflow-y: auto;
   border-left: 2px solid #000;
   border-right: 2px solid #000;
+  z-index: 2;
 }
 
 nav ul {

@@ -138,6 +138,7 @@ h1{
   border: 2px solid #E6E6E6;
   border-radius: 25px;
   margin: 0 15px;
+  z-index: 1;
 }
 .info{
   padding: 15px 20px;
