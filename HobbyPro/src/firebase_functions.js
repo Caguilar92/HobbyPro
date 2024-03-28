@@ -3,10 +3,12 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 //this is a class to organize the return from the database
 export class Project {
-  constructor(projectName, startDate, deadline){
+  constructor(projectName, startDate = null, deadline = null, description = null){
     this.projectName = projectName;
     this.startDate = startDate;
     this.deadline = deadline;
+    this.description = description;
+
   }
 }
 
@@ -34,7 +36,8 @@ export function saveToFirestore(event) {
   setDoc(doc(firestore, "Projects", projectName.value), {
     projectName: projectName.value,
     startDate: startDate.value,
-    deadline: deadline.value
+    deadline: deadline.value,
+    description: description
   }).then(() => {
     console.log('Document written with ID: ', projectName.value);
   }).catch((error) => {

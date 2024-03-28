@@ -21,7 +21,7 @@ function saveToFireStore(event) {
     deadline: deadline.value,
     description: description.value
   })
-console.log("button clicked");
+console.log("project uploaded" + projectName.value);
 };
 
 
