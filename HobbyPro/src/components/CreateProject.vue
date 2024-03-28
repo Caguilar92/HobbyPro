@@ -9,10 +9,7 @@ import { getStorage, ref as firebaseRef, uploadBytes } from "firebase/storage";
 let projectName = ref('');
 let startDate = ref('');
 let deadline = ref('');
-let fileName = ref('');
 const firestore = getFirestore(); 
-const storage = getStorage();
-const storageRef = firebaseRef(storage, 'images');
 
 //saves a new project to firestore
 function saveToFireStore(event) {
