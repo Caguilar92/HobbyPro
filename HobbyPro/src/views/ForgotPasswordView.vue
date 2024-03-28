@@ -1,7 +1,8 @@
 <script setup>
 import {ref} from "vue";
-import {getAuth,sendPasswordResetEmail} from "firebase/auth";
+import {getAuth, sendPasswordResetEmail} from "firebase/auth";
 import {useRouter} from 'vue-router'
+
 let error_message = ref('');
 let email = ref('');
 const router = useRouter();
@@ -9,12 +10,12 @@ function submit() {
   const auth = getAuth();
   sendPasswordResetEmail(auth, email.value)
       .then(() => {
+        console.log("email: " + email.value)
         router.replace("/password-reset-success")
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        error_message.value = errorCode
+        console.log(error.code)
+        error_message.value = error.code
         // ..
       });
 }
