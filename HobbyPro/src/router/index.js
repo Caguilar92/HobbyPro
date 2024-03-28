@@ -9,6 +9,8 @@ import CreateProject from "@/components/CreateProject.vue";
 import Library from "@/components/Library.vue";
 import ForgotPasswordView from "@/views/ForgotPasswordView.vue";
 import RegisterView from "@/views/RegisterView.vue";
+import ResetSuccessView from "@/views/PasswordResetSuccess.vue";
+import PasswordResetSuccess from "@/views/PasswordResetSuccess.vue";
 const auth = getAuth();
 export const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +34,11 @@ export const router = createRouter({
       path:'/register',
       name:'register',
       component: RegisterView
+    },
+    {
+      path:'/password-reset-success',
+      name:'password-reset-success',
+      component:PasswordResetSuccess
     },
     {
       path:'/dashboard',
@@ -66,7 +73,7 @@ router.beforeEach((to, from, next) => {
   onAuthStateChanged(auth, (user) => {
     if (!user) {
       // User is not authenticated
-      if(to.name === 'forgot-password' || to.name==='register') {
+      if(to.name === 'forgot-password' || to.name==='register' || to.name === "password-reset-success") {
         next();
       }
       else if (to.name !== 'login') {

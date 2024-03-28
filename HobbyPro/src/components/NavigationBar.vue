@@ -47,52 +47,77 @@ export default {
 
 <template>
   <header>
-    <h1 class="title"><router-link to="/dashboard/main">Hobby Pro</router-link></h1>
-    <div class="searchBar">
-      <input type="text" placeholder="Search...">
-    </div>
-      <div class="displayName">
-        <p class="text-white">{{displayName}}</p>
-
+    <div class="container-fluid">
+      <div class="row align-items-start"><!-- Use align-items-start to align items to the top -->
+        <div class="titleColumn col-2"><!-- On small screens, the title spans the full width -->
+          <h2 class="title text-left"><!-- Adjust alignment to left -->
+            <router-link to="/dashboard/main">Hobby Pro</router-link>
+          </h2>
+        </div>
+        <div class="searchBarColumnFull col-3"><!-- this will exist when screens size are above 576 -->
+          <div class="searchBarFull">
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+        <div class="col-3 ms-auto text-align-right"><!--  -->
+            <div class="displayName">
+              <p class="text-end">{{displayName}}</p>
+            </div>
+        </div>
+        <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true" @mouseleave="dropdownOpen[2] = false">
+          <div class="profileIcon"></div>
+          <div v-if="dropdownOpen[2]" class="dropDownProfileMenu" @mouseover="dropdownOpen[2] = true" @mouseleave="dropdownOpen[2] = false">
+            <ul>
+              <li><router-link to="/dashboard/profile">Profile</router-link></li>
+              <li><button @click="log_out" class="btn btnPrimary">Sign Out</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="searchBarColumnShrink col-11"><!-- this will appear when screen size has reached below 576 -->
+          <div class="searchBarShrink">
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+        <div class="hamburgerColumn col-1" @mouseover="dropdownOpen[1] = true" @mouseleave="dropdownOpen[1] = false">
+          <button class="hamburger">&#9776;</button>
+          <div v-if="dropdownOpen[1]" class="dropDownRouterMenu" @mouseover="dropdownOpen[1] = true" @mouseleave="dropdownOpen[1] = false">
+            <ul>
+              <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
+              <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+              <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
+              <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
+              <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <button class="hamburger" @click="toggleDropdown(1)">&#9776;</button>
-
-      <div v-if="dropdownOpen[1]" class="dropDownRouterMenu">
-        <ul>
-          <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-          <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
-          <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
-          <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
-          <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
-        </ul>
-      </div>
-    <div class="profileIcon" @click="toggleDropdown(2)"></div>
-
-    <div v-if="dropdownOpen[2]" class="dropDownProfileMenu">
-      <ul>
-        <li><router-link to="/dashboard/profile">Profile</router-link></li>
-        <li><button @click="log_out" class="btn btnPrimary">Sign Out</button></li>
-      </ul>
     </div>
   </header>
 
   <nav>
-      <ul>
-        <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-        <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
-        <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
-        <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
-      </ul>
-      <router-link class="cpButton" to="/dashboard/create_project">Create Project</router-link>
+    <div class="container-fluid text-align-center">
+    <div class="row margin-60">
+      <div class="NavList col-12">
+        <ul class="">
+          <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
+          <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+          <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
+          <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
+        </ul>
+        <router-link class="cpButton" to="/dashboard/create_project">Create Project</router-link>
+      </div>
+    </div>
+    </div>
   </nav>
 </template>
 
 <style scoped>
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-/* change top nav background color; original header background color #fff */
+
 header {
   background-color: #222831;
   color: #000;
@@ -103,16 +128,21 @@ header {
   right: 0;
   bottom: 60px;
   height: 60px;
-  display: flex;
-  padding: 10px 5px 10px 5px;
+  padding-bottom: 10px;
   border-top: 2px solid #000;
   border-left: 2px solid #000;
   border-bottom: 2px solid #000;
 }
 
+.titleColumn {
+  width: 198px;
+  height: 60px;
+  padding: 0;
+}
+
 .title {
-  font-size: 30px;
-  position: absolute;
+  padding-top: 10px;
+  padding-left: 15px
 }
 
 .title a{
@@ -120,41 +150,60 @@ header {
   color: white;
 }
 
-.searchBar {
-  height: 40px;
-  width: 500px;
-  margin-left: 200px;
-  margin-right: 60px;
+.searchBarColumnFull {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.searchBar input[type="text"] {
+.searchBarColumnShrink {
+  display: none;
+}
+
+.searchBarFull {
+  padding-top: 12px;
+  padding-left: 12px;
+}
+
+.searchBarFull input[type="text"] {
   margin: auto;
   width: 100%;
-  padding: 8px 8px 2px 8px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   border-radius: 5px;
   border: 2px solid #000;
 }
-.displayName {
-  position: fixed;
-  right: 8em;
+
+.displayName p {
+  color: white;
+  height: 30px;
 }
+
+.profileColumn {
+  width: 62px;
+  height: 40px;
+  padding-right: 10px;
+  padding-top: 8px;
+}
+
 .profileIcon {
-  position: fixed;
-  right: 10px;
-  top: 10px;
   width: 40px;
   height: 40px;
   background-color: #000;
   border-radius: 50%;
 }
 
-/* change side nav bar background color here */
-nav {
+.NavList {
+  padding: 0;
+}
+
+ nav {
   background-color: #31363F;
   position: fixed;
   top: 60px;
   bottom: 0;
-  width: 200px; /* Adjust width as needed */
+  width: 200px;
   overflow-y: auto;
   border-left: 2px solid #000;
   border-right: 2px solid #000;
@@ -182,17 +231,15 @@ nav ul li a:hover {
   color: black;
 }
 
-/* createProject button font color #76ABAE */
 .cpButton {
   text-decoration: none;
-  background-color: lightslategray;
+  background-color: #76ABAE;
   color: white;
-  font-weight: bolder;
   position: fixed;
   bottom: 0px;
   left: 0px;
-  padding: 10px 70px 10px 5px;
-  margin: 10px 10px;
+  padding: 10px 85px 10px 5px;
+  margin: 5px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -210,23 +257,21 @@ nav ul li a:hover {
   color: black;
 }
 
+.hamburgerColumn {
+  display: none;
+}
+
 .hamburger {
-  visibility: hidden;
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 5px;
-  padding: 2px 7px 2px 7px;
-  margin: 5px 5px 5px 8px;
-  position: fixed;
-  right: 55px;
-  top: 10px;
 }
 
 .dropDownRouterMenu {
   visibility: visible;
   position: fixed;
-  right: 60px;
-  top: 47px;
+  right: 48px;
+  top: 62px;
   border: 2px solid #000;
   border-radius: 5px;
 }
@@ -253,8 +298,8 @@ nav ul li a:hover {
 .dropDownProfileMenu {
   visibility: visible;
   position: fixed;
-  right: 15px;
-  top: 47px;
+  right: 48px;
+  top: 12px;
   border: 2px solid #000;
   border-radius: 5px;
 }
@@ -263,7 +308,7 @@ nav ul li a:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: #EEEEEE;
+  background-color: #f0f0f0;
   border-radius: 5px;
 }
 
@@ -283,27 +328,63 @@ nav ul li a:hover {
     height: 100px;
   }
 
-  .searchBar {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 42px;
-    width: 576px;
+  .titleColumn {
+    width: auto;
+    height: auto;
+    padding: 0;
   }
 
-  .searchBar input {
-    width: 100%;
-  }
+  .searchBarColumnFull {
+  display: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.searchBarFull {
+  display: none;
+}
+
+.searchBarColumnShrink {
+  display: block;
+  width: 85%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.searchBarShrink {
+  padding-top: 12px;
+  padding-left: 12px;
+  padding-right: 0;
+}
+
+.searchBarShrink input[type="text"] {
+  margin: auto;
+  width: 100%;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 5px;
+  border: 2px solid #000;
+}
 
   nav {
     display: none !important;
   }
 
+  .hamburgerColumn {
+    display: block;
+    padding-top: 12px;
+    padding-left: 18px;
+    width: 55px;
+  }
+
   .hamburger {
-    visibility: visible;
+    display: block;
+    width: 40px;
+    height: 32px;
     background-color: #fff;
     border: 2px solid #000;
-    padding: 2px 7px 2px 7px;
-     margin: 5px 5px 5px 8px;
   }
 }
 
