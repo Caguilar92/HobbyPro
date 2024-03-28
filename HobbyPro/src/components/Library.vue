@@ -15,7 +15,7 @@ let imageNames =ref([]);
 let isLoading = ref(true);
 let rootPath = auth.currentUser.uid + "/";
 let currentDirectoryStack = ref([rootPath])
-
+let hoverStatus = ref([]);
 
 function uploadFile(e) {
   e.preventDefault();
@@ -98,6 +98,9 @@ async function getFiles() {
           });
 
         })
+        for (let i = 0; i < folderNames.value.length; i++) {
+          hoverStatus.value.push(false);
+        }
         isLoading.value = false;})
 
 
@@ -105,11 +108,14 @@ async function getFiles() {
 }
 
 
-
+function setHoverStatus(index, status) {
+  hoverStatus.value[index] = status;
+}
 
 
 onMounted(()=> {
   getFiles()
+
 })
 </script>
 
@@ -195,9 +201,17 @@ onMounted(()=> {
   <div class="container mt-5" v-show="!isLoading">
     <div id="folders" class="row d-flex">
       <div class="image-icon col-6 col-sm-6 col-md-4 col-lg-3 text-center mt-5" v-for="(folder_name, index) in folderNames" :key="index">
-        <a href="#" class="text-decoration-none text-secondary">
-          <div class="btn btn-outline-secondary card-icon">
-            <img class="card-img-top"  src="../assets/folder-icon.png" alt="Image icon" width="100" height="100">
+        <a  href="#" class="text-decoration-none text-secondary">
+          <div  @mouseover = "setHoverStatus(index,true)"
+               @mouseleave ="setHoverStatus(index,false)"
+               class="btn btn-outline-secondary card-icon">
+            <div  class="mb-3">
+              <button id="trash-btn" v-show="hoverStatus[index]" type="button" class="btn trash-can position-absolute ms-3">
+                <i class="bi bi-trash-fill "></i>
+              </button>
+            </div>
+
+            <img  class="drag0-el card-img-top"  src="../assets/folder-icon.png" alt="Image icon" width="100" height="100">
             <div class="card-body">
               <div class="badge-container">
                 <div class="badge text-black text-wrap text-break" style="width: 6rem;">
@@ -214,7 +228,7 @@ onMounted(()=> {
     <div id="files" class="row d-flex">
       <div class="image-icon col-6 col-sm-6 col-md-4 col-lg-3 text-center mt-5" v-for="(image_url, index) in imageURLs" :key="index">
         <a :href="image_url" class="text-decoration-none text-secondary">
-          <div class="btn btn-outline-secondary card-icon">
+          <div class="btn card-icon">
             <img class="card-img-top" v-if="getFileType(index) === 'image'" src="../assets/image_icon.png" alt="Image icon" width="100" height="100">
             <img class="card-img-top" v-else-if="getFileType(index) === 'pdf'" src="../assets/pdf-icon.png" alt="PDF icon" width="100" height="100">
             <div class="card-body">
@@ -256,10 +270,14 @@ onMounted(()=> {
   display: inline-block !important;
 }
 
-.folder a:hover {
-  background-color: gray;
+
+#trash-btn:hover {
+  color:red !important;
 }
 
+.card-icon {
+  border: none !important; /* Remove border */
+}
 
 .dropbtn {
   background-color: white;
