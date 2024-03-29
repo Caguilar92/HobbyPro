@@ -3,22 +3,20 @@ import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import { getStorage, ref as firebaseRef, uploadBytes } from "firebase/storage";
+import { addDoc, collection } from "firebase/firestore";
 
 
-//TODO: generate uid for each project as it is made, assign uid to project
 let projectName = ref('');
 let startDate = ref('');
 let deadline = ref('');
 let description = ref('');
 const firestore = getFirestore(); 
 
-
-
-import { addDoc, collection } from "firebase/firestore";
 // saves a new Project to the data base
 async function saveToFireStore(event) {
-  event.preventDefault();
+  event.preventDefault();//doesn't work without this.
   try {
+    //gets a referance of the collection "Projects"
     const projectsCollectionRef = collection(firestore, "Projects");
 
     // Add a new document to the "Projects" collection with auto-generated ID

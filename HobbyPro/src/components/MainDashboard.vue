@@ -18,7 +18,7 @@ class Project {
 }
 
 // Retrieve data from Firestore and populate 'projects' array
-async function getDocFromDatabase() {
+async function getDocsFromDatabase() {
   try{
     const projectsCollectionRef = collection(firestore, 'Projects');
     const querySnapshot = await getDocs(projectsCollectionRef);
@@ -44,7 +44,7 @@ const projects = ref([]);
 //populates projects array when page is loaded. 
 onMounted(async () => {
   // Fetch projects and assign them to the reactive reference
-  projects.value = await getDocFromDatabase();
+  projects.value = await getDocsFromDatabase();
 });
 
 const auth = getAuth();
