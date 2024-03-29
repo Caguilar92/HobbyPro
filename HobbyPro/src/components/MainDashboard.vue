@@ -7,15 +7,8 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 //this is the database refferance - I don't know why it has to be this way but it works
 const firestore = getFirestore();
 
-//this is a class to organize the return from the database
-class Project {
-  constructor(projectName, uid, startDate = null, endDate = null){
-    this.projectName = projectName;
-    this.uid = uid;
-    this.startDate = startDate;
-    this.endDate = endDate;
-  }
-}
+// Allows for reference by Vue in <template> area
+const projects = ref([]);
 
 // Retrieve data from Firestore and populate 'projects' array
 async function getDocsFromDatabase() {
@@ -27,8 +20,10 @@ async function getDocsFromDatabase() {
     //fills projects array from firestore
     querySnapshot.forEach(doc => {
       const projectData = doc.data();
-      const projectID = doc.id;
-      const projectInstance = new Project(projectData.projectName, projectID, projectData.startDate, projectData.endDate);
+      // this whole using a "Project" object here may be a bad desision in the future.
+      // Project object removed, passing doc.data (all data from the doc) instead. 
+      // appending doc.data with doc's id before saving it.
+      const projectInstance = {...projectData, uid: doc.id}
       projects.push(projectInstance);
     });
     // Return projects array
@@ -38,8 +33,7 @@ async function getDocsFromDatabase() {
     return [];
   }
 }
-// Allows for reference by Vue in <template> area
-const projects = ref([]);
+
 
 //populates projects array when page is loaded. 
 onMounted(async () => {
