@@ -7,38 +7,38 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 //this is the database refferance - I don't know why it has to be this way but it works
 const firestore = getFirestore();
 
-//this is a class to organize the return from the database
-class Project {
-  constructor(projectName, startDate, endDate = null){
-    this.projectName = projectName;
-    this.startDate = startDate;
-    this.endDate = endDate;
+// Allows for reference by Vue in <template> area
+const projects = ref([]);
+
+// Retrieve data from Firestore and populate 'projects' array
+async function getDocsFromDatabase() {
+  try{
+    const projectsCollectionRef = collection(firestore, 'Projects');
+    const querySnapshot = await getDocs(projectsCollectionRef);
+
+    const projects = [];
+    //fills projects array from firestore
+    querySnapshot.forEach(doc => {
+      const projectData = doc.data();
+      // this whole using a "Project" object here may be a bad desision in the future.
+      // Project object removed, passing doc.data (all data from the doc) instead. 
+      // appending doc.data with doc's id before saving it.
+      const projectInstance = {...projectData, uid: doc.id}
+      projects.push(projectInstance);
+    });
+    // Return projects array
+    return projects;
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return [];
   }
 }
 
-// Retrieve data from Firestore and populate 'projects' array
-async function getDocFromDatabase() {
-  const projectsCollectionRef = collection(firestore, 'Projects');
-  const querySnapshot = await getDocs(projectsCollectionRef);
-
-  const projects = [];
-  //fills projects array from firestore
-  querySnapshot.forEach(doc => {
-    const projectData = doc.data();
-    const projectInstance = new Project(projectData.projectName, projectData.startDate, projectData.endDate);
-    projects.push(projectInstance);
-  });
-
-  // Return projects array
-  return projects;
-}
-// Allows for reference by Vue in <template> area
-const projects = ref([]);
 
 //populates projects array when page is loaded. 
 onMounted(async () => {
   // Fetch projects and assign them to the reactive reference
-  projects.value = await getDocFromDatabase();
+  projects.value = await getDocsFromDatabase();
 });
 
 const auth = getAuth();

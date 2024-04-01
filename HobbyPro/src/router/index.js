@@ -11,6 +11,7 @@ import ForgotPasswordView from "@/views/ForgotPasswordView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import ResetSuccessView from "@/views/PasswordResetSuccess.vue";
 import PasswordResetSuccess from "@/views/PasswordResetSuccess.vue";
+import ProjectDetails from "@/components/project/ProjectDetails.vue";
 const auth = getAuth();
 export const router = createRouter({
   history: createWebHistory(),
@@ -59,6 +60,11 @@ export const router = createRouter({
       }, {
         path: 'library',
         component:Library
+      }, {
+        path: 'project/:projectName',
+        name: 'ProjectDetails',
+        component:ProjectDetails,
+        props: true
       }
 
       ]

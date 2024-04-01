@@ -3,26 +3,40 @@ import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import { getStorage, ref as firebaseRef, uploadBytes } from "firebase/storage";
-
+import { addDoc, collection } from "firebase/firestore";
 
 
 let projectName = ref('');
 let startDate = ref('');
 let deadline = ref('');
+let description = ref('');
 const firestore = getFirestore(); 
 
-//saves a new project to firestore
-function saveToFireStore(event) {
-  event.preventDefault();
-  setDoc(doc(firestore, "Projects", projectName.value), {
-    projectName: projectName.value,
-    startDate: startDate.value,
-    deadline: deadline.value
-  })
-console.log("button clicked");
-};
+// saves a new Project to the data base
+async function saveToFireStore(event) {
+  event.preventDefault();//doesn't work without this.
+  try {
+    //gets a referance of the collection "Projects"
+    const projectsCollectionRef = collection(firestore, "Projects");
+
+    // Add a new document to the "Projects" collection with auto-generated ID
+    const docRef = await addDoc(projectsCollectionRef, {
+      projectName: projectName.value,
+      startDate: startDate.value,
+      deadline: deadline.value,
+      description: description.value,
+      // Include any other properties you've added to the Project class
+    });
+
+    console.log("Document written with ID: ", docRef.id);
+    console.log("Project uploaded:", projectName.value);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+}
 
 
+//end of scripts 
 </script>
 
 <template>
@@ -46,7 +60,7 @@ console.log("button clicked");
             <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
           </div>
           <div class="inputElementThree">
-            <textarea placeholder="Add a description or some helpful notes" rows="6"></textarea>
+            <textarea v-model = "description" placeholder="Add a description or some helpful notes" rows="6"></textarea>
           </div>
           <div class="inputElementFour">
             <input type="file" name="fileName" id="fileName" accept=".png, .jpeg, .gif">
