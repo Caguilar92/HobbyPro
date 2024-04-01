@@ -81,9 +81,11 @@ function log_out(event) {
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date: {{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
-            <p >Deadline: {{ project.endDate }}   Days Left: X</p>
-            
-            <p id = progressBar>Test progress bar layout</p>
+            <p>Deadline: {{ project.endDate }}   Days Left: X</p>
+            <p id = "progressBar">Test progress bar layout</p>
+            <div id="projectDetailsButtonWrapper">
+            <router-link id="projectDetailsButton" :to="{ name: 'ProjectDetails', params: { projectName: project.projectName }}">See Project</router-link>
+            </div>
           </div>
 
         </div>
@@ -172,5 +174,23 @@ h1{
   border-radius: 50px;
   text-align: center;
   margin: 0px
+}
+#projectDetailsButton {
+  text-decoration: none;
+  color: black;
+  background-color: lightslategray;
+  border: 2px solid #E6E6E6;
+  border-radius: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  width: 50%;
+}
+#projectDetailsButtonWrapper {
+  margin-top: 10px
+}
+#projectDetailsButton:hover {
+  background-color: rgb(69, 69, 69);
+  color: white;
 }
 </style>
