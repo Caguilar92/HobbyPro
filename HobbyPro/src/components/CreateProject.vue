@@ -27,8 +27,9 @@ async function saveToFireStore(event) {
     // adds a subcollection "Stages" using docRef
     // then adds an intial stage called "intial stage"
     const stagesCollectionRef = collection(docRef, "Stages");
-    await addDoc(stagesCollectionRef, { stageName: "Initial Stage" });
+    await addDoc(stagesCollectionRef, { stageName: "Initial Stage", isDone: false });
 
+    location.reload();
     console.log("Document written with ID: ", docRef.id);
     console.log("Project uploaded:", projectName.value);
   } catch (error) {
