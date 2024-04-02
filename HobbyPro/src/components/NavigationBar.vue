@@ -104,7 +104,7 @@ export default {
           <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
           <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
         </ul>
-        <router-link class="cpButton" to="/dashboard/create_project">Create Project</router-link>
+        <router-link class="cpButton" to="/dashboard/create_project">Create a Project</router-link>
       </div>
     </div>
     </div>
@@ -235,12 +235,12 @@ nav ul li a:hover {
 
 .cpButton {
   text-decoration: none;
-  background-color: #76ABAE;
+  background-color: lightslategray;
   color: white;
   position: fixed;
   bottom: 0px;
   left: 0px;
-  padding: 10px 85px 10px 5px;
+  padding: 10px 74px 10px 5px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
