@@ -56,7 +56,7 @@ async function saveToFireStore(event) {
             <input v-model="startDate" type="date" name="startDate" id="startDate" required>
             <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
             <input v-model = "deadline" type="date" name="testDeadline" id="testDeadline">
-            <input type="text" name="testTagName" id="testTagName">
+            <!-- <input type="text" name="testTagName" id="testTagName"> -->
             <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
           </div>
           <div class="inputElementThree">
@@ -88,7 +88,7 @@ async function saveToFireStore(event) {
   padding: 20px;
 }
 .formElement{
-  border: 2px solid black;
+  border: 2px solid #E6E6E6;
   border-radius: 25px;
   padding: 30px;
   margin: auto;
