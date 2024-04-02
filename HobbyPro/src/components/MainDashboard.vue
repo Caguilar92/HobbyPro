@@ -63,34 +63,38 @@ function log_out(event) {
     <div class="dashboardInfo">
       <div class="dashboardItems">
         <label>All </label>
-        <label>Favorites </label>
+        <!-- <label>Favorites </label> -->
         <button class="btn btn-secondary">Filter</button>
         <button class="btn btn-secondary">Sort</button>
       </div>
     </div>
 
-    <div id="cardTest">
+    <div id="cardTest" class="container-fluid mt-3">
+      <!-- Loop through projects and display each project in a card -->
       <div class="content-grid">
-        <!-- Loop through projects and display each project in a card -->
-        <div class="card" v-for="project in projects" :key="project.projectName"> <!--I'm not sure what "key" does but it doesnt work without it-->
+        <div class="card" v-for="project in projects" :key="project.projectName">
+          <!--I'm not sure what "key" does but it doesnt work without it-->
           <img src="" alt="image here">
           <div class="info">
             <div class="tagarea">
-              <button id = "tagName" :disabled>Tag Name</button>
+              <button id="tagName" :disabled>Tag Name</button>
             </div>
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date: {{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
-            <p>Deadline: {{ project.endDate }}   Days Left: X</p>
-            <p id = "progressBar">Test progress bar layout</p>
+            <p>Deadline: {{ project.endDate }} Days Left: X</p>
+            <p id="progressBar">Test progress bar layout</p>
             <div id="projectDetailsButtonWrapper">
-            <router-link id="projectDetailsButton" :to="{ name: 'ProjectDetails', params: { projectName: project.projectName }}">See Project</router-link>
+              <router-link id="projectDetailsButton"
+                :to="{ name: 'ProjectDetails', params: { projectName: project.projectName } }">See
+                Project</router-link>
             </div>
           </div>
 
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -101,10 +105,13 @@ function log_out(event) {
   }
 }
 .content-grid{
-  display: grid;
-  grid-template-columns: auto auto auto;
-  margin: 10px;
-  grid-gap: 20px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  /* /* grid-template-columns: auto auto auto;
+  grid-template-rows: auto;
+  grid-gap: 20px 20px; */
 }
 
 h1{
@@ -139,8 +146,11 @@ h1{
   background: #EEEEEE;
   border: 2px solid #E6E6E6;
   border-radius: 25px;
-  margin: 0 15px;
   z-index: 1;
+  min-width: 326px;
+  max-width: 475px;
+  flex: 1 1 30%;
+  margin-bottom: 15px;
 }
 .info{
   padding: 15px 20px;
