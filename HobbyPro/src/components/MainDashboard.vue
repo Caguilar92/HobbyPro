@@ -72,8 +72,7 @@ function log_out(event) {
     <div id="cardTest" class="container-fluid mt-3">
       <!-- Loop through projects and display each project in a card -->
       <div class="content-grid">
-        <div class="card" v-for="project in projects" :key="project.projectName">
-          <!--I'm not sure what "key" does but it doesnt work without it-->
+        <div class="card" v-for="project in projects" :key="project.uid">
           <img src="" alt="image here">
           <div class="info">
             <div class="tagarea">
@@ -87,7 +86,8 @@ function log_out(event) {
             <div id="projectDetailsButtonWrapper">
               <router-link id="projectDetailsButton"
                 :to="{ name: 'ProjectDetails', params: { projectName: project.projectName } }">See
-                Project</router-link>
+                Project
+              </router-link>
             </div>
           </div>
 

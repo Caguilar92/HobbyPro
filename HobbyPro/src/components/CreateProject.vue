@@ -29,12 +29,13 @@ async function saveToFireStore(event) {
     const stagesCollectionRef = collection(docRef, "Stages");
     await addDoc(stagesCollectionRef, { stageName: "Initial Stage", isDone: false });
 
-    location.reload();
+   
     console.log("Document written with ID: ", docRef.id);
     console.log("Project uploaded:", projectName.value);
   } catch (error) {
     console.error("Error adding document: ", error);
-  }
+  } 
+  location.reload();
 }
 
 

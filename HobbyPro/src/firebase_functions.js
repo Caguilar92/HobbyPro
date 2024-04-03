@@ -1,19 +1,6 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore"; 
 
 
-//this is a class to organize the return from the database
-export class Project {
-  constructor(projectName, uid, startDate = null, deadline = null, description = null){
-    this.projectName = projectName;
-    this.uid = uid;
-    this.startDate = startDate;
-    this.deadline = deadline;
-    this.description = description;
-
-  }
-}
-
-
 //returns projects from 'Projects' and fills an array for use
 export async function getProjectsFromFirestore() {
   try {
@@ -31,21 +18,34 @@ export async function getProjectsFromFirestore() {
   }
 }
 
-//saves file to firebase to be read later
-export function saveToFirestore(event) {
-  event.preventDefault();
-  setDoc(doc(firestore, "Projects", projectName.value), {
-    projectName: projectName.value,
-    startDate: startDate.value,
-    deadline: deadline.value,
-    description: description
-  }).then(() => {
-    console.log('Document written with ID: ', projectName.value);
-  }).catch((error) => {
-    console.error('Error adding document: ', error);
-  });
-  console.log("project uploaded");
+// saves a new Project to the data base
+export async function saveToFireStore(event) {
+  event.preventDefault();//doesn't work without this.
+  try {
+    //gets a referance of the collection "Projects"
+    const projectsCollectionRef = collection(firestore, "Projects");
+
+    // Add a new document to the "Projects" collection with auto-generated ID
+    const docRef = await addDoc(projectsCollectionRef, {
+      projectName: projectName.value,
+      startDate: startDate.value,
+      deadline: deadline.value,
+      description: description.value,
+    });
+    // adds a subcollection "Stages" using docRef
+    // then adds an intial stage called "intial stage"
+    const stagesCollectionRef = collection(docRef, "Stages");
+    await addDoc(stagesCollectionRef, { stageName: "Initial Stage", isDone: false });
+
+   
+    console.log("Document written with ID: ", docRef.id);
+    console.log("Project uploaded:", projectName.value);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  } 
+  location.reload();
 }
+
 
 // Retrieve data from Firestore and populate 'projects' array
 export async function getDocsFromDatabase() {
@@ -57,8 +57,10 @@ export async function getDocsFromDatabase() {
     //fills projects array from firestore
     querySnapshot.forEach(doc => {
       const projectData = doc.data();
-      const projectID = doc.id;
-      const projectInstance = new Project(projectData.projectName, projectID, projectData.startDate, projectData.endDate);
+      // this whole using a "Project" object here may be a bad desision in the future.
+      // Project object removed, passing doc.data (all data from the doc) instead. 
+      // appending doc.data with doc's id before saving it.
+      const projectInstance = {...projectData, uid: doc.id}
       projects.push(projectInstance);
     });
     // Return projects array
