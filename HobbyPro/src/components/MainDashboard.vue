@@ -98,6 +98,24 @@ function log_out(event) {
           </div>
 
         </div>
+
+        <div class="cardHidden">
+          <div class="info">
+            <div class="tagarea">
+              
+            </div>
+            <p id="progressBar">Test progress bar layout</p>
+          </div>
+        </div>
+
+        <div class="cardHidden">
+          <div class="info">
+            <div class="tagarea">
+              
+            </div>
+            <p id="progressBar">Test progress bar layout</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -148,7 +166,7 @@ h1{
 }
 
 
-.card{
+.card, .cardHidden{
   background: #EEEEEE;
   border: 2px solid #E6E6E6;
   border-radius: 25px;
@@ -157,6 +175,12 @@ h1{
   max-width: 475px;
   flex: 1 1 30%;
   margin-bottom: 15px;
+  margin-right: 10px;
+}
+
+.cardHidden{
+  visibility: hidden;
+  height: 50px;
 }
 .info{
   padding: 15px 20px;
@@ -180,8 +204,8 @@ h1{
   text-align: center;
   padding: 3px 10px;
   position: absolute;
-  top: 212px;
-  right: 14px;
+  top: 208px;
+  right: 8px;
   cursor: default;
 }
 #progressBar{
