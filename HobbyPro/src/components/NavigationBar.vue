@@ -119,7 +119,7 @@ body {
 }
 
 header {
-  background-color: #222831;
+  background-color: #264653;
   color: #000;
   border: 1px #000 ;
   position: fixed;
@@ -129,9 +129,9 @@ header {
   bottom: 60px;
   height: 60px;
   padding-bottom: 10px;
-  border-top: 2px solid #000;
-  border-left: 2px solid #000;
-  border-bottom: 2px solid #000;
+  /* border-top: 2px solid #000;
+  border-left: 2px solid #000;*/
+  border-bottom: 4px solid #2a9d8f; 
   z-index: 2;
 }
 
@@ -173,7 +173,8 @@ header {
   padding-top: 2px;
   padding-bottom: 2px;
   border-radius: 5px;
-  border: 2px solid #000;
+  border: 2px solid whitesmoke;
+
 }
 
 .displayName p {
@@ -191,8 +192,9 @@ header {
 .profileIcon {
   width: 40px;
   height: 40px;
-  background-color: #000;
+  background-color: whitesmoke;
   border-radius: 50%;
+  border: 2px solid white;
 }
 
 .NavList {
@@ -200,14 +202,14 @@ header {
 }
 
  nav {
-  background-color: #31363F;
+  background-color: #264653;
   position: fixed;
   top: 60px;
   bottom: 0;
   width: 200px;
   overflow-y: auto;
-  border-left: 2px solid #000;
-  border-right: 2px solid #000;
+  /* border-left: 2px solid #000;*/
+  /* border-right: 2px solid #000;  */
   z-index: 2;
 }
 
@@ -221,7 +223,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-  background-color: #ddd;
+  background-color: #d5e5ec;
 }
 
 nav ul li a {
@@ -235,7 +237,7 @@ nav ul li a:hover {
 
 .cpButton {
   text-decoration: none;
-  background-color: lightslategray;
+  background-color: #e76f51;
   color: white;
   position: fixed;
   bottom: 0px;

@@ -167,7 +167,7 @@ h1{
 
 
 .card, .cardHidden{
-  background: #EEEEEE;
+  background: #f2f2f2;
   border: 2px solid #E6E6E6;
   border-radius: 25px;
   z-index: 1;
