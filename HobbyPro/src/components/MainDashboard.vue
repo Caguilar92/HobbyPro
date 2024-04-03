@@ -57,17 +57,23 @@ function log_out(event) {
 
 <template>
   <div class="MP_formatting">
-    <header>
-      <h1>Main Dashboard</h1>
-    </header>
-    <div class="dashboardInfo">
-      <div class="dashboardItems">
-        <label>All </label>
-        <!-- <label>Favorites </label> -->
-        <button class="btn btn-secondary">Filter</button>
-        <button class="btn btn-secondary">Sort</button>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+          <header>
+            <h1>Main Dashboard</h1>
+          </header>
+          <div class="dashboardInfo">
+            <div class="dashboardItems">
+              <label>All </label>
+              <!-- <label>Favorites </label> -->
+              <button class="btn btn-secondary">Filter</button>
+              <button class="btn btn-secondary">Sort</button>
+            </div>
+          </div>
       </div>
     </div>
+  </div>
 
     <div id="cardTest" class="container-fluid mt-3">
       <!-- Loop through projects and display each project in a card -->

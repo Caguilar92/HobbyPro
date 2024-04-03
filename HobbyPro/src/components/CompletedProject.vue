@@ -23,52 +23,57 @@
 </script>
 <template>
   <div class="completed">
-    <header>
-      <h1>Completed Projects</h1>
-    </header>
-    <div class="dashInfo">
-      <div class="dashItems">
-        <label>All </label>
-        <button class="btn btn-secondary">Filter</button>
-        <button class="btn btn-secondary">Sort</button>
-      </div>
-    </div>
-
-    <div class="content-grid">
-      <div class="cardOne">
-        <div class="card-grid">
-          <div class="cardImage">
-            <img src="" alt="image here">
-          </div>
-          <div class="tagarea">
-              <button id="tagName" :disabled>Tag Name</button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 ">
+          <header>
+            <h1>Completed Projects</h1>
+          </header>
+          <div class="dashInfo">
+            <div class="dashItems">
+              <label>All </label>
+              <button class="btn btn-secondary">Filter</button>
+              <button class="btn btn-secondary">Sort</button>
             </div>
-          <div class="cardInfo">
-            <h3>Test Completed Project</h3>
-            <h5>Completed Date</h5>
-            <p>this some sample text. this is some sample text.</p>
+          </div>
+
+          <div class="content-grid">
+            <div class="cardElement">
+              <div class="card-grid">
+                <div class="cardImage">
+                  <img src="" alt="image here">
+                </div>
+                <div class="tagarea">
+                  <button id="tagName" :disabled>Tag Name</button>
+                </div>
+                <div class="cardInfo">
+                  <h3>Test Completed Project</h3>
+                  <h5>Completed Date</h5>
+                  <p>this some sample text. this is some sample text.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cardElement">
+              <div class="card-grid">
+                <div class="cardImage">
+                  <img src="" alt="image here">
+                </div>
+                <div class="tagarea">
+                  <button id="tagName" :disabled>Tag Name</button>
+                </div>
+                <div class="cardInfo">
+                  <h3>Test Completed Project</h3>
+                  <h5>Completed Date</h5>
+                  <p>this some sample text. this is some sample text.</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-
-      <div class="cardTwo">
-        <div class="card-grid">
-          <div class="cardImage">
-            <img src="" alt="image here">
-          </div>
-          <div class="tagarea">
-              <button id="tagName" :disabled>Tag Name</button>
-            </div>
-          <div class="cardInfo">
-            <h3>Test Completed Project</h3>
-            <h5>Completed Date</h5>
-            <p>this some sample text. this is some sample text.</p>
-          </div>
-        </div>
-      </div>
-
     </div>
-
   </div>
 </template>
 
@@ -81,8 +86,7 @@
 .content-grid{
   display: grid;
   grid-template-rows: auto auto auto;
-  margin: 10px;
-  grid-gap: 20px 10px;
+  grid-row-gap: 20px;
 }
 
 h1{
@@ -92,7 +96,8 @@ h1{
   margin-bottom: 20px;
 }
 .dashInfo{
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 .dashItems{
   font-size: 15px;
@@ -120,37 +125,40 @@ h1{
   display: grid;
   grid-template-rows: auto auto;
 }
-
+.cardElement{
+  min-width: 440px;
+}
 .card-grid{
   background-color: #EEEEEE;
   border-radius: 25px;
   border: 2px solid #E6E6E6;
   display: grid;
-  grid-template-columns: 100px 200px;
-  grid-template-rows: 100px;
+  grid-template-columns: minmax(0, 300px) auto 100px ;
+  grid-template-rows: 200px;
   grid-template-areas: 
-  "image" "info"
+  "image info tagarea"
 }
 
 .cardImage{
   grid-area: image;
   background-color: slategrey;
+  border-radius: 25px 0 0 25px;
 }
 
 .cardInfo{
   grid-area: info;
+  padding: 20px;
 }
 
 #tagName{
+  grid-area: tagarea;
   background-color: lightslategray;
   border: 2px solid #E6E6E6;
   border-radius: 50px;
   text-align: center;
   padding: 3px 10px;
-  position: absolute;
-  top: 215px;
-  right: 40px;
   cursor: default;
+  margin: 8px 5px 0 0;
 }
 
 
