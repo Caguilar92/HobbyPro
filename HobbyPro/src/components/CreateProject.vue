@@ -2,20 +2,23 @@
 import {ref} from "vue";
 import { getFirestore } from "firebase/firestore";
 import { addDoc, collection } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
-
+const auth = getAuth();
 let projectName = ref('');
 let startDate = ref('');
 let deadline = ref('');
 let description = ref('');
 const firestore = getFirestore(); 
+let docPath = auth.currentUser.email+"_Projects";
+console.log(docPath);
 
 // saves a new Project to the data base
 async function saveToFireStore(event) {
   event.preventDefault();//doesn't work without this.
   try {
     //gets a referance of the collection "Projects"
-    const projectsCollectionRef = collection(firestore, "Projects");
+    const projectsCollectionRef = collection(firestore, docPath);
 
     // Add a new document to the "Projects" collection with auto-generated ID
     const docRef = await addDoc(projectsCollectionRef, {

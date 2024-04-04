@@ -10,10 +10,16 @@ const firestore = getFirestore();
 // Allows for reference by Vue in <template> area
 const projects = ref([]);
 
+const auth = getAuth();
+const router = useRouter();
+const docPath = auth.currentUser.email+'_Projects';
+
+
+
 // Retrieve data from Firestore and populate 'projects' array
 async function getDocsFromDatabase() {
   try{
-    const projectsCollectionRef = collection(firestore, 'Projects');
+    const projectsCollectionRef = collection(firestore, docPath);
     const querySnapshot = await getDocs(projectsCollectionRef);
 
     const projects = [];
@@ -41,8 +47,6 @@ onMounted(async () => {
   projects.value = await getDocsFromDatabase();
 });
 
-const auth = getAuth();
-const router = useRouter();
 
 function log_out(event) {
   event.preventDefault();
@@ -52,7 +56,6 @@ function log_out(event) {
     console.log("something went wrong")
   });
 }
-
 </script>
 
 <template>
