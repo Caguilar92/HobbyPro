@@ -61,7 +61,7 @@ export const router = createRouter({
         path: 'library',
         component:Library
       }, {
-        path: 'project/:projectName/:uid',
+        path: 'project/:uid',
         name: 'ProjectDetails',
         component:ProjectDetails,
         props: true
