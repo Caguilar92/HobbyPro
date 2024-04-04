@@ -49,10 +49,15 @@ export default {
   <header>
     <div class="container-fluid">
       <div class="row align-items-start"><!-- Use align-items-start to align items to the top -->
-        <div class="titleColumn col-2"><!-- On small screens, the title spans the full width -->
-          <h2 class="title text-left"><!-- Adjust alignment to left -->
+        <div class="logoColumn col-1"><!-- On small screens, the title spans the full width -->
+          <picture>
+            <img src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo" style="max-width: 100%; height: 60px;">
+          </picture>
+        </div>
+        <div class="titleColumn col-1" >
+          <h3 class="title text-left"><!-- Adjust alignment to left -->
             <router-link to="/dashboard/main">Hobby Pro</router-link>
-          </h2>
+          </h3>
         </div>
         <div class="searchBarColumnFull col-3"><!-- this will exist when screens size are above 576 -->
           <div class="searchBarFull">
@@ -135,15 +140,20 @@ header {
   z-index: 2;
 }
 
+.logoColumn {
+  width: 60px;
+  height: 44px;
+  padding: 0;
+}
+
 .titleColumn {
   width: 198px;
-  height: 60px;
+  height: 44px;
   padding: 0;
 }
 
 .title {
-  padding-top: 10px;
-  padding-left: 15px
+  padding-top: 15px;
 }
 
 .title a{
