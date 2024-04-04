@@ -11,7 +11,6 @@ let deadline = ref('');
 let description = ref('');
 const firestore = getFirestore(); 
 let docPath = auth.currentUser.email+"_Projects";
-console.log(docPath);
 
 // saves a new Project to the data base
 async function saveToFireStore(event) {
