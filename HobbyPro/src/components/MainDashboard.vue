@@ -82,12 +82,12 @@ function log_out(event) {
           <img src="" alt="image here">
           <div class="info">
             <div class="tagarea">
-              <button id="tagName" :disabled>Tag Name</button>
+              <button id="tagName" :disabled>TagName</button>
             </div>
             <h3>{{ project.projectName }}</h3>
-            <h5>Start Date: {{ project.startDate }}</h5>
+            <h5>Start Date:{{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
-            <p>Deadline: {{ project.endDate }} Days Left: X</p>
+            <p>Deadline: {{ project.endDate }}  Days Left: 40</p>
             <p id="progressBar">Test progress bar layout</p>
             <div id="projectDetailsButtonWrapper">
               <router-link id="projectDetailsButton"
@@ -141,7 +141,7 @@ function log_out(event) {
 h1{
   text-align: left;
   padding: 10px 0 10px 20px;
-  border-bottom: 3px solid #31363F;
+  border-bottom: 3px solid #264653;
   margin-bottom: 20px;
 }
 .dashboardInfo{
@@ -156,13 +156,14 @@ h1{
 .dashboardItems button{
   font-size: 13px;
   font-weight: 500;
-  background-color: lightslategray;
+  background-color: #264653;
   color: white;
   padding: 8px 12px;
   text-align: center;
   text-decoration: none;
   margin: 4px 2px;
   float: right;
+  border: none;
 }
 
 
@@ -187,39 +188,40 @@ h1{
 }
 
 .info h3{
-  padding-top: 30px;
-  padding-right: 75px;
+  padding-top: 45px;
 }
 
 .card img{
   border: 1px solid black;
   border-radius: 25px 25px 0 0;
   height: 200px;
-  background-color: lightslategray;
+  background-color: gray;
 }
 #tagName{
-  background-color: lightslategray;
-  border: 2px solid #E6E6E6;
+  background-color: #264653;
+  color: white;
+  border: none;
   border-radius: 50px;
   text-align: center;
-  padding: 3px 10px;
+  padding: 3px 25px;
   position: absolute;
   top: 208px;
   right: 8px;
   cursor: default;
 }
 #progressBar{
-  background-color: lightslategray;
-  border: 2px solid #E6E6E6;
+  background-color: #264653;
+  color: white;
   border-radius: 50px;
   text-align: center;
+  padding: 3px;
   margin: 0px
 }
 #projectDetailsButton {
+  display: none;
   text-decoration: none;
   color: black;
-  background-color: lightslategray;
-  border: 2px solid #E6E6E6;
+  background-color: #2a9d8f;
   border-radius: 50px;
   text-align: center;
   margin-bottom: 10px;
@@ -227,7 +229,7 @@ h1{
   width: 50%;
 }
 #projectDetailsButtonWrapper {
-  margin-top: 10px
+  margin-top: 10px;
 }
 #projectDetailsButton:hover {
   background-color: rgb(69, 69, 69);
