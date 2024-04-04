@@ -82,7 +82,7 @@ function log_out(event) {
       <!-- Loop through projects and display each project in a card -->
       <div class="content-grid">
         <div class="card" v-for="project in projects" :key="project.uid">
-          <img src="" alt="image here">
+          <img class="image-fluid"src="/src/assets/defaultProjectImage.png" alt="image here">
           <div class="info">
             <div class="tagarea">
               <button id="tagName" :disabled>TagName</button>
@@ -194,11 +194,12 @@ h1{
 }
 
 .card img{
-  border: 1px solid black;
   border-radius: 25px 25px 0 0;
-  height: 200px;
+  max-width: 100%;
+  height: 220px;
   background-color: gray;
 }
+
 #tagName{
   background-color: #264653;
   color: white;
@@ -211,6 +212,7 @@ h1{
   right: 8px;
   cursor: default;
 }
+
 #progressBar{
   background-color: #264653;
   color: white;
@@ -219,6 +221,7 @@ h1{
   padding: 3px;
   margin: 0px
 }
+
 #projectDetailsButton {
   text-decoration: none;
   color: black;
@@ -231,6 +234,7 @@ h1{
 }
 #projectDetailsButtonWrapper {
   margin-top: 10px;
+  align-items: center;
 }
 #projectDetailsButton:hover {
   background-color: rgb(69, 69, 69);

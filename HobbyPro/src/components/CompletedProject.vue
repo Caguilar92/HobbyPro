@@ -37,7 +37,7 @@
             </div>
           </div>
 
-          <div class="content-grid">
+          <!-- <div class="content-grid">
             <div class="cardElement">
               <div class="card-grid">
                 <div class="cardImage">
@@ -63,23 +63,28 @@
                   <button id="tagName" :disabled>Tag Name</button>
                 </div>
                 <div class="cardInfo">
-                  <h3>Test Completed Project</h3>
-                  <h5>Completed Date</h5>
-                  <p>this some sample text. this is some sample text.</p>
                 </div>
               </div>
             </div>
 
-          </div>
+          </div>-->
         </div>
       </div>
-    </div>
+    </div> 
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 ">
+    <div class="flex-container">
+      <div class="flex-item-left">
+        <img class="image-fluid"src="/src/assets/defaultProjectImage.png" alt="image here">
+      </div>
+      <div class="flex-item-center">
+        <div class="cardInfo">
+        <h3>Test Completed Project</h3>
+        <h5>Completed Date</h5>
+        <p>this some sample text. this is some sample text.</p>
+        <!-- <button id="tagName" :disabled>Tag Name</button> -->
         </div>
       </div>
+      <div class="flex-item-right"></div>
     </div>
 
   </div>
@@ -90,6 +95,10 @@
   .completed {
     align-items: center;
   }
+  .flex-item-right, .flex-item-left {
+    flex: 100%;
+  }
+}
   
 .content-grid{
   display: grid;
@@ -128,7 +137,7 @@ h1{
 
 
 
-.content-grid{
+/* .content-grid{
   z-index: 1;
   display: grid;
   grid-template-rows: auto auto;
@@ -149,8 +158,7 @@ h1{
 
 .cardImage{
   grid-area: image;
-  background-color: slategrey;
-  border-radius: 25px 0 0 25px;
+  border-radius: 30px 0 0 30px;
 }
 
 .cardInfo{
@@ -167,8 +175,39 @@ h1{
   padding: 3px 10px;
   cursor: default;
   margin: 8px 5px 0 0;
+} */
+
+*{
+  box-sizing: border-box;
 }
 
-
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
 }
+
+.flex-item-left, img {
+  background-color: #f1f1f1;
+  flex: 25%;
+  border-radius: 25px;
+}
+/* .flex-item-left img{
+  border-radius: 25px 0 0 25px;
+  width: 100%;
+  height: auto;
+} */
+
+.flex-item-center {
+  background-color: pink;
+  padding: 10px;
+  flex: 70%;
+}
+
+.flex-item-right {
+  background-color: dodgerblue;
+  padding: 10px;
+  flex: 5%;
+}
+
 </style>
