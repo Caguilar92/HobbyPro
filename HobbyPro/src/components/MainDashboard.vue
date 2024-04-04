@@ -82,7 +82,7 @@ function log_out(event) {
       <!-- Loop through projects and display each project in a card -->
       <div class="content-grid">
         <div class="card" v-for="project in projects" :key="project.uid">
-          <img class="image-fluid"src="/src/assets/defaultProjectImage.png" alt="image here">
+          <img src="" alt="image here">
           <div class="info">
             <div class="tagarea">
               <button id="tagName" :disabled>TagName</button>
@@ -93,7 +93,7 @@ function log_out(event) {
             <p>Deadline: {{ project.endDate }}  Days Left: 40</p>
             <p id="progressBar">Test progress bar layout</p>
             <div id="projectDetailsButtonWrapper">
-              <router-link id="projectDetailsButton" :to="{ name: 'ProjectDetails', params: { projectName: project.projectName, uid: project.uid } }">
+              <router-link id="projectDetailsButton" :to="{ name: 'ProjectDetails', params: { uid: project.uid } }">
                 See Project
               </router-link>
             </div>
@@ -194,8 +194,8 @@ h1{
 }
 
 .card img{
+  border: 1px solid black;
   border-radius: 25px 25px 0 0;
-  max-width: 100%;
   height: 200px;
   background-color: gray;
 }
