@@ -50,7 +50,7 @@ onMounted(async () => {
 
 <template>
     <h1>Project Details Page</h1>
-    <p>the job id is {{ uid }}{{ project.description }}</p>
+    <p>the job id is {{ uid }}</p>
 </template>
 
 <style>
