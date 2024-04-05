@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {ref, computed, watch } from "vue";
 import { getFirestore } from "firebase/firestore";
 import { addDoc, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -12,19 +12,31 @@ let description = ref('');
 const firestore = getFirestore(); 
 let docPath = auth.currentUser.email+"_Projects";
 
+//stops deadline date from being before startdate
+const minDeadline = computed(() => startDate.value);
+//whenever startdate changes this will set the 
+//deadline to at least that date if not already.
+//if deadline is after will not effect deadline
+watch(startDate, (newValue) => {
+  if(deadline.value < newValue){
+    deadline.value = newValue;
+  }
+});
+
 // saves a new Project to the data base
 async function saveToFireStore(event) {
   event.preventDefault();//doesn't work without this.
   try {
-    //gets a referance of the collection "Projects"
+    //gets a referance of the collection user projects
     const projectsCollectionRef = collection(firestore, docPath);
 
-    // Add a new document to the "Projects" collection with auto-generated ID
+    // Add a new document to the collection with auto-generated ID
     const docRef = await addDoc(projectsCollectionRef, {
       projectName: projectName.value,
       startDate: startDate.value,
       deadline: deadline.value,
       description: description.value,
+      isFavorite: false
     });
     // adds a subcollection "Stages" using docRef
     // then adds an intial stage called "intial stage"
@@ -60,7 +72,7 @@ async function saveToFireStore(event) {
             <label for="startDate">Start Date: </label>
             <input v-model="startDate" type="date" name="startDate" id="startDate" required>
             <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
-            <input v-model = "deadline" type="date" name="testDeadline" id="testDeadline">
+            <input v-model = "deadline" type="date" name="testDeadline" id="testDeadline" :min = "minDeadline">
             <!-- <input type="text" name="testTagName" id="testTagName"> -->
             <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
           </div>
