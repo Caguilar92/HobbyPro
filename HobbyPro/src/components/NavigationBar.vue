@@ -157,7 +157,7 @@ img {
 }
 
 .titleColumn {
-  width: 198px;
+  width: 150px;
   height: 44px;
   padding: 0;
 }
