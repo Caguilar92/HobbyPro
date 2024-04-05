@@ -64,8 +64,13 @@ export default {
             <input type="text" placeholder="Search...">
           </div>
         </div>
-        <div class="col-3 ms-auto text-align-right"><!--  -->
-            <div class="displayName">
+        <div class="displayNameFull col-3 ms-auto text-align-right"><!--  -->
+            <div class="displayNameFull">
+              <p class="text-end">{{displayName}}</p>
+            </div>
+        </div>
+        <div class="displayNameColumnSmall col-5 ms-auto text-align-right">
+          <div class="displayNameSmall">
               <p class="text-end">{{displayName}}</p>
             </div>
         </div>
@@ -192,9 +197,17 @@ img {
 
 }
 
-.displayName p {
+.displayNameFull p {
   color: white;
   height: 30px;
+}
+
+.displayNameColumnSmall {
+  display: none;
+}
+
+.displayNameSmall {
+  display: none;
 }
 
 .profileColumn {
@@ -408,9 +421,22 @@ nav ul li a:hover {
 }
 
 @media(max-width: 576px) {
-  .displayName {
-    display: inline-block;
+  .displayNameFull {
+    display: none;
     position: relative !important;
+  }
+
+  .displayNameColumnFull {
+    display: none;
+  }
+
+  .displayNameColumnSmall {
+    display: block;
+  }
+
+  .displayNameSmall {
+    display: block;
+    color: white;
   }
 
 }
