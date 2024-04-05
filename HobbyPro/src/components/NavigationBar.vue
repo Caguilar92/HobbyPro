@@ -51,7 +51,7 @@ export default {
       <div class="row align-items-start"><!-- Use align-items-start to align items to the top -->
         <div class="logoColumn col-1"><!-- On small screens, the title spans the full width -->
           <picture>
-            <img src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo" style="max-width: 100%; height: 60px;">
+            <img src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo">
           </picture>
         </div>
         <div class="titleColumn col-1" >
@@ -144,6 +144,11 @@ header {
   width: 60px;
   height: 44px;
   padding: 0;
+}
+
+img {
+  background-color: rgba(0,0,0,0);
+  height: 60px;
 }
 
 .titleColumn {

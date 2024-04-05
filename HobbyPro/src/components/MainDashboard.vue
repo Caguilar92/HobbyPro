@@ -82,7 +82,7 @@ function log_out(event) {
       <!-- Loop through projects and display each project in a card -->
       <div class="content-grid">
         <div class="card" v-for="project in projects" :key="project.uid">
-          <img class="image-fluid"src="/src/assets/defaultProjectImage.png" alt="image here">
+          <img class="image-fluid" src="/src/assets/defaultProjectImage.png" alt="image here">
           <div class="info">
             <div class="tagarea">
               <button id="tagName" :disabled>TagName</button>
