@@ -5,14 +5,14 @@ export default {
     },
 }
 </script>
+
 <script setup>
 import { getAuth } from 'firebase/auth';
 import {doc, getDoc, getFirestore} from 'firebase/firestore';
 import { ref, onMounted } from 'vue';
 
-
+// this is so we can use the info in the top section
 const props = defineProps({uid: String});
-
 
 const auth = getAuth();
 const firestore = getFirestore();
@@ -40,9 +40,9 @@ async function getDocFromDatabase() {
   }
 }
 
-//populates projects array when page is loaded. 
+//populates project when page is loaded
 onMounted(async () => {
-  // Fetch projects and assign them to the reactive reference
+  // Fetch project and assign it to the reactive reference
   project.value = await getDocFromDatabase();
 });
 

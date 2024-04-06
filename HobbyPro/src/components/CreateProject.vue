@@ -3,6 +3,7 @@ import {ref, computed, watch } from "vue";
 import { getFirestore } from "firebase/firestore";
 import { addDoc, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { useRouter } from "vue-router";
 
 const auth = getAuth();
 let projectName = ref('');
@@ -11,6 +12,9 @@ let deadline = ref('');
 let description = ref('');
 const firestore = getFirestore(); 
 let docPath = auth.currentUser.email+"_Projects";
+
+//sets up the router 
+const router = useRouter();
 
 //stops deadline date from being before startdate
 const minDeadline = computed(() => startDate.value);
@@ -43,13 +47,18 @@ async function saveToFireStore(event) {
     const stagesCollectionRef = collection(docRef, "Stages");
     await addDoc(stagesCollectionRef, { stageName: "Initial Stage", isDone: false });
 
-   
     console.log("Document written with ID: ", docRef.id);
     console.log("Project uploaded:", projectName.value);
+
+    //sends user to main dashboard after successful project creation
+    router.push('/');
+
   } catch (error) {
     console.error("Error adding document: ", error);
+    // erases everything and starts over
+    location.reload();
   } 
-  location.reload();
+  
 }
 
 
