@@ -67,7 +67,51 @@ async function saveToFireStore(event) {
 
 <template>
   <div class="CP_formatting">
-    <div class="space"></div>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-sm-2 p-3"></div>
+        <div class="col-sm-8 p-3">
+          <p class="h1 text-center">Create a New Project</p>
+          <form class="row g-3">
+            <div class="col-12">
+              <label for="projectName" class="form-label">Project Name</label>
+              <input v-model="projectName" type="text" class="form-control" id="projectName" required>
+            </div>
+            <div class="col-md-6">
+              <label for="startDate" class="form-label">Start Date</label>
+              <input v-model="startDate" type="date" class="form-control" id="startDate" required>
+            </div>
+            <div class="col-md-6">
+              <label for="setDeadline" class="form-label">Deadline</label>
+              <input v-model="deadline" type="date" class="form-control" id="setDeadline" :min="minDeadline">
+            </div>
+            <div class="col-12">
+              <label for="tagName" class="form-label">Tag Name</label>
+              <div class="input-group mb-3">
+                <span></span>
+                <input type="text" class="form-control" id="tagName" placeholder="example: Sewing">
+                <button class="btn btn-secondary" type="addTagBtn" id="addTagBtn">Add</button>
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="details" class="form-label">Comments</label>
+              <textarea v-model="description" class="form-control" rows="5" id="details" name="details"
+                placeholder="Add a description or some helpful notes"></textarea>
+            </div>
+            <div class="col-12">
+              <input type="file" class="form-control" name="fileName" id="fileName"
+                accept=".png, .jpeg, jpg, .gif, .pdf">
+            </div>
+            <div class="col-12 text-center">
+              <button @click="saveToFireStore" type="submit" class="btn btn-secondary">Create Project</button>
+            </div>
+
+          </form>
+        </div>
+        <div class="col-sm-2 p-3"></div>
+      </div>
+    </div>
+    <!-- <div class="space"></div>
     <div class="formElement">
       <form name="createProject" id="createProjectForm">
         <div class="formItems">
@@ -81,9 +125,15 @@ async function saveToFireStore(event) {
             <label for="startDate">Start Date: </label>
             <input v-model="startDate" type="date" name="startDate" id="startDate" required>
             <button id="selectDealine" name="selectDealine" type="button" class="btn btn-secondary">Deadline</button>
-            <input v-model = "deadline" type="date" name="testDeadline" id="testDeadline" :min = "minDeadline">
-            <!-- <input type="text" name="testTagName" id="testTagName"> -->
-            <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add Tags +</button>
+            <div class="inputElementTwo">
+              <label for="testDeadline">Set Deadline: </label>
+              <input v-model = "deadline" type="date" name="testDeadline" id="testDeadline" :min = "minDeadline">
+            </div>
+            <div class="inputElementTwo">
+              <input type="text" name="testTagName" id="testTagName" placeholder="Add a Tag Name...">
+              <button id="addTag-btn" name="addTag-btn" type="button" class="btn btn-secondary">Add</button>
+            </div>
+            
           </div>
           <div class="inputElementThree">
             <textarea v-model = "description" placeholder="Add a description or some helpful notes" rows="6"></textarea>
@@ -98,7 +148,7 @@ async function saveToFireStore(event) {
 
         </div>
       </form>
-    </div>
+    </div> -->
 
   </div>
 
@@ -109,67 +159,6 @@ async function saveToFireStore(event) {
   .CP_formatting {
     align-items: center;
   }
-}
-.space{
-  padding: 20px;
-}
-.formElement{
-  border: 2px solid #E6E6E6;
-  border-radius: 25px;
-  padding: 30px;
-  margin: auto;
-  width: 60%;
-  font-size: 18px;
-}
-.formItems h2{
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-.formItems{
-  margin: auto;
-  width: 80%;
-}
-.inputElementOne label{
-  padding-right: 5px;
-  display:inline-block;
-  margin: 5px 0;
-}
-.inputElementOne input{
-  width: 63%
-}
-.inputElementTwo{
-  display: inline;
-}
-.inputElementTwo label{
-  padding-right: 5px;
-  display:inline-block;
-  margin: 15px 0;
-}
 
-.inputElementTwo button{
-  margin: 0 5px 0 25px
-}
-
-.inputElementThree {
-  margin: 15px 0;
-}
-
-textarea {
-  font-size: 20px;
-  width: 100%;
-}
-
-.inputElementFour{
-  margin: auto;
-  width: 100%;
-  border: 1px solid black;
-}
-.inputElementFive{
-  margin: auto;
-  width: 50%;
-}
-.inputElementFive button{
-  margin: 20px 5px;
 }
 </style>

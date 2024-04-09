@@ -37,54 +37,25 @@
             </div>
           </div>
 
-          <!-- <div class="content-grid">
-            <div class="cardElement">
-              <div class="card-grid">
-                <div class="cardImage">
-                  <img src="" alt="image here">
-                </div>
-                <div class="tagarea">
-                  <button id="tagName" :disabled>Tag Name</button>
-                </div>
-                <div class="cardInfo">
-                  <h3>Test Completed Project</h3>
-                  <h5>Completed Date</h5>
-                  <p>this some sample text. this is some sample text.</p>
-                </div>
-              </div>
-            </div>
+        </div>
 
-            <div class="cardElement">
-              <div class="card-grid">
-                <div class="cardImage">
-                  <img src="" alt="image here">
-                </div>
-                <div class="tagarea">
-                  <button id="tagName" :disabled>Tag Name</button>
-                </div>
-                <div class="cardInfo">
-                </div>
-              </div>
-            </div>
+      </div>
 
-          </div>-->
+      <div class="card text-dark bg-light mb-3">
+        <div class="row g-0">
+          <div class="col-xs-4 col-md-3">
+            <img id="imgIcon"src="/src/assets/jo-szczepanska-unsplash.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-xs-8 col-md-9">
+            <div class="card-body">
+              <h5 class="card-title">Project Name</h5>
+              <p class="card-text">This is where the lesson learned will go</p>
+              <p class="card-text"><small class="text-muted">Completed Date</small></p>
+            </div>
+          </div>
         </div>
       </div>
-    </div> 
 
-    <div class="flex-container">
-      <div class="flex-item-left">
-        <img class="image-fluid"src="/src/assets/defaultProjectImage.png" alt="image here">
-      </div>
-      <div class="flex-item-center">
-        <div class="cardInfo">
-        <h3>Test Completed Project</h3>
-        <h5>Completed Date</h5>
-        <p>this some sample text. this is some sample text.</p>
-        <!-- <button id="tagName" :disabled>Tag Name</button> -->
-        </div>
-      </div>
-      <div class="flex-item-right"></div>
     </div>
 
   </div>
@@ -133,81 +104,9 @@ h1{
   margin: 4px 2px;
   float: right;
 }
-
-
-
-
-/* .content-grid{
-  z-index: 1;
-  display: grid;
-  grid-template-rows: auto auto;
-}
-.cardElement{
-  min-width: 440px;
-}
-.card-grid{
-  background-color: #EEEEEE;
-  border-radius: 25px;
-  border: 2px solid #E6E6E6;
-  display: grid;
-  grid-template-columns: minmax(0, 300px) auto 100px ;
-  grid-template-rows: 200px;
-  grid-template-areas: 
-  "image info tagarea"
+#imgIcon{
 }
 
-.cardImage{
-  grid-area: image;
-  border-radius: 30px 0 0 30px;
-}
 
-.cardInfo{
-  grid-area: info;
-  padding: 20px;
-}
-
-#tagName{
-  grid-area: tagarea;
-  background-color: lightslategray;
-  border: 2px solid #E6E6E6;
-  border-radius: 50px;
-  text-align: center;
-  padding: 3px 10px;
-  cursor: default;
-  margin: 8px 5px 0 0;
-} */
-
-*{
-  box-sizing: border-box;
-}
-
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 30px;
-}
-
-.flex-item-left, img {
-  background-color: #f1f1f1;
-  flex: 25%;
-  border-radius: 25px;
-}
-/* .flex-item-left img{
-  border-radius: 25px 0 0 25px;
-  width: 100%;
-  height: auto;
-} */
-
-.flex-item-center {
-  background-color: pink;
-  padding: 10px;
-  flex: 70%;
-}
-
-.flex-item-right {
-  background-color: dodgerblue;
-  padding: 10px;
-  flex: 5%;
-}
 
 </style>

@@ -7,39 +7,38 @@
 
 <template>
   <div class="about">
-    <h1>This is the profile page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, laborum qui obcaecati blanditiis cumque
-      sapiente distinctio animi ad neque fuga sit suscipit? Commodi, minus id ullam aperiam similique ad vero!</p>
-    <div class="content">
-      <div class="profile-grid">
-        <form name="profile" id="profile">
-          <h1>Profile</h1>
-          <div class="profilePicture">
-            <img src="" alt="image here">
-            <div>
-              <button>Change profile picture</button>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-sm-2 p-3"></div>
+        <div class="col-sm-8 p-3">
+          <p class="h1 text-center pb-4">Profile</p>
+          <form class="row">
+            <div class="col-md-3 bg-primary text-white">
+              <img src="/src/assets/defaultProjectImage.png" alt="avatar" class="img-fluid">
             </div>
-            
-          </div>
-          <div class="profileInfo">
-            <div class="inputElement">
-              <label for="firstName">First Name:</label>
-              <input type="text" name="firstName" id="firstName" readonly>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" readonly>
+              </div>
+              <div class="col-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" readonly>
+              </div>
+              <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" readonly>
+            </div>
+              </div>
+              
+
             </div>
 
-            <div class="inputElement">
-              <label for="lastName">Last Name:</label>
-              <input type="text" name="lastName" id="lastName" readonly>
-            </div>
 
-            <div class="inputElement">
-              <label for="email">Email:</label>
-              <input type="text" name="email" id="email" readonly>
-            </div>
-
-          </div>
-          <div class="clear"></div>
-        </form>
+          </form>
+        </div>
+        <div class="col-sm-2 p-3"></div>
       </div>
     </div>
 
@@ -52,32 +51,7 @@
     align-items: center;
   }
 }
-.profile-grid{
-  border: 2px solid #E6E6E6;
-  background-color: #EEEEEE;
-  border-radius: 25px;
-  padding: 20px 40px;
-  margin: auto;
-  width: 50%;
-}
-h1{
-  text-align: center;
-}
 
-.profilePicture{
-  float: left;
-}
 
-.profileInfo{
-  float: right;
-}
-.inputElement{
-  padding: 5px 0;
-}
-.profileInfo label{
-  padding-right: 10px;
-}
-.clear{
-  clear: both;
-}
+
 </style>

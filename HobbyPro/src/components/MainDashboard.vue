@@ -91,7 +91,9 @@ function log_out(event) {
             <h5>Start Date:{{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
             <p>Deadline: {{ project.endDate }}  Days Left: 40</p>
-            <p id="progressBar">Test progress bar layout</p>
+            <div class="progress">
+            <div class="progress-bar" style="width:20%"></div>
+            </div>
             <div id="projectDetailsButtonWrapper">
               <router-link id="projectDetailsButton" :to="{ name: 'ProjectDetails', params: { uid: project.uid } }">
                 See Project
@@ -172,7 +174,7 @@ h1{
 .card, .cardHidden{
   background: #f2f2f2;
   border: 2px solid #E6E6E6;
-  border-radius: 25px;
+  border-radius: 10px;
   z-index: 1;
   min-width: 326px;
   max-width: 475px;
@@ -194,7 +196,7 @@ h1{
 }
 
 .card img{
-  border-radius: 25px 25px 0 0;
+  border-radius: 10px 10px 0 0;
   max-width: 100%;
   height: 220px;
   background-color: gray;
@@ -213,13 +215,11 @@ h1{
   cursor: default;
 }
 
-#progressBar{
+.progress{
+  background-color: lightgrey;
+}
+.progress-bar{
   background-color: #264653;
-  color: white;
-  border-radius: 50px;
-  text-align: center;
-  padding: 3px;
-  margin: 0px
 }
 
 #projectDetailsButton {
