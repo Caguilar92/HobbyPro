@@ -67,8 +67,4 @@ export default {
 .navbarTop ul li a:hover {
   color: #ccc;
 }
-
-.contentWrapper {
-    margin-top: 20px;
-}
 </style>

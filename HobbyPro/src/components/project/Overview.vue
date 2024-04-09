@@ -58,8 +58,8 @@ onMounted(async () => {
 
 <template>
     <nav class="navbarTop">
-    <router-link :to="{ name: 'ProjectDetails', params: { uid: uid } }">Project Details</router-link>
-      <router-link id="firstButton" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
+    <router-link id="firstButton" :to="{ name: 'ProjectDetails', params: { uid: uid } }">Project Details</router-link>
+      <router-link id="secondButton" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
       <!--Stages done similar to the other links-->
       <ul v-for="stage in stages" :uid="stages.stageID">
       <li><router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link></li>
@@ -74,10 +74,10 @@ onMounted(async () => {
 <style>
 .navbarTop {
   position: fixed;
-  top: 65px;
-  left: 205px;
-  right: 5px;
-  display: flex;
+  top: 250px;
+  left: 5px;
+  right: 1085px;
+  display: inline;
   justify-content: center;
   align-items: center;
   height: auto;
@@ -89,11 +89,18 @@ onMounted(async () => {
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
+  z-index: 2;
 }
 
 #firstButton {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+#secondButton {
+  margin: 10px;
   color: #fff;
   text-decoration: none;
   font-size: 18px;
@@ -107,7 +114,7 @@ onMounted(async () => {
 
 .navbarTop ul li {
   display: inline-block;
-  margin-left: 10px;
+  margin: 10px;
 }
 
 .navbarTop ul li a {
@@ -118,10 +125,6 @@ onMounted(async () => {
 
 .navbarTop ul li a:hover {
   color: #ccc;
-}
-
-.contentWrapper {
-    margin-top: 20px;
 }
 
 @media (max-width: 576) {

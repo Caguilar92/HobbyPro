@@ -57,11 +57,22 @@ onMounted(async () => {
 </script>
 
 <template>
-    <nav class="navbarTop">
-      <router-link id="firstButton" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
+    <nav class="navbarTop-small">
       <!--Stages done similar to the other links-->
-      <ul v-for="stage in stages" :uid="stages.stageID">
-      <li><router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link></li>
+      <ul>
+        <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link></li>
+        <li v-for="stage in stages" :uid="stages.stageID">
+          <router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link>
+        </li>
+      </ul>
+    </nav>
+    <nav class="navbarTop-full">
+      <!--Stages done similar to the other links-->
+      <ul>
+        <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link></li>
+        <li v-for="stage in stages" :uid="stages.stageID">
+          <router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link>
+        </li>
       </ul>
     </nav>
     <div class="contentWrapper">
@@ -71,10 +82,61 @@ onMounted(async () => {
 </template>
 
 <style>
-.navbarTop {
+.navbarTop-full {
   position: fixed;
-  top: 65px;
-  left: 205px;
+  top: 250px;
+  left: 5px;
+  right: 1085px;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 0;
+  background-color: #264653;
+  border-bottom: 4px solid #2a9d8f;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.navbarTop-full ul {
+  list-style-type: none;
+  margin: 0;
+  padding-top: 5px;
+  padding-left: 0px;
+  padding-bottom: 5px;
+}
+
+.navbarTop-full ul li {
+  padding: 5px;
+}
+
+.navbarTop-full ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.navbarTop-full ul li a:hover {
+  color: #ccc;
+}
+
+.navbarTop-small {
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .contentWrapper {
+    margin-top: 50px;
+}
+
+.navbarTop-full {
+  display: none;
+}
+
+.navbarTop-small {
+  position: fixed;
+  top: 105px;
+  left: 5px;
   right: 5px;
   display: flex;
   justify-content: center;
@@ -84,10 +146,6 @@ onMounted(async () => {
   background-color: #264653;
   border-bottom: 4px solid #2a9d8f;
   border-radius: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
 }
 
 #firstButton {
@@ -95,34 +153,30 @@ onMounted(async () => {
   margin-right: 10px;
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-.navbarTop ul {
+.navbarTop-small ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding-top: 5px;
+  padding-left: 0px;
+  padding-bottom: 5px;
 }
 
-.navbarTop ul li {
+.navbarTop-small ul li {
   display: inline-block;
   margin-left: 10px;
 }
 
-.navbarTop ul li a {
+.navbarTop-small ul li a {
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-.navbarTop ul li a:hover {
+.navbarTop-small ul li a:hover {
   color: #ccc;
 }
-
-.contentWrapper {
-    margin-top: 20px;
-}
-
-@media (max-width: 576px) {
 }
 </style>
