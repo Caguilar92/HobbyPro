@@ -79,7 +79,7 @@ app.mount('#app')
     <div class="container-fluid mt-3">
       <div class="row">
         <div class="col-sm-2 p-3"></div>
-        <div class="col-sm-8 p-3">
+        <div id="createLayout" class="col-sm-8 p-3">
           <p class="h1 text-center">Create a New Project</p>
           <form class="row g-3">
             <div class="col-12">
@@ -176,6 +176,11 @@ app.mount('#app')
 @media (min-width: 576px) {
   .CP_formatting {
     align-items: center;
+  }
+
+  #createLayout{
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
   }
 
 }
