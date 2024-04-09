@@ -75,7 +75,7 @@ onMounted(async () => {
         </li>
       </ul>
     </nav>
-    <div class="contentWrapper">
+    <div class="contentInternalWrapper">
       <h1>Project Details Page</h1>
       <p>the job id is {{ uid }}</p>
     </div>
@@ -125,8 +125,8 @@ onMounted(async () => {
 }
 
 @media (max-width: 576px) {
-  .contentWrapper {
-    margin-top: 50px;
+  .contentInternalWrapper {
+    margin-top: 35px;
 }
 
 .navbarTop-full {

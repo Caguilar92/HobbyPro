@@ -77,7 +77,7 @@ onMounted(async () => {
         </li>
       </ul>
     </nav>
-    <div class="contentWrapper">
+    <div class="contentInternalWrapper">
         <h1>the overview page's id is:{{ uid }}</h1>
         <p>{{ uid }}</p>
     </div>
@@ -127,8 +127,8 @@ onMounted(async () => {
 }
 
 @media (max-width: 576px) {
-  .contentWrapper {
-    margin-top: 50px;
+  .contentInternalWrapper {
+    margin-top: 35px;
 }
 
 .navbarTop-full {
