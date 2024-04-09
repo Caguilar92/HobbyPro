@@ -1,14 +1,13 @@
 <script>
 export default {
     props: {
-        id: String,
-        stageName: String
+        id: String
     }
 }
 </script>
 
 <template>
-    <h1>{{ stageName }}</h1>
+    <h1>the overview page's id is:{{ id }}</h1>
     <p>{{ id }}</p>
 </template>
 

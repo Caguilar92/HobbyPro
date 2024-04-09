@@ -12,6 +12,8 @@ import RegisterView from "@/views/RegisterView.vue";
 import ResetSuccessView from "@/views/PasswordResetSuccess.vue";
 import PasswordResetSuccess from "@/views/PasswordResetSuccess.vue";
 import ProjectDetails from "@/components/project/ProjectDetails.vue";
+import StageDetails from "@/components/project/StageDetails.vue";
+import Overview from "@/components/project/Overview.vue";
 const auth = getAuth();
 export const router = createRouter({
   history: createWebHistory(),
@@ -64,6 +66,16 @@ export const router = createRouter({
         path: 'project/:uid',
         name: 'ProjectDetails',
         component:ProjectDetails,
+        props: true
+      }, {
+        path: 'stage/:id/:stageName',
+        name: 'StageDetails',
+        component:StageDetails,
+        props: true
+      }, {
+        path: 'overview/:uid',
+        name: Overview,
+        component:Overview,
         props: true
       }
 

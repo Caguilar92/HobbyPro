@@ -2,7 +2,15 @@
 export default {
     props: {
         uid: String
-    },
+    }, data(){
+      return {
+        stages: [
+          {stageName: "stage_one", stageID: "2n1hb1h"},
+          {stageName: "stage_two", stageID: "9cn93uv"},
+          {stageName: "stage_three", stageID: "nnm956b9"}
+        ]
+      }
+    }
 }
 </script>
 
@@ -51,6 +59,12 @@ onMounted(async () => {
 <template>
     <h1>Project Details Page</h1>
     <p>the job id is {{ uid }}</p>
+    <nav>
+      <!--Stages done similar to the other links-->
+      <ul v-for="stage in stages" :uid="stages.stageID">
+      <li><router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link></li>
+      </ul>
+    </nav>
 </template>
 
 <style>
