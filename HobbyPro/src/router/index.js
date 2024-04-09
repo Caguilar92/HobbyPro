@@ -68,7 +68,7 @@ export const router = createRouter({
         component:ProjectDetails,
         props: true
       }, {
-        path: 'stage/:id/:stageName',
+        path: 'stage/:id/:stageName/:uid',
         name: 'StageDetails',
         component:StageDetails,
         props: true

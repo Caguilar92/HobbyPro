@@ -12,7 +12,7 @@ export default {
       <router-link id="firstButton" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
       <!--Stages done similar to the other links-->
       <ul v-for="stage in stages" :uid="stages.stageID">
-      <li><router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link></li>
+      <li><router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName, uid: uid } }">{{ stage.stageName }}</router-link></li>
       </ul>
     </nav>
     <h1>{{ stageName }}</h1>
