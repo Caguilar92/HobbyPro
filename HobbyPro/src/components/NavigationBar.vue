@@ -64,14 +64,14 @@ export default {
             <input type="text" placeholder="Search...">
           </div>
         </div>
-        <div class="displayNameFull col-3 ms-auto text-align-right"><!--  -->
+        <div class="displayNameFull col-3 ms-auto mt-2 text-align-right"><!--  -->
             <div class="displayNameFull">
               <p class="text-end">{{displayName}}</p>
             </div>
         </div>
         <div class="displayNameColumnSmall col-5 ms-auto text-align-right">
           <div class="displayNameSmall">
-              <p class="text-end">{{displayName}}</p>
+              <!-- <p class="text-end">{{displayName}}</p> -->
             </div>
         </div>
         <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true" @mouseleave="dropdownOpen[2] = false">
