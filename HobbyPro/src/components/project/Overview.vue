@@ -57,12 +57,24 @@ onMounted(async () => {
 </script>
 
 <template>
-    <nav class="navbarTop">
-    <router-link id="firstButton" :to="{ name: 'ProjectDetails', params: { uid: uid } }">Project Details</router-link>
-      <router-link id="secondButton" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
+    <nav class="navbarTop-small">
       <!--Stages done similar to the other links-->
-      <ul v-for="stage in stages" :uid="stages.stageID">
-      <li><router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link></li>
+      <ul>
+        <li><router-link :to="{ name: 'ProjectDetails', params: { uid: uid } }">Project</router-link></li>
+        <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link></li>
+        <li v-for="stage in stages" :uid="stages.stageID">
+          <router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link>
+        </li>
+      </ul>
+    </nav>
+    <nav class="navbarTop-full">
+      <!--Stages done similar to the other links-->
+      <ul>
+        <li><router-link :to="{ name: 'ProjectDetails', params: { uid: uid } }">Project</router-link></li>
+        <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link></li>
+        <li v-for="stage in stages" :uid="stages.stageID">
+          <router-link :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{ stage.stageName }}</router-link>
+        </li>
       </ul>
     </nav>
     <div class="contentWrapper">
@@ -72,12 +84,12 @@ onMounted(async () => {
 </template>
 
 <style>
-.navbarTop {
+.navbarTop-full {
   position: fixed;
   top: 250px;
   left: 5px;
   right: 1085px;
-  display: inline;
+  display: inline-block;
   justify-content: center;
   align-items: center;
   height: auto;
@@ -85,51 +97,88 @@ onMounted(async () => {
   background-color: #264653;
   border-bottom: 4px solid #2a9d8f;
   border-radius: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
   z-index: 2;
 }
 
-#firstButton {
-  margin: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-#secondButton {
-  margin: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.navbarTop ul {
+.navbarTop-full ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding-top: 5px;
+  padding-left: 0px;
+  padding-bottom: 5px;
 }
 
-.navbarTop ul li {
-  display: inline-block;
-  margin: 10px;
+.navbarTop-full ul li {
+  padding: 5px;
 }
 
-.navbarTop ul li a {
+.navbarTop-full ul li a {
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-.navbarTop ul li a:hover {
+.navbarTop-full ul li a:hover {
   color: #ccc;
 }
 
-@media (max-width: 576) {
-    .navbarTop {
-        top: 105px;
-    }
+.navbarTop-small {
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .contentWrapper {
+    margin-top: 50px;
+}
+
+.navbarTop-full {
+  display: none;
+}
+
+.navbarTop-small {
+  position: fixed;
+  top: 105px;
+  left: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 0;
+  background-color: #264653;
+  border-bottom: 4px solid #2a9d8f;
+  border-radius: 10px;
+}
+
+#firstButton {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.navbarTop-small ul {
+  list-style-type: none;
+  margin: 0;
+  padding-top: 5px;
+  padding-left: 0px;
+  padding-bottom: 5px;
+}
+
+.navbarTop-small ul li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.navbarTop-small ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.navbarTop-small ul li a:hover {
+  color: #ccc;
+}
 }
 </style>
