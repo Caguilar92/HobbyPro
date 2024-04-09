@@ -57,7 +57,16 @@ async function saveToFireStore(event) {
     console.error("Error adding document: ", error);
     // erases everything and starts over
     location.reload();
-  } 
+  }
+  const app = Vue.createApp({
+  data() {
+    return {
+      checkBox: false
+    }
+  }
+})
+
+app.mount('#app')
   
 }
 
@@ -81,10 +90,19 @@ async function saveToFireStore(event) {
               <label for="startDate" class="form-label">Start Date</label>
               <input v-model="startDate" type="date" class="form-control" id="startDate" required>
             </div>
+
             <div class="col-md-6">
               <label for="setDeadline" class="form-label">Deadline</label>
-              <input v-model="deadline" type="date" class="form-control" id="setDeadline" :min="minDeadline">
+              <div class="input-group mb-3" id="app">
+                <span></span>
+                <div class="input-group-text">
+                  <input v-model="checkBox" class="form-check-input mt-0" type="checkbox" >
+                </div>
+                <input v-model="deadline" type="date" class="form-control" id="setDeadline" :disabled="!checkBox" :min="minDeadline">
+              </div>
+              <p>checkBox: {{checkBox}}</p>
             </div>
+
             <div class="col-12">
               <label for="tagName" class="form-label">Tag Name</label>
               <div class="input-group mb-3">
