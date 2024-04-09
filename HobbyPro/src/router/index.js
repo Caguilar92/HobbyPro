@@ -74,7 +74,7 @@ export const router = createRouter({
         props: true
       }, {
         path: 'overview/:uid',
-        name: Overview,
+        name: 'Overview',
         component:Overview,
         props: true
       }
