@@ -104,8 +104,6 @@ h1{
   margin: 4px 2px;
   float: right;
 }
-#imgIcon{
-}
 
 
 
