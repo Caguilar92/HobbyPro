@@ -40,6 +40,14 @@ async function getDocsFromDatabase() {
   }
 }
 
+// sorting functions for alphabetical, startDate, and endDate
+// TODO: sorting functions
+
+
+
+
+
+
 
 //populates projects array when page is loaded. 
 onMounted(async () => {
@@ -71,7 +79,13 @@ function log_out(event) {
               <label>All </label>
               <!-- <label>Favorites </label> -->
               <button class="btn btn-secondary">Filter</button>
+              <!-- TODO: this -> this is for the dropdown menu for sorting and such-->
               <button class="btn btn-secondary">Sort</button>
+              <div class="dropdown-content">
+                <a @click = "">Alphabetical</a>
+                <a href="#">start date</a>
+                <a href="#">deadline</a>
+              </div>
             </div>
           </div>
       </div>

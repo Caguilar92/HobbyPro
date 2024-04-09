@@ -17,15 +17,22 @@ let docPath = auth.currentUser.email+"_Projects";
 const router = useRouter();
 
 //stops deadline date from being before startdate
+// only populates if date is selected-- see below
 const minDeadline = computed(() => startDate.value);
-//whenever startdate changes this will set the 
-//deadline to at least that date if not already.
-//if deadline is after will not effect deadline
-watch(startDate, (newValue) => {
-  if(deadline.value < newValue){
-    deadline.value = newValue;
+
+function deadlineDate(startDate){
+  if(startDate > deadline){
+    //whenever startdate changes this will set the 
+    //deadline to at least that date if not already.
+    //if deadline is after will not effect deadline
+    watch(startDate, (newValue) => {
+      if(deadline.value < newValue){
+        deadline.value = newValue;
+      }
+    });
   }
-});
+}
+
 
 // saves a new Project to the data base
 async function saveToFireStore(event) {
@@ -58,16 +65,7 @@ async function saveToFireStore(event) {
     // erases everything and starts over
     location.reload();
   }
-  const app = Vue.createApp({
-  data() {
-    return {
-      checkBox: false
-    }
-  }
-})
-
-app.mount('#app')
-  
+ 
 }
 
 
@@ -93,14 +91,14 @@ app.mount('#app')
 
             <div class="col-md-6">
               <label for="setDeadline" class="form-label">Deadline</label>
-              <div class="input-group mb-3" id="app">
-                <span></span>
-                <div class="input-group-text">
-                  <input v-model="checkBox" class="form-check-input mt-0" type="checkbox" >
-                </div>
-                <input v-model="deadline" type="date" class="form-control" id="setDeadline" :disabled="!checkBox" :min="minDeadline">
+              <div class="input-group mb-3">
+                
+                <input v-model="deadline" type="date" class="form-control" id="setDeadline" :min="minDeadline" @click = "deadlineDate" >
               </div>
-              <p>checkBox: {{checkBox}}</p>
+              <!--<span></span>
+                <div class="input-group-text">
+                  <input v-model="checkBox" class="form-check-input mt-0" type="checkbox">
+                </div><p>checkBox: {{checkBox}}</p>-->
             </div>
 
             <div class="col-12">
