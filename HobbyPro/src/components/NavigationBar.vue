@@ -93,9 +93,9 @@ export default {
           <div v-if="dropdownOpen[1]" class="dropDownRouterMenu" @mouseover="dropdownOpen[1] = true" @mouseleave="dropdownOpen[1] = false">
             <ul>
               <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-              <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
-              <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
+              <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
               <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
+              <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
               <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
             </ul>
           </div>
@@ -110,7 +110,7 @@ export default {
       <div class="NavList col-12">
         <ul class="">
           <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-          <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li>
+          <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
           <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
           <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
         </ul>
@@ -272,6 +272,7 @@ nav ul li a:hover {
   left: 0px;
   padding: 10px 74px 10px 5px;
   margin: 5px;
+  margin-bottom: 6px;
   border-radius: 5px;
   cursor: pointer;
 }
