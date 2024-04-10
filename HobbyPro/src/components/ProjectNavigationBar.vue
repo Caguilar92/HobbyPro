@@ -9,7 +9,9 @@ export default {
             dropdownOpen: {
                 1: false,
                 2: false,
-                3: false
+                3: false,
+                4: false,
+                5: false
             },
             auth: getAuth(),
             router: useRouter(),
@@ -77,7 +79,7 @@ export default {
                 </div>
                 <div class="displayNameColumnSmall col-5 ms-auto text-align-right">
                     <div class="displayNameSmall">
-                        <p class="text-end">{{ displayName }}</p>
+                        <!--<p class="text-end">{{ displayName }}</p>-->
                     </div>
                 </div>
                 <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true"
@@ -122,7 +124,7 @@ export default {
                             <li v-for="stage in stages" :uid="stages.stageID">
                                 <router-link
                                     :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{
-                                    stage.stageName }}</router-link>
+                                        stage.stageName }}</router-link>
                             </li>
                         </ul>
                     </div>
@@ -143,7 +145,6 @@ export default {
                 <li><router-link to="/dashboard/library">Library</router-link></li>
             </ul>
         </div>
-        <h4>{{  }}</h4>
         <ul>
             <li>
                 <div class="OverviewDropdownButton" @click="toggleDropdown(4)">Overview</div>
@@ -155,12 +156,23 @@ export default {
                 </ul>
             </div>
             <!-- Correct the use of v-for and binding of key -->
-            <li v-for="stage in stages" :key="stage.stageID">
-                <router-link
-                    :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{
-                    stage.stageName }}</router-link>
-            </li>
+            <div v-for="stage in stages" :key="stage.stageID">
+                <li>
+                    <div class="StageDropDownButton" @click="toggleDropdown(stage.stageID)">{{ stage.stageName }}</div>
+                </li>
+                <div class="StageDropDownMenu" v-if="dropdownOpen[stage.stageID]">
+                    <ul id="stageList">
+                        <li><router-link
+                                :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName, uid: uid } }">{{
+                                    stage.stageName }}</router-link></li>
+                        <li>Add Stage</li>
+                        <li>Rename Stage</li>
+                    </ul>
+                </div>
+            </div>
         </ul>
+        <router-link class="SettingsButton" :to="{ name: 'EditOverview', params: { uid: uid } }">Edit
+            Overview</router-link>
     </nav>
 </template>
 
@@ -296,6 +308,24 @@ img {
     padding-left: 10px;
 }
 
+.StageDropdownButton {
+    color: white;
+}
+
+.StageDropdownButton:hover {
+    background-color: #d5e5ec;
+    color: black;
+}
+
+#stageList {
+    border-bottom: 4px solid #2a9d8f;
+    padding-left: 10px;
+}
+
+#stageList li {
+    padding-left: 10px;
+}
+
 .NavList {
     padding: 0;
 }
@@ -402,6 +432,32 @@ nav ul li a:hover {
     background-color: #ddd;
 }
 
+.SettingsButton {
+    text-decoration: none;
+    background-color: #e76f51;
+    color: white;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    padding: 10px 74px 10px 5px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.SettingsButton:hover {
+    background-color: #ddd;
+}
+
+.SettingsButton a {
+  text-decoration: none;
+  color: #333;
+}
+
+.SettingsButton a:hover {
+  color: black;
+}
+
 @media (max-width: 576px) {
     header {
         height: 100px;
@@ -467,5 +523,23 @@ nav ul li a:hover {
     }
 }
 
-@media(max-width: 576px) {}
+@media(max-width: 576px) {
+    .displayNameFull {
+    display: none;
+    position: relative !important;
+  }
+
+  .displayNameColumnFull {
+    display: none;
+  }
+
+  .displayNameColumnSmall {
+    display: block;
+  }
+
+  .displayNameSmall {
+    display: block;
+    color: white;
+  }
+}
 </style>

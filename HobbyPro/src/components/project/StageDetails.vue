@@ -1,6 +1,7 @@
 <script>
 export default {
     props: {
+        uid: String,
         id: String,
         stageName: String
     }, data(){

@@ -11,10 +11,10 @@ import ForgotPasswordView from "@/views/ForgotPasswordView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import ResetSuccessView from "@/views/PasswordResetSuccess.vue";
 import PasswordResetSuccess from "@/views/PasswordResetSuccess.vue";
-import ProjectDetails from "@/components/project/ProjectDetails.vue";
 import StageDetails from "@/components/project/StageDetails.vue";
 import Overview from "@/components/project/Overview.vue";
 import ProjectDashboard from "@/views/ProjectDashboardView.vue";
+import EditOverview from "@/components/project/EditOverview.vue";
 const auth = getAuth();
 export const router = createRouter({
   history: createWebHistory(),
@@ -62,35 +62,14 @@ export const router = createRouter({
       }, {
         path: 'library',
         component:Library
-      }, {
-        path: 'project/:uid',
-        name: 'ProjectDetails',
-        component:ProjectDetails,
-        props: true
-      }, {
-        path: 'stage/:id/:stageName/:uid',
-        name: 'StageDetails',
-        component:StageDetails,
-        props: true
-      }, {
-        path: 'overview/:uid',
-        name: 'Overview',
-        component:Overview,
-        props: true
       }
-
       ]
     }, {
       path:'/projectDashboard',
       component:ProjectDashboard,
-      redirect: '/projectDashboard/project/:uid',
+      redirect: '/projectDashboard/overview/:uid',
       children:[
         {
-          path: 'project/:uid',
-          name: 'ProjectDetails',
-          component:ProjectDetails,
-          props: true
-        }, {
           path: 'stage/:id/:stageName/:uid',
           name: 'StageDetails',
           component:StageDetails,
@@ -99,6 +78,11 @@ export const router = createRouter({
           path: 'overview/:uid',
           name: 'Overview',
           component:Overview,
+          props: true
+        }, {
+          path: 'editOverview/:uid',
+          name: 'EditOverview',
+          component:EditOverview,
           props: true
         }
       ]
