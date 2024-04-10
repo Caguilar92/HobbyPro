@@ -92,8 +92,9 @@ async function saveToFireStore(event) {
             <div class="col-md-6">
               <label for="setDeadline" class="form-label">Deadline</label>
               <div class="input-group mb-3">
-                
-                <input v-model="deadline" type="date" class="form-control" id="setDeadline" :min="minDeadline" @click = "deadlineDate" >
+
+                <input v-model="deadline" type="date" class="form-control" id="setDeadline" :min="minDeadline"
+                  @click="deadlineDate">
               </div>
               <!--<span></span>
                 <div class="input-group-text">
@@ -105,8 +106,14 @@ async function saveToFireStore(event) {
               <label for="tagName" class="form-label">Tag Name</label>
               <div class="input-group mb-3">
                 <span></span>
-                <input type="text" class="form-control" id="tagName" placeholder="example: Sewing">
+                <input v-model="tagname" type="text" class="form-control" id="tagName" list="datalistOptions"
+                  placeholder="example: Sewing">
                 <button class="btn btn-secondary" type="addTagBtn" id="addTagBtn">Add</button>
+                <datalist id="datalistOptions">
+                  <option value="Quilting"></option>
+                  <option value="Sewing"></option>
+                  <option value="Crochet"></option>
+                </datalist>
               </div>
             </div>
             <div class="col-12">
@@ -124,7 +131,9 @@ async function saveToFireStore(event) {
 
           </form>
         </div>
-        <div class="col-sm-2 p-3"></div>
+        <div class="col-sm-2 p-3">
+
+        </div>
       </div>
     </div>
     <!-- <div class="space"></div>
