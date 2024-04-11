@@ -103,11 +103,11 @@ function log_out(event) {
             <div class="progress">
             <div class="progress-bar" style="width:20%"></div>
             </div>
-            <!-- <div id="projectDetailsButtonWrapper">
+            <div id="projectDetailsButtonWrapper">
               <router-link id="projectDetailsButton" :to="{ name: 'Overview', params: { uid: project.uid } }">
                 See Project
               </router-link>
-            </div> -->
+            </div>
           </div>
 
         </div>
