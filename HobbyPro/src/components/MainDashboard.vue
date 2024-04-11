@@ -94,7 +94,7 @@ function log_out(event) {
           <img class="image-fluid" src="/src/assets/defaultProjectImage.png" alt="image here">
           <div class="info">
             <div class="tagarea">
-              <button id="tagName" :disabled>TagName</button>
+              <button id="tagName" :disabled>Crochet</button>
             </div>
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date:{{ project.startDate }}</h5>
@@ -103,11 +103,11 @@ function log_out(event) {
             <div class="progress">
             <div class="progress-bar" style="width:20%"></div>
             </div>
-            <div id="projectDetailsButtonWrapper">
+            <!-- <div id="projectDetailsButtonWrapper">
               <router-link id="projectDetailsButton" :to="{ name: 'Overview', params: { uid: project.uid } }">
                 See Project
               </router-link>
-            </div>
+            </div> -->
           </div>
 
         </div>
@@ -217,9 +217,9 @@ h1{
   border: none;
   border-radius: 50px;
   text-align: center;
-  padding: 3px 25px;
+  padding: 4px 15px;
   position: absolute;
-  top: 208px;
+  top: 230px;
   right: 8px;
   cursor: default;
 }

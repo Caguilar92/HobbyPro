@@ -50,7 +50,18 @@
             <div class="card-body">
               <h5 class="card-title">Project Name</h5>
               <p class="card-text">This is where the lesson learned will go</p>
-              <p class="card-text"><small class="text-muted">Completed Date</small></p>
+              <p class="card-text"><small class="text-muted">Completed Date: April 2, 2024</small></p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-3">
+            <img id="imgIcon"src="/src/assets/jo-szczepanska-unsplash.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-xs-8 col-md-9 mt3">
+            <div class="card-body">
+              <h5 class="card-title">Project Name</h5>
+              <p class="card-text">This is where the lesson learned will go</p>
+              <p class="card-text"><small class="text-muted">Completed Date: April 2, 2024</small></p>
             </div>
           </div>
         </div>
@@ -96,7 +107,7 @@ h1{
 .dashItems button{
   font-size: 13px;
   font-weight: 500;
-  background-color: lightslategray;
+  background-color: #264653;
   color: white;
   padding: 8px 12px;
   text-align: center;
