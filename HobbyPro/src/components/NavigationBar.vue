@@ -109,10 +109,10 @@ export default {
     <div class="row margin-60">
       <div class="NavList col-12">
         <ul class="">
-          <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
+          <li><router-link to="/dashboard/main"><div> <i class="bi bi-grid"></i>  Main Dashboard</div></router-link></li>
           <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
-          <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
-          <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
+          <li><router-link to="/dashboard/library"><div> <i class="bi bi-book"></i>  Library</div></router-link></li>
+          <li><router-link to="/dashboard/completed_projects"><div> <i class="bi bi-folder-check"></i>  Completed Project</div></router-link></li>
         </ul>
         <router-link class="cpButton" to="/dashboard/create_project">Create a Project</router-link>
       </div>

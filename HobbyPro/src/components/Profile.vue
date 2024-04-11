@@ -73,7 +73,7 @@
 
 #imgIconProfile{
   border-radius: 50%;
-  width: 100%;
+  width: max-content;
   height: 200px;
 }
 
