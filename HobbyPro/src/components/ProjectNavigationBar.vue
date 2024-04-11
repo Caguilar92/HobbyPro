@@ -37,6 +37,9 @@ export default {
             // Toggle the clicked dropdown
             this.dropdownOpen[dropdownId] = !this.dropdownOpen[dropdownId];
         },
+        ToggleNavigation(){
+
+        },
 
 
         log_out(event) {
@@ -146,27 +149,29 @@ export default {
             </ul>
         </div>
         <ul>
-            <li>
-                <div class="OverviewDropdownButton" @click="toggleDropdown(4)">Overview</div>
+            <li class="navButtons row ">
+                <router-link class="navItem col-8" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
+                <div class="OverviewDropdownButton col-4" @click="toggleDropdown(4)">V</div>
             </li>
             <div class="OverviewDropdownMenu" v-if="dropdownOpen[4]">
                 <ul id="overviewList">
-                    <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link></li>
                     <li>Add Image</li>
                 </ul>
             </div>
             <!-- Correct the use of v-for and binding of key -->
             <div v-for="stage in stages" :key="stage.stageID">
-                <li>
-                    <div class="StageDropDownButton" @click="toggleDropdown(stage.stageID)">{{ stage.stageName }}</div>
+                <li class="navButtons row">
+                    <router-link class="navItem col-8"
+                        :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName, uid: uid } }">
+                        {{ stage.stageName }}
+                    </router-link>
+                    <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.stageID)"> V </div>
                 </li>
                 <div class="StageDropDownMenu" v-if="dropdownOpen[stage.stageID]">
                     <ul id="stageList">
-                        <li><router-link
-                                :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName, uid: uid } }">{{
-                                    stage.stageName }}</router-link></li>
                         <li>Add Stage</li>
                         <li>Rename Stage</li>
+                        <li>Delete Stage</li>
                     </ul>
                 </div>
             </div>
@@ -296,6 +301,12 @@ img {
 
 .OverviewDropdownButton {
     color: white;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: 5px;
+    border-radius: 10px;
 }
 
 .OverviewDropdownButton:hover {
@@ -310,6 +321,12 @@ img {
 
 .StageDropdownButton {
     color: white;
+    text-align:center;
+    width: 40px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: 5px;
+    border-radius: 10px;
 }
 
 .StageDropdownButton:hover {
@@ -324,6 +341,19 @@ img {
 
 #stageList li {
     padding-left: 10px;
+}
+
+.navButtons {
+    display: flex;
+    align-content: center;
+}
+
+.navItem {
+    border-radius: 10px;
+}
+
+.navItem:hover {
+    background-color: #d5e5ec;
 }
 
 .NavList {
@@ -351,10 +381,6 @@ nav ul li {
     padding: 10px;
     text-decoration: none;
     color: white;
-}
-
-nav ul li:hover {
-    background-color: #d5e5ec;
 }
 
 nav ul li a {

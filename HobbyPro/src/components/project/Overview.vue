@@ -68,8 +68,9 @@ function log_out(event) {
 
 <template>
     <div class="contentInternalWrapper">
-        <h1>the overview page's id is:{{ uid }}</h1>
-        <p>{{ uid }}</p>
+        <h1>{{ project.projectName }}</h1>
+        <p>Start-Date:{{ project.startDate }}</p>
+        <p>Dead-Line:{{ project.deadline }}</p>
     </div>
 </template>
 
