@@ -1,10 +1,14 @@
 <script setup>
 import ProjectNavigationBar from "@/components/ProjectNavigationBar.vue";
+//import ProjectNavigationBar2 from "@/components/ProjectNavigationBar2.vue";
 </script>
 
 <template>
   <div>
     <ProjectNavigationBar/>
+    <!--
+      <projectNavigationBar2/>
+    -->
     <div class="content">
       <router-view></router-view>
     </div>
