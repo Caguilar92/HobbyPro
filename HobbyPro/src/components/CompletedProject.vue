@@ -40,11 +40,10 @@
         </div>
 
       </div>
-
       <div class="card text-dark bg-light mb-3">
         <div class="row g-0">
           <div class="col-xs-4 col-md-3">
-            <img id="imgIcon"src="/src/assets/jo-szczepanska-unsplash.jpg" class="img-fluid rounded-start" alt="...">
+            <img id="imgIcon" src="/src/assets/jo-szczepanska-unsplash.jpg" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-xs-8 col-md-9">
             <div class="card-body">
@@ -53,18 +52,26 @@
               <p class="card-text"><small class="text-muted">Completed Date: April 2, 2024</small></p>
             </div>
           </div>
-          <div class="col-xs-4 col-md-3">
-            <img id="imgIcon"src="/src/assets/jo-szczepanska-unsplash.jpg" class="img-fluid rounded-start" alt="...">
-          </div>
 
-          <div class="col-xs-8 col-md-9 mt3">
+        </div>
+
+      </div>
+
+      <div class="card text-dark bg-light mb-3">
+        <div class="row g-0">
+          <div class="col-xs-4 col-md-3">
+            <img id="imgIcon" src="/src/assets/jo-szczepanska-unsplash.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-xs-8 col-md-9">
             <div class="card-body">
               <h5 class="card-title">Project Name</h5>
               <p class="card-text">This is where the lesson learned will go</p>
               <p class="card-text"><small class="text-muted">Completed Date: April 2, 2024</small></p>
             </div>
           </div>
+
         </div>
+
       </div>
 
     </div>
