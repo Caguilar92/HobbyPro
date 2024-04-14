@@ -2,8 +2,6 @@
 import {onMounted, ref} from "vue";
 import {getStorage,ref as sRef,uploadBytes,listAll,getDownloadURL,deleteObject} from "firebase/storage";
 import {getAuth} from "firebase/auth";
-import {hide} from "@popperjs/core";
-//get references to firebase database and authentication
 const storage = getStorage();
 const auth = getAuth();
 
@@ -17,11 +15,12 @@ let currentDirectoryStack = ref([auth.currentUser.uid + "/"]);
 
 //variables that hold the name if folder or bytes if files  to be created, will be reset to empty text or null when upload complete or error occurs
 let newFolderName = ref('');
-let newFileName = ref(null);
+let newFileName = ref('');
 
 
 //selected files and folders
 let selectedFolderName = ref('');
+let selectedFile = ref(null);
 //if error occurs update this message and display
 let displayErrorMessage = ref(false);
 let errorMessage = ref('');
@@ -30,50 +29,57 @@ let errorMessage = ref('');
 let ghostFolder = '/folder.ghost';
 
 
-// function uploadFile() {
-//   if(selectedFile.value != null) {
-//     let pathURL = currentDirectoryStack.value[currentDirectoryStack.value.length-1] + selectedFile.value.name;
-//
-//     const storageRef = sRef(storage,pathURL);
-//     uploadBytes(storageRef,selectedFile.value).then((snapshot)=> {
-//       location.reload();
-//       console.log("UPLOADED FILE Successfully")
-//     }).catch((error)=> {
-//       console.log("error: something wen wrong")//handle  any errors here
-//     })
-//   }
-// }
+async function uploadFile() {
 
- async function createNewFolder() {
+  console.log(selectedFile.value.name);
+  if(selectedFile.value != null) {
+    let pathURL = currentDirectoryStack.value[currentDirectoryStack.value.length-1] + selectedFile.value.name;
 
-    if(isNameBlank(newFolderName.value)) {
-      showErrorMessage("name cannot be blank");
-      document.getElementById('close-button').click();
-      return;
-    }
+    const storageRef = sRef(storage,pathURL);
+    await  uploadBytes(storageRef,selectedFile.value).then((snapshot)=> {
 
-    if(await folderExists(newFolderName.value)) {
-      showErrorMessage("folder already exists");
-      document.getElementById('close-button').click();
-      return;
-    }
+      console.log("UPLOADED FILE Successfully")
+    }).catch((error)=> {
+      console.log("error: something wen wrong")//handle  any errors here
+    })
+  }
+}
 
-   hideErrorMessage();
-   let pathURL = getCurrentDirectoryPath() + newFolderName.value + ghostFolder;
-   const storageRef = sRef(storage, pathURL)
-   uploadBytes(storageRef, null).then((snapshot) => {
-     document.getElementById('close-button').click();
-     window.location.reload();
-   }).catch((error) => {
-     document.getElementById('close-button').click();
-   })
+function setFile(e) {
+  selectedFile.value = e.target.files[0];
+  newFileName.value = selectedFile.value.name;
+}
+
+async function createNewFolder() {
+
+  if(isNameBlank(newFolderName.value)) {
+    showErrorMessage("name cannot be blank");
+    document.getElementById('close-button').click();
+    return;
+  }
+
+  if(await folderExists(newFolderName.value)) {
+    showErrorMessage("folder already exists");
+    document.getElementById('close-button').click();
+    return;
+  }
+
+  hideErrorMessage();
+  let pathURL = getCurrentDirectoryPath() + newFolderName.value + ghostFolder;
+  const storageRef = sRef(storage, pathURL)
+  uploadBytes(storageRef, null).then((snapshot) => {
+    document.getElementById('close-button').click();
+    window.location.reload();
+  }).catch((error) => {
+    document.getElementById('close-button').click();
+  })
 
 }
 
 async function folderExists(folderName) {
-   const path = getCurrentDirectoryPath() + folderName + ghostFolder;
+  const path = getCurrentDirectoryPath() + folderName + ghostFolder;
 
-   const pathReference = sRef(storage,path);
+  const pathReference = sRef(storage,path);
   try {
     const url = await getDownloadURL(pathReference);
     return true;
@@ -88,54 +94,53 @@ function setSelectedFolderName(folder_name) {
 }
 
 async function deleteFolder() {
-   const path = getCurrentDirectoryPath() + selectedFolderName.value + "/";
+  const path = getCurrentDirectoryPath() + selectedFolderName.value + "/";
 
-   const listRef = sRef(storage,path);
+  const listRef = sRef(storage,path);
   await listAll(listRef)
-       .then((res) => {
-         res.items.forEach((itemRef) => {
-           let fileDirectory = path + itemRef.name;
-           let fileRef = sRef(storage,fileDirectory);
-           deleteObject(fileRef);
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          let fileDirectory = path + itemRef.name;
+          let fileRef = sRef(storage,fileDirectory);
+          deleteObject(fileRef);
 
-         })
-       })
+        })
+      })
   document.getElementById('delete-close-button').click();
   window.location.reload();
 }
 
 function showErrorMessage(message) {
-   displayErrorMessage.value = true;
-   errorMessage.value = "Error: " + message;
-   newFolderName.value = '';
+  displayErrorMessage.value = true;
+  errorMessage.value = "Error: " + message;
+  newFolderName.value = '';
 
 }
 
 function hideErrorMessage() {
-   displayErrorMessage.value = false;
-   errorMessage.value = '';
+  displayErrorMessage.value = false;
+  errorMessage.value = '';
 }
 
 function isNameBlank(name) {
-   return name.trim().length === 0;
+  return name.trim().length === 0;
 }
 
 function getCurrentDirectoryPath() {
-   return currentDirectoryStack.value[currentDirectoryStack.value.length-1];
+  return currentDirectoryStack.value[currentDirectoryStack.value.length-1];
 }
 
-function isImage(e) {
-  const fileName = e.target.files[0].name;
-  const indexOfForwardSlash = fileName.lastIndexOf('.');
-  const extension = fileName.substring(indexOfForwardSlash+1);
-  console.log("is an image: " + extension === 'png' || extension === 'jpeg' || extension === 'jpg');
-  return extension === 'png' || extension === 'jpeg' || extension === '.jpg';
+function isImage(filename) {
+  const indexOfDot = filename.lastIndexOf('.');
+  const extension = filename.substring(indexOfDot + 1).toLowerCase();
+  console.log(newFileName.value + "is an image: " + (extension === 'png' || extension === 'jpeg' || extension === 'jpg'));
+  return extension === 'png' || extension === 'jpeg' || extension === 'jpg';
 
 }
 
- function getFiles() {
-   const storageRef = sRef(storage,auth.currentUser.uid)
-   listAll(storageRef)
+function getFiles() {
+  const storageRef = sRef(storage,auth.currentUser.uid)
+  listAll(storageRef)
       .then((result) => {
         result.prefixes.map((folder) => {
           if(!folder.name.endsWith(".ghost")) {
@@ -149,9 +154,9 @@ function isImage(e) {
           }
           getDownloadURL(item)
               .then((url) => {
-                  fileURLs.value.push(url)
+                fileURLs.value.push(url)
 
-          });
+              });
 
         })
       })
@@ -169,15 +174,15 @@ onMounted(()=> {
 <template>
   <h2 class="mt-3">Library</h2>
   <div class="container-fluid">
-   <div class="row">
-     <div class="col-6 ">
-       <div class="library_formatting">
-         <div class="dropdown">
-         </div>
-       </div>
-     </div>
-     </div>
-   </div>
+    <div class="row">
+      <div class="col-6 ">
+        <div class="library_formatting">
+          <div class="dropdown">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <hr class="m-0">
 
 
@@ -225,30 +230,30 @@ onMounted(()=> {
       </div>
     </div>
   </div>
-<!--Upload a new File-->
+  <!--Upload a new File-->
   <div class="container-fluid mt-5 ">
     <div class="row">
       <div class="col-sm-12  col-md-6 mb-2" >
-        <input class="form-control " type="file" accept="image/jpeg,image/png,application/pdf" id="item-file-input" @change="isImage" >
+        <input class="form-control " type="file" accept="image/jpeg,image/png,application/pdf" id="item-file-input" @change="setFile" >
       </div>
       <div class="mt-2">
-        <button @click.prevent="uploadFile" type="button" class="btn btn-primary">Upload</button>
+        <button @click="uploadFile" type="button" class="btn btn-primary">Upload</button>
         <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#create-folder-modal">New folder +</button>
       </div>
-  </div>
+    </div>
   </div>
 
-<h2 v-show="displayErrorMessage" class="text-center text-danger">{{errorMessage}}</h2>
+  <h2 v-show="displayErrorMessage" class="text-center text-danger">{{errorMessage}}</h2>
 
-<!--get all folders and files and display them-->
+  <!--get all folders and files and display them-->
   <div class="container mt-5">
     <div id="folders" class="row d-flex">
-<!--begin rendering folders-->
+      <!--begin rendering folders-->
       <div class="image-icon col-6 col-sm-6 col-md-4 col-lg-3 text-center mt-5 " v-for="(folder_name, index) in folders" :key="index">
         <a  href="#" class="text-decoration-none text-secondary ">
           <div class="btn  card-icon border-0">
             <div  class="mb-3">
-              <button  id="trash-btn" type="button" class="btn trash-can border-0 position-absolute ms-3" @click="setSelectedFolderName(folder_name)" data-bs-toggle="modal" data-bs-target="#delete-folder-modal">
+              <button id="trash-btn-folder" type="button" class="btn trash-can border-0 position-absolute ms-3" @click="setSelectedFolderName(folder_name)" data-bs-toggle="modal" data-bs-target="#delete-folder-modal">
                 <i class="bi bi-trash-fill "></i>
               </button>
             </div>
@@ -263,6 +268,27 @@ onMounted(()=> {
           </div>
         </a>
       </div>
+      <!--begin rendering files-->
+      <div class="image-icon col-6 col-sm-6 col-md-4 col-lg-3 text-center mt-5 " v-for="(file_name, index) in fileNames" :key="index">
+        <a  href="#" class="text-decoration-none text-secondary ">
+          <div class="btn  card-icon border-0">
+            <div  class="mb-4">
+              <button id="trash-btn-file" type="button" class="btn trash-can border-0 position-absolute ms-4">
+                <i class="bi bi-trash-fill "></i>
+              </button>
+            </div>
+            <img  class="drag0-el card-img-top" v-if="isImage(file_name)" src="../assets/image_icon.png" alt="Image icon" width="100" height="100">
+            <img  class="drag0-el card-img-top" v-else src="../assets/pdf-icon.png" alt="pdf icon" width="100" height="100">
+            <div class="card-body">
+              <div class="badge-container">
+                <div class="badge text-black text-wrap text-break" style="width: 6rem;">
+                  {{ file_name }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -271,13 +297,22 @@ onMounted(()=> {
 
 </template>
 <style>
-#trash-btn {
+#trash-btn-folder {
   color:firebrick;
   visibility: hidden;
 }
 
-.image-icon:hover #trash-btn {
+.image-icon:hover #trash-btn-folder {
   visibility: visible; /* Show the trash button when the card is hovered */
+}
+
+#trash-btn-file {
+  color:firebrick;
+  visibility: hidden;
+}
+
+.image-icon:hover #trash-btn-file {
+  visibility: visible; /* Show the trash button when the card is hovered.*/
 }
 
 </style>
