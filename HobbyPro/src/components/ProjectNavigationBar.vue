@@ -16,11 +16,7 @@ export default {
             auth: getAuth(),
             router: useRouter(),
             displayName: "Welcome, " + getAuth().currentUser.displayName.toString(),
-            stages: [
-                { stageName: "stage_one", stageID: "2n1hb1h" },
-                { stageName: "stage_two", stageID: "9cn93uv" },
-                { stageName: "stage_three", stageID: "nnm956b9" }
-            ]
+            
 
         };
     },
@@ -54,6 +50,20 @@ export default {
     }
 };
 //TODO: Title and display name do not fit on mobile view
+</script>
+<script setup>
+    import { useStore } from 'vuex';
+    import { onMounted } from 'vue';
+
+    const store = useStore();
+
+    const stages = store.getters.getStages;
+
+    onMounted(() => {
+        const project = store.state.selectedProject;
+        const stages = store.getters.getStages;
+    });
+
 </script>
 
 <template>
@@ -124,7 +134,7 @@ export default {
                             <li>------------------</li>
                             <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
                             </li>
-                            <li v-for="stage in stages" :uid="stages.stageID">
+                            <li v-for="stage in stages" :uid="stages.uid">
                                 <router-link
                                     :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{
                                         stage.stageName }}</router-link>

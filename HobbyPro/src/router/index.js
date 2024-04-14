@@ -67,23 +67,20 @@ export const router = createRouter({
     }, {
       path:'/projectDashboard',
       component:ProjectDashboard,
-      redirect: '/projectDashboard/overview/:uid',
+      redirect: '/projectDashboard/overview/',
       children:[
         {
-          path: 'stage/:id/:stageName/:uid',
+          path: 'stage/',
           name: 'StageDetails',
           component:StageDetails,
-          props: true
         }, {
-          path: 'overview/:uid',
+          path: 'overview/',
           name: 'Overview',
           component:Overview,
-          props: true
         }, {
-          path: 'editOverview/:uid',
+          path: 'editOverview/',
           name: 'EditOverview',
           component:EditOverview,
-          props: true
         }
       ]
     }
