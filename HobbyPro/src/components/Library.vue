@@ -110,6 +110,23 @@ async function deleteFolder() {
   window.location.reload();
 }
 
+
+async function deleteFile() {
+  const path = getCurrentDirectoryPath() + selectedFile.value + "/";
+
+  const fileRef = sRef(storage,path);
+  await deleteObject(fileRef).then(()=> {
+    console.log("File successfully deleted")
+  }).catch((error) => {
+    showErrorMessage(error.message);
+  })
+  document.getElementById('delete-close-button').click();
+  window.location.reload();
+}
+
+function setFileNameForDeletion(file_name) {
+  selectedFile.value = file_name;
+}
 function showErrorMessage(message) {
   displayErrorMessage.value = true;
   errorMessage.value = "Error: " + message;
@@ -138,9 +155,9 @@ function isImage(filename) {
 
 }
 
-function getFiles() {
+async function getFiles() {
   const storageRef = sRef(storage,auth.currentUser.uid)
-  listAll(storageRef)
+  await listAll(storageRef)
       .then((result) => {
         result.prefixes.map((folder) => {
           if(!folder.name.endsWith(".ghost")) {
@@ -230,6 +247,27 @@ onMounted(()=> {
       </div>
     </div>
   </div>
+
+
+  <!--modal for deleting file-->
+  <div id="delete-file-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are You Sure You Want To Delete This File?</p>
+        </div>
+        <div class="modal-footer">
+          <button id="delete-close-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button @click.prevent="deleteFile" type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!--Upload a new File-->
   <div class="container-fluid mt-5 ">
     <div class="row">
@@ -273,7 +311,7 @@ onMounted(()=> {
         <a  href="#" class="text-decoration-none text-secondary ">
           <div class="btn  card-icon border-0">
             <div  class="mb-4">
-              <button id="trash-btn-file" type="button" class="btn trash-can border-0 position-absolute ms-4">
+              <button id="trash-btn-file" type="button" class="btn trash-can border-0 position-absolute ms-4" data-bs-toggle="modal" data-bs-target="#delete-file-modal" @click="setFileNameForDeletion(file_name)">
                 <i class="bi bi-trash-fill "></i>
               </button>
             </div>
