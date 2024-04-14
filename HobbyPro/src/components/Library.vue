@@ -43,6 +43,7 @@ async function uploadFile() {
       console.log("error: something wen wrong")//handle  any errors here
     })
   }
+  window.location.reload();
 }
 
 function setFile(e) {
@@ -352,5 +353,13 @@ onMounted(()=> {
 .image-icon:hover #trash-btn-file {
   visibility: visible; /* Show the trash button when the card is hovered.*/
 }
-
+/* Media query for screen size 576px or smaller */
+@media (max-width: 576px) {
+  #trash-btn-file {
+    visibility: visible; /* Show the trash button for screens 576px or smaller */
+  }
+  #trash-btn-folder {
+    visibility: visible; /* Show the trash button for screens 576px or smaller */
+  }
+}
 </style>
