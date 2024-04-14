@@ -1,0 +1,43 @@
+
+  {
+    "projectName": "Project Name",
+    "uid": "project doc.id",
+    "description": "Project Description",
+    "startDate": "YYYY-MM-DD",
+    "deadline": "YYYY-MM-DD",
+    "stages": [
+      {
+        "stageName": "Stage 1",
+        "isDone": false,
+        "uid": "stage's uid",
+        "tasks": [
+          {
+            "taskName": "Task 1",
+            "description": "Description of Task 1",
+            "kanban": "done"
+          },
+          {
+            "taskName": "Task 2",
+            "description": "Description of Task 2",
+            "kanban": "doing"
+          }
+        ]
+      },
+      {
+        "stageName": "Stage 2",
+        "isDone": false,
+        "uid": "stage's uid",
+        "tasks": [
+          {
+            "taskName": "Task 1",
+            "description": "Description of Task 1",
+            "kanban": "to do"
+          }
+        ]
+      }
+    ]
+  }
+
+
+
+  
