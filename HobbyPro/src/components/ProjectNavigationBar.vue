@@ -153,8 +153,9 @@ export default {
         <div class="mainDropdownMenu" v-if="dropdownOpen[3]">
             <ul id="mainList">
                 <li><router-link to="/dashboard/main">Main Dashboard</router-link></li>
-                <li><router-link to="/dashboard/completed_projects">Completed Project</router-link></li>
                 <li><router-link to="/dashboard/library">Library</router-link></li>
+                <li><router-link to="/dashboard/completed_projects">Completed Project</router-link></li>
+                
             </ul>
         </div>
         <ul>
