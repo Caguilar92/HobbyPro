@@ -67,11 +67,61 @@ function log_out(event) {
 </script>
 
 <template>
-    <div class="contentInternalWrapper">
-        <h1>{{ project.projectName }}</h1>
-        <p>Start-Date:{{ project.startDate }}</p>
-        <p>Dead-Line:{{ project.deadline }}</p>
-    </div>
+  <div class="contentInternalWrapper">
+    <header class="col-md-12 mt-3">
+      <p class="h1 text-center">{{ project.projectName }}</p>
+    </header>
+
+    <div class="container-fluid">
+      <div id="rowMain" class="row">
+        <div class="col-2"></div>
+
+        <div class="col-md-8 mt-3">
+          <!-- <p class="h1 text-center">{{ project.projectName }}</p> -->
+
+          <div class="row">
+            <div class="col-sm-5">
+              <p>Start Date: {{ project.startDate }}</p>
+            </div>
+            <div class="col-sm-7">
+              <p>Deadline: {{ project.deadline }} Days Left:</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-5">
+              <p>Last Update: </p>
+            </div>
+            <div class="col-sm-7">
+              <p>Progress: # %</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-10">
+              <p>Total Time: </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <p>Tag Names: </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <textarea class="form-control" rows="5" id="details" name="details" disabled placeholder="Details from Create Project Page"></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-2"></div>
+
+      </div>
+
+  </div>
+</div>
 </template>
 
 <style>

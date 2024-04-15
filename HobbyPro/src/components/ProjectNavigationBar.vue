@@ -62,7 +62,7 @@ export default {
             <div class="row align-items-start"><!-- Use align-items-start to align items to the top -->
                 <div class="logoColumn col-1"><!-- On small screens, the title spans the full width -->
                     <picture>
-                        <img src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo">
+                        <img id="logo" src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo">
                     </picture>
                 </div>
                 <div class="titleColumn col-1">
@@ -138,20 +138,19 @@ export default {
 
     <nav>
         <!-- Use @click to call toggleDropdown with the appropriate ID -->
-        <div class="mainDropdownButton" @click="toggleDropdown(3)">Main</div>
+        <div class="mainDropdownButton" @click="toggleDropdown(3)"><i class="bi bi-grid-fill"></i> Menu</div>
         <!-- Use v-if to conditionally render the dropdown based on its state -->
         <div class="mainDropdownMenu" v-if="dropdownOpen[3]">
             <ul id="mainList">
                 <li><router-link to="/dashboard/main">Main Dashboard</router-link></li>
-                <li><router-link to="/dashboard/profile">Profile</router-link></li>
                 <li><router-link to="/dashboard/completed_projects">Completed Project</router-link></li>
                 <li><router-link to="/dashboard/library">Library</router-link></li>
             </ul>
         </div>
         <ul>
             <li class="navButtons row ">
-                <router-link class="navItem col-8" :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
-                <div class="OverviewDropdownButton col-4" @click="toggleDropdown(4)">V</div>
+                <router-link class="navItem col-8" :to="{ name: 'Overview', params: { uid: uid } }"> <i class="bi bi-folder2-open"></i> Overview</router-link>
+                <div class="OverviewDropdownButton col-4" @click="toggleDropdown(4)"><i class="bi bi-caret-down-fill"></i></div>
             </li>
             <div class="OverviewDropdownMenu" v-if="dropdownOpen[4]">
                 <ul id="overviewList">
@@ -165,7 +164,7 @@ export default {
                         :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName, uid: uid } }">
                         {{ stage.stageName }}
                     </router-link>
-                    <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.stageID)"> V </div>
+                    <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.stageID)"><i class="bi bi-caret-down-fill"></i></div>
                 </li>
                 <div class="StageDropDownMenu" v-if="dropdownOpen[stage.stageID]">
                     <ul id="stageList">
@@ -176,8 +175,7 @@ export default {
                 </div>
             </div>
         </ul>
-        <router-link class="SettingsButton" :to="{ name: 'EditOverview', params: { uid: uid } }">Edit
-            Overview</router-link>
+        <router-link class="SettingsButton" :to="{ name: 'EditOverview', params: { uid: uid } }"> <i class="bi bi-gear"></i> Settings</router-link>
     </nav>
 </template>
 
@@ -210,7 +208,7 @@ header {
     padding: 0;
 }
 
-img {
+#logo {
     background-color: rgba(0, 0, 0, 0);
     height: 60px;
 }
