@@ -267,6 +267,7 @@ header {
 .displayNameFull p {
     color: white;
     height: 30px;
+    margin-top: 10px;
 }
 
 .displayNameColumnSmall {

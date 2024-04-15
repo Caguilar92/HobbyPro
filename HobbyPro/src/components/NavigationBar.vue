@@ -200,6 +200,7 @@ img {
 .displayNameFull p {
   color: white;
   height: 30px;
+  margin-top: 3px;
 }
 
 .displayNameColumnSmall {
