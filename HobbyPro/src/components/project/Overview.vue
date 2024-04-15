@@ -4,11 +4,7 @@ export default {
         uid: String
     }, data(){
       return {
-        stages: [
-          {stageName: "stage_one", stageID: "2n1hb1h"},
-          {stageName: "stage_two", stageID: "9cn93uv"},
-          {stageName: "stage_three", stageID: "nnm956b9"}
-        ]
+        
       }
     }
 }
@@ -16,44 +12,26 @@ export default {
 
 <script setup>
 import {getAuth,signOut} from "firebase/auth";
-import {doc, getDoc, getFirestore} from 'firebase/firestore';
 import {useRouter} from "vue-router";
 import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 
-// this is so we can use the info in the top section
-const props = defineProps({uid: String});
+
+const store = useStore();
 
 const auth = getAuth();
 const router = useRouter();
-const firestore = getFirestore();
 const docPath = auth.currentUser.email + "_Projects";
-const docID = props.uid; 
-let project = ref("");
+const project = ref('');
+const stages = ref([]);
 
-// Fetch the document
-async function getDocFromDatabase() {
-  try {
-    const documentSnapshot = await getDoc(doc(firestore, docPath, docID));
-    if (documentSnapshot.exists()) {
-      // Document exists, extract its data
-      const documentData = documentSnapshot.data();
-      console.log("Document data:", documentData);
-      return documentData;
-    } else {
-      // Document does not exist
-      console.log("No such document!");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error fetching document:", error);
-    return null;
-  }
-}
+
+
 
 //populates project when page is loaded
-onMounted(async () => {
+onMounted(async() => {
   // Fetch project and assign it to the reactive reference
-  project.value = await getDocFromDatabase();
+  project.value = store.state.selectedProject;
 });
 
 function log_out(event) {

@@ -1,11 +1,11 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import {getAuth,signOut} from "firebase/auth";
-import {useRouter} from "vue-router";
-import { collection, getDocs, getFirestore } from "firebase/firestore"; 
+import { getAuth,signOut } from "firebase/auth";
+import { useRouter } from "vue-router";
+import { useStore } from 'vuex';
 
-//this is the database refferance - I don't know why it has to be this way but it works
-const firestore = getFirestore();
+//create a store reference for state saving 
+const store = useStore();
 
 // Allows for reference by Vue in <template> area
 const projects = ref([]);
@@ -14,46 +14,18 @@ const auth = getAuth();
 const router = useRouter();
 const docPath = auth.currentUser.email+'_Projects';
 
+const fetchProjects = async () => {
+  await store.dispatch('fetchProjects', {docPath});
+  projects. value = store.state.projects;
+};
 
+const selectProject = (project) => {
+  store.dispatch('selectProject', project);
+  router.push('/projectDashboard/overview/');
+};
 
-// Retrieve data from Firestore and populate 'projects' array
-async function getDocsFromDatabase() {
-  try{
-    const projectsCollectionRef = collection(firestore, docPath);
-    const querySnapshot = await getDocs(projectsCollectionRef);
+onMounted(fetchProjects);
 
-    const projects = [];
-    //fills projects array from firestore
-    querySnapshot.forEach(doc => {
-      const projectData = doc.data();
-      // this whole using a "Project" object here may be a bad desision in the future.
-      // Project object removed, passing doc.data (all data from the doc) instead. 
-      // appending doc.data with doc's id before saving it.
-      const projectInstance = {...projectData, uid: doc.id}
-      projects.push(projectInstance);
-    });
-    // Return projects array
-    return projects;
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-    return [];
-  }
-}
-
-// sorting functions for alphabetical, startDate, and endDate
-// TODO: sorting functions
-
-
-
-
-
-
-
-//populates projects array when page is loaded. 
-onMounted(async () => {
-  // Fetch projects and assign them to the reactive reference
-  projects.value = await getDocsFromDatabase();
-});
 
 
 function log_out(event) {
@@ -104,9 +76,9 @@ function log_out(event) {
             <div class="progress-bar" style="width:20%"></div>
             </div>
             <div id="projectDetailsButtonWrapper">
-              <router-link id="projectDetailsButton" :to="{ name: 'Overview', params: { uid: project.uid } }">
+              <button id="projectDetailsButton" @click = 'selectProject(project)'>
                 See Project
-              </router-link>
+              </button>
             </div>
           </div>
 
