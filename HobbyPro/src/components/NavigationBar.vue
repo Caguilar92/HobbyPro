@@ -131,7 +131,7 @@ export default {
       </div>
     </div>
     </div>
-  </nav>
+      </nav>
     </div>
     <div :class="{ 'backdrop': isOpen }" @click="toggle"></div>
   </div>

@@ -3,194 +3,212 @@ import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
 
 export default {
-    data() {
-        return {
-            // State to track if the dropdown is visible
-            dropdownOpen: {
-                1: false,
-                2: false,
-                3: false,
-                4: false,
-                5: false
-            },
-            auth: getAuth(),
-            router: useRouter(),
-            displayName: "Welcome, " + getAuth().currentUser.displayName.toString(),
+  data() {
+    return {
+        isOpen: false,//offcanvas-----
+      // State to track if the dropdown is visible
+      dropdownOpen: {
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false
+      },
+      auth: getAuth(),
+      router: useRouter(),
+      displayName: "Welcome, " + getAuth().currentUser.displayName.toString(),
             
 
-        };
-    },
-    methods: {
-        // Method to toggle the visibility of the dropdown
-        toggleDropdown(dropdownId) {
-            // Close all dropdowns
-            for (let id in this.dropdownOpen) {
-                if (id != dropdownId) {
-                    this.dropdownOpen[id] = false;
-                }
-            }
-
-            // Toggle the clicked dropdown
-            this.dropdownOpen[dropdownId] = !this.dropdownOpen[dropdownId];
-        },
-        ToggleNavigation(){
-
-        },
-
-
-        log_out(event) {
-            event.preventDefault();
-
-            signOut(this.auth).then(() => {
-                this.router.replace('/login');
-            }).catch((error) => {
-                console.log("something went wrong")
-            });
+    };
+  },
+  methods: {
+    // Method to toggle the visibility of the dropdown
+    toggleDropdown(dropdownId) {
+      // Close all dropdowns
+      for (let id in this.dropdownOpen) {
+        if (id != dropdownId) {
+          this.dropdownOpen[id] = false;
         }
+      }
+        // Toggle the clicked dropdown
+        this.dropdownOpen[dropdownId] = !this.dropdownOpen[dropdownId];
+    },
+    toggle() { //offcanvas----
+      this.isOpen = !this.isOpen;
+    },
+    log_out(event) {
+      event.preventDefault();
+
+      signOut(this.auth).then(() => {
+        this.router.replace('/login');
+      }).catch((error) => {
+        console.log("something went wrong")
+      });
     }
+  }
 };
 //TODO: Title and display name do not fit on mobile view
 </script>
 <script setup>
-    import { useStore } from 'vuex';
-    import { onMounted } from 'vue';
+  import { useStore } from 'vuex';
+  import { onMounted } from 'vue';
 
-    const store = useStore();
+  const store = useStore();
 
+  const stages = store.getters.getStages;
+
+  onMounted(() => {
+    const project = store.state.selectedProject;
     const stages = store.getters.getStages;
-
-    onMounted(() => {
-        const project = store.state.selectedProject;
-        const stages = store.getters.getStages;
-    });
+    console.log(stages);   //data checking to make sure data was loading in
+    console.log(project);  //data checking to make sure data was loading in 
+  });
 
 </script>
 
 <template>
-    <header>
-        <div class="container-fluid">
-            <div class="row align-items-start"><!-- Use align-items-start to align items to the top -->
-                <div class="logoColumn col-1"><!-- On small screens, the title spans the full width -->
-                    <picture>
-                        <img id="logo" src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo">
-                    </picture>
-                </div>
-                <div class="titleColumn col-1">
-                    <h3 class="title text-left"><!-- Adjust alignment to left -->
-                        <router-link to="/dashboard/main">Hobby Pro</router-link>
-                    </h3>
-                </div>
-                <div class="searchBarColumnFull col-3"><!-- this will exist when screens size are above 576 -->
-                    <div class="searchBarFull">
-                        <input type="text" placeholder="Search...">
-                    </div>
-                </div>
-                <div class="displayNameFull col-3 ms-auto text-align-right"><!--  -->
-                    <div class="displayNameFull">
-                        <p class="text-end">{{ displayName }}</p>
-                    </div>
-                </div>
-                <div class="displayNameColumnSmall col-5 ms-auto text-align-right">
-                    <div class="displayNameSmall">
-                        <!--<p class="text-end">{{ displayName }}</p>-->
-                    </div>
-                </div>
-                <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true"
-                    @mouseleave="dropdownOpen[2] = false">
-                    <div class="profileIcon"></div>
-                    <div v-if="dropdownOpen[2]" class="dropDownProfileMenu" @mouseover="dropdownOpen[2] = true"
-                        @mouseleave="dropdownOpen[2] = false">
-                        <ul>
-                            <li><router-link to="/dashboard/profile">Profile</router-link></li>
-                            <li><button @click="log_out" class="btn btnPrimary">Sign Out</button></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="searchBarColumnShrink col-11">
-                    <!-- this will appear when screen size has reached below 576 -->
-                    <div class="searchBarShrink">
-                        <input type="text" placeholder="Search...">
-                    </div>
-                </div>
-                <div class="hamburgerColumn col-1" @mouseover="dropdownOpen[1] = true"
-                    @mouseleave="dropdownOpen[1] = false">
-                    <button class="hamburger">&#9776;</button>
-                    <div v-if="dropdownOpen[1]" class="dropDownRouterMenu" @mouseover="dropdownOpen[1] = true"
-                        @mouseleave="dropdownOpen[1] = false">
-                        <ul>
-                            <li><router-link to="/dashboard/main">
-                                    <div>Main Dashboard</div>
-                                </router-link></li>
-                            <li><router-link to="/dashboard/profile">
-                                    <div>Profile</div>
-                                </router-link></li>
-                            <li><router-link to="/dashboard/completed_projects">
-                                    <div>Completed Project</div>
-                                </router-link></li>
-                            <li><router-link to="/dashboard/library">
-                                    <div>Library</div>
-                                </router-link></li>
-                            <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
-                            <li>------------------</li>
-                            <li><router-link :to="{ name: 'Overview', params: { uid: uid } }">Overview</router-link>
-                            </li>
-                            <li v-for="stage in stages" :uid="stages.uid">
-                                <router-link
-                                    :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName } }">{{
-                                        stage.stageName }}</router-link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <header>
+    <div class="container-fluid">
+      <div class="row align-items-start"><!-- Use align-items-start to align items to the top -->
+        <div class="logoColumn col-1"><!-- On small screens, the title spans the full width -->
+          <picture>
+            <img id="logo" src="/src/assets/HobbyProLogo_only_logo.png" alt="Hobby Pro Logo">
+          </picture>
         </div>
-    </header>
-
-    <nav>
-        <!-- Use @click to call toggleDropdown with the appropriate ID -->
-        <div class="mainDropdownButton" @click="toggleDropdown(3)"><i class="bi bi-grid-fill"></i> Menu</div>
-        <!-- Use v-if to conditionally render the dropdown based on its state -->
-        <div class="mainDropdownMenu" v-if="dropdownOpen[3]">
-            <ul id="mainList">
-                <li><router-link to="/dashboard/main">Main Dashboard</router-link></li>
-                <li><router-link to="/dashboard/library">Library</router-link></li>
-                <li><router-link to="/dashboard/completed_projects">Completed Project</router-link></li>
-                
+        <div class="titleColumn col-1">
+          <h3 class="title text-left"><!-- Adjust alignment to left -->
+            <router-link to="/dashboard/main">Hobby Pro</router-link>
+          </h3>
+        </div>
+        <div class="searchBarColumnFull col-3"><!-- this will exist when screens size are above 576 -->
+          <div class="searchBarFull">
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+        <div class="displayNameFull col-3 ms-auto text-align-right"><!--  -->
+          <div class="displayNameFull">
+            <p class="text-end">{{ displayName }}</p>
+          </div>
+        </div>
+        <div class="displayNameColumnSmall col-5 ms-auto text-align-right">
+          <div class="displayNameSmall">
+            <!--<p class="text-end">{{ displayName }}</p>-->
+          </div>
+        </div>
+        <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true"
+            @mouseleave="dropdownOpen[2] = false">
+          <div class="profileIcon"></div>
+          <div v-if="dropdownOpen[2]" class="dropDownProfileMenu" @mouseover="dropdownOpen[2] = true"
+              @mouseleave="dropdownOpen[2] = false">
+            <ul>
+              <li><router-link to="/dashboard/profile">Profile</router-link></li>
+              <li><button @click="log_out" class="btn btnPrimary">Sign Out</button></li>
             </ul>
+          </div>
         </div>
-        <ul>
-            <li class="navButtons row ">
-                <router-link class="navItem col-8" :to="{ name: 'Overview', params: { uid: uid } }"> <i class="bi bi-folder2-open"></i> Overview</router-link>
-                <div class="OverviewDropdownButton col-4" @click="toggleDropdown(4)"><i class="bi bi-caret-down-fill"></i></div>
-            </li>
-            <div class="OverviewDropdownMenu" v-if="dropdownOpen[4]">
-                <ul id="overviewList">
-                    <li>Add Image</li>
-                </ul>
-            </div>
-            <!-- Correct the use of v-for and binding of key -->
-            <div v-for="stage in stages" :key="stage.stageID">
-                <li class="navButtons row">
-                    <router-link class="navItem col-8"
-                        :to="{ name: 'StageDetails', params: { id: stage.stageID, stageName: stage.stageName, uid: uid } }">
-                        {{ stage.stageName }}
-                    </router-link>
-                    <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.stageID)"><i class="bi bi-caret-down-fill"></i></div>
-                </li>
-                <div class="StageDropDownMenu" v-if="dropdownOpen[stage.stageID]">
-                    <ul id="stageList">
-                        <li>Add Stage</li>
-                        <li>Rename Stage</li>
-                        <li>Delete Stage</li>
-                    </ul>
-                </div>
-            </div>
-        </ul>
-        <router-link class="SettingsButton" :to="{ name: 'EditOverview', params: { uid: uid } }"> <i class="bi bi-gear"></i> Settings</router-link>
-    </nav>
+        <div class="searchBarColumnShrink col-11">
+          <!-- this will appear when screen size has reached below 576 -->
+          <div class="searchBarShrink">
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+        <div class="hamburgerColumn col-1" @click="toggle">
+          <button class="hamburger">&#9776;</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="normalNav">
+    <!-- Use @click to call toggleDropdown with the appropriate ID -->
+    <div class="mainDropdownButton" @click="toggleDropdown(3)"><i class="bi bi-grid-fill"></i> Menu</div>
+    <!-- Use v-if to conditionally render the dropdown based on its state -->
+    <div class="mainDropdownMenu" v-if="dropdownOpen[3]">
+      <ul id="mainList">
+        <li><router-link to="/dashboard/main">Main Dashboard</router-link></li>
+        <li><router-link to="/dashboard/library">Library</router-link></li>
+        <li><router-link to="/dashboard/completed_projects">Completed Project</router-link></li>
+      </ul>
+    </div>
+    <ul>
+      <li class="navButtons row ">
+        <router-link class="navItem col-8" to="/projectDashboard/overview"> <i class="bi bi-folder2-open"></i> Overview</router-link>
+        <div class="OverviewDropdownButton col-4" @click="toggleDropdown(4)"><i class="bi bi-caret-down-fill"></i></div>
+      </li>
+        <div class="OverviewDropdownMenu" v-if="dropdownOpen[4]">
+          <ul id="overviewList">
+            <li>Add Image</li>
+          </ul>
+        </div>
+        <!-- Correct the use of v-for and binding of key -->
+        <div v-for="stage in stages" :key="stage.stageName">
+          <li class="navButtons row">
+            <router-link class="navItem col-8" to="/projectDashboard/stageDetails">{{ stage.stageName }}</router-link>
+            <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.uid)"><i class="bi bi-caret-down-fill"></i></div>
+          </li>
+          <div class="StageDropDownMenu" v-if="dropdownOpen[stage.uid]">
+            <ul id="stageList">
+              <li>Add Stage</li>
+              <li>Rename Stage</li>
+              <li>Delete Stage</li>
+            </ul>
+          </div>
+        </div>
+      </ul>
+    <router-link class="SettingsButton" to="/projectDashboard/editOverview"> <i class="bi bi-gear"></i> Settings</router-link>
+  </nav>
+  <div>
+    <!-- offcanvas -->
+    <div :class="['offcanvas', { 'open': isOpen }]">
+      <button class="closeButton" @click="toggle">Close</button>
+      <nav><!-- Use @click to call toggleDropdown with the appropriate ID -->
+    <div class="mainDropdownButton" @click="toggleDropdown(3)"><i class="bi bi-grid-fill"></i> Menu</div>
+    <!-- Use v-if to conditionally render the dropdown based on its state -->
+    <div class="mainDropdownMenu" v-if="dropdownOpen[3]">
+      <ul id="mainList">
+        <li><router-link to="/dashboard/main">Main Dashboard</router-link></li>
+        <li><router-link to="/dashboard/library">Library</router-link></li>
+        <li><router-link to="/dashboard/completed_projects">Completed Project</router-link></li>
+      </ul>
+    </div>
+    <ul>
+      <li class="navButtons row ">
+        <router-link class="navItem col-8" to="/projectDashboard/overview"> <i class="bi bi-folder2-open"></i> Overview</router-link>
+        <div class="OverviewDropdownButton col-4" @click="toggleDropdown(4)"><i class="bi bi-caret-down-fill"></i></div>
+      </li>
+        <div class="OverviewDropdownMenu" v-if="dropdownOpen[4]">
+          <ul id="overviewList">
+            <li>Add Image</li>
+          </ul>
+        </div>
+        <!-- Correct the use of v-for and binding of key -->
+        <div v-for="stage in stages" :key="stage.stageName">
+          <li class="navButtons row">
+            <router-link class="navItem col-8" to="/projectDashboard/stageDetails">{{ stage.stageName }}</router-link>
+            <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.uid)"><i class="bi bi-caret-down-fill"></i></div>
+          </li>
+          <div class="StageDropDownMenu" v-if="dropdownOpen[stage.uid]">
+            <ul id="stageList">
+              <li>Add Stage</li>
+              <li>Rename Stage</li>
+              <li>Delete Stage</li>
+            </ul>
+          </div>
+        </div>
+      </ul>
+    <router-link class="SettingsButton" to="/projectDashboard/editOverview"> <i class="bi bi-gear"></i> Settings</router-link>
+  </nav>
+    </div>
+    <div :class="{ 'backdrop': isOpen }" @click="toggle"></div>
+  </div>
 </template>
 
 <style scoped>
+.offcanvas {
+  display: none;
+}
+/** ------ */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -539,7 +557,7 @@ nav ul li a:hover {
         border: 2px solid #000;
     }
 
-    nav {
+    .normalNav {
         display: none !important;
     }
 
@@ -557,10 +575,54 @@ nav ul li a:hover {
         background-color: #fff;
         border: 2px solid #000;
     }
+
+    .closeButton {
+    color: black;
+    padding: 5px 75px 5px 75px;
+    margin: 2px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }
 
 @media(max-width: 576px) {
-    .displayNameFull {
+  .offcanvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -300px;
+    width: 206px;
+    background-color: #264653;
+    border-right: 4px solid #2a9d8f; 
+    transition: left 0.3s;
+    padding: 2px;
+    z-index: 3;
+    visibility: hidden;
+ }
+
+  .offcanvas.open {
+    left: 0;
+    visibility: visible;
+  }
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+
+  .backdrop.open {
+    display: block;
+  }
+  /** -- offcanvas -- */
+
+  .displayNameFull {
     display: none;
     position: relative !important;
   }

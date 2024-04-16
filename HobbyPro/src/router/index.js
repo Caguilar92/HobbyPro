@@ -70,15 +70,15 @@ export const router = createRouter({
       redirect: '/projectDashboard/overview/',
       children:[
         {
-          path: 'stage/',
+          path: 'stageDetails',
           name: 'StageDetails',
           component:StageDetails,
         }, {
-          path: 'overview/',
+          path: 'overview',
           name: 'Overview',
           component:Overview,
         }, {
-          path: 'editOverview/',
+          path: 'editOverview',
           name: 'EditOverview',
           component:EditOverview,
         }
