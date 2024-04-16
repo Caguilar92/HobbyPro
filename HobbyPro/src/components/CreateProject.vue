@@ -96,10 +96,6 @@ async function saveToFireStore(event) {
                 <input v-model="deadline" type="date" class="form-control" id="setDeadline" :min="minDeadline"
                   @click="deadlineDate">
               </div>
-              <!--<span></span>
-                <div class="input-group-text">
-                  <input v-model="checkBox" class="form-check-input mt-0" type="checkbox">
-                </div><p>checkBox: {{checkBox}}</p>-->
             </div>
 
             <div class="col-12">
