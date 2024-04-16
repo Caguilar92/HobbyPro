@@ -89,7 +89,7 @@ function log_out(event) {
 
           <div class="row">
             <div class="col-sm-12">
-              <textarea class="form-control" rows="5" id="details" name="details" disabled placeholder="Details from Create Project Page"></textarea>
+              <textarea class="form-control" rows="5" id="details" name="details" disabled placeholder="Details from Create Project Page">{{ project.description }}</textarea>
             </div>
           </div>
 
