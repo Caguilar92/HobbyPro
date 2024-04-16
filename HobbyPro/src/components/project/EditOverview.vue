@@ -86,7 +86,7 @@ function log_out(event) {
           <div class="row">
             <div class="col-md-2"></div>
             <!-- <div class="col-md-10"> -->
-            <button id="changeProfileBtn" type="button" class="col-xs-12 col-md-8 btn btn-primary btn-block mt-3">Change
+            <button id="changeProfileBtn" type="button" class="col-xs-12 col-md-8 btn btn-secondary btn-block mt-3">Change
               Profile Icon</button>
             <!-- </div> -->
             <div class="col-md-2"></div>
@@ -94,7 +94,7 @@ function log_out(event) {
           <div class="row">
             <div class="col-md-2"></div>
             <!-- <div class="col-md-10"> -->
-            <button id="changeProfileBtn" type="button" class="col-md-8 btn btn-outline-secondary btn-small mt-3">Use
+            <button id="defaultProfileBtn" type="button" class="col-md-8 btn btn-outline-secondary btn-block mt-3">Use
               Deafault Image</button>
             <!-- </div> -->
             <div class="col-md-2"></div>
@@ -118,10 +118,10 @@ function log_out(event) {
           </div>
 
           <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-5 mt-3">
               <p>Last Update: </p>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-7 mt-3">
               <p>Progress: # %</p>
             </div>
           </div>
@@ -160,8 +160,10 @@ function log_out(event) {
 
           <div class="d-flex flex-row">
             <!-- <div class="col-sm-12"> -->
-                <button id="tagButton" type="button" class="btn btn-secondary" aria-label="Close">Crochet <i class="bi bi-x"></i></button>
-                <button id="tagButton" type="button" class="btn btn-secondary" aria-label="Close">Tag Name <i class="bi bi-x"></i></button>
+            <button id="tagButton" type="button" class="btn btn-secondary" aria-label="Close">Crochet <i
+                class="bi bi-x"></i></button>
+            <button id="tagButton" type="button" class="btn btn-secondary" aria-label="Close">Tag Name <i
+                class="bi bi-x"></i></button>
             <!-- </div> -->
           </div>
 
@@ -176,6 +178,51 @@ function log_out(event) {
         <!-- <div class="col"></div> -->
 
       </div>
+      
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mt-4">
+          <button id="saveBtn" type="button" class="col-md-6 btn btn-secondary mt-3" data-bs-toggle="modal"
+            data-bs-target="#saveButton">Save Changes</button>
+
+          <div class="modal fade" id="saveButton" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" for="deleteBtn">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <p class="modal-title fs-5" id="staticBackdropLabel">Save Changes</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to save these changes to your project?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary">Save Change</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="deleteBtn" type="button" class="col-md-6 btn btn-secondary mt-3" data-bs-toggle="modal"
+            data-bs-target="#deleteButton">Delete Project</button>
+
+          <div class="modal fade" id="deleteButton" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <p class="modal-title fs-5" id="staticBackdropLabel">Delete Project</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete your project?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -186,12 +233,20 @@ function log_out(event) {
   height: 225px;
 }
 
-/* #changeProfileBtn{
-  max-width: 300px;
-} */
 
 #tagButton{
   margin: 3px;
 }
+
+#deleteBtn, #saveBtn{
+  margin: 3px;
+  width: 300px
+}
+
+
+#changeProfileBtn, #addTagBtn, #tagButton, #saveBtn, #deleteBtn{
+  background-color: #264653;
+}
+
 
 </style>
