@@ -1,9 +1,39 @@
 <script setup>
-;
+import { onMounted, ref } from "vue";
+import { getAuth } from "firebase/auth";
+import { useStore } from 'vuex';
 //TODO: set google auth and database referances
+  let auth = getAuth();
+  let Email = auth.currentUser.email.toString();
+  let displayName = getAuth().currentUser.displayName.toString();
+  
+  //splits the users name into to values by the " "
+  let displayNameArray = displayName.split(" ");
+  console.log(displayNameArray);
 
+  //places the values inside of "firstName" and "lastName"
+  let firstName = displayNameArray[0];
+  let lastName = displayNameArray[1];
+  console.log("firstName = "+ firstName);
+  console.log("lastName = "+ lastName);
 
+  //create a store reference for state saving 
+  const store = useStore();
+
+  // Allows for reference by Vue in <template> area
+  const projects = ref([]);
+
+  const docPath = auth.currentUser.email+'_Projects';
+
+  const fetchProjects = async () => {
+  await store.dispatch('fetchProjects', {docPath});
+  projects. value = store.state.projects;
+  };
+  
+  onMounted(fetchProjects);
 </script>
+
+
 
 <template>
   <div class="about">
@@ -23,15 +53,15 @@
               <div class="row">
                 <div class="col-6">
                   <label for="firstName" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="firstName" readonly>
+                  <input type="text" class="form-control" id="firstName" :value="firstName" readonly>
                 </div>
                 <div class="col-6">
                   <label for="lastName" class="form-label">Last Name</label>
-                  <input type="text" class="form-control" id="lastName" readonly>
+                  <input type="text" class="form-control" id="lastName" :value="lastName" readonly>
                 </div>
                 <div class="col-12">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" readonly>
+                  <input type="text" class="form-control" id="email" :value="Email" readonly>
                 </div>
                 <div class="row">
                   <div class="col-12 mt-2">
@@ -39,7 +69,7 @@
                   <ul class="list-unstyled">
                     <li>Total Ongoing Project:</li>
                     <li>Total Completed Projects:</li>
-                    <li>Overal Total: </li>
+                    <li>Overal Total:</li>
                   </ul>
                   </div>
                 </div>
