@@ -52,10 +52,12 @@ export default createStore({
           // Project object removed, passing doc.data (all data from the doc) instead. 
           // appending doc.data with doc's id before saving it.
           const projectInstance = {...projectData, uid: doc.id};
-          projects.push(projectInstance);         
+          projects.push(projectInstance);
+                  
         });
         console.log("fetchProjects complete, called from vuex", projects);
         commit('setProjects', projects);
+        
       } catch (error){
         console.log("something terrible broke!!!!: ", error);
       }
@@ -65,6 +67,14 @@ export default createStore({
         // Commit selected project
         commit('setSelectedProject', project);
         
+       
+
+      } catch (error) {
+        console.log('Error fetching stages:', error);
+      }
+    },
+    async fetchStages({commit}, project){
+      try{
         const docPath = auth.currentUser.email+'_Projects/';
         const stagesColletionRef = collection(firebase, docPath, project.uid, 'Stages');
         // Fetch stages
@@ -73,19 +83,15 @@ export default createStore({
         
         querySnapshot.forEach(doc => {
           const stageData = doc.data();
-          console.log(doc.data());
           const stageInstance = {...stageData, uid: doc.id};
           stages.push(stageInstance);
         });
-        console.log('here!');
         // Commit stages
         commit('setStages', stages);
-
-        console.log("Stages set:", stages);
-      } catch (error) {
-        console.log('Error fetching stages:', error);
+      } catch (error){
+        console.log("Error: ", error);
       }
-    },
+    }
 
   },
 });

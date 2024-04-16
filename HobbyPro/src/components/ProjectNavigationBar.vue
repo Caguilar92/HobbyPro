@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 export default {
   data() {
     return {
-        isOpen: false,//offcanvas-----
+        isOpen: false, //offcanvas-----
       // State to track if the dropdown is visible
       dropdownOpen: {
         1: false,
@@ -51,15 +51,14 @@ export default {
 </script>
 <script setup>
   import { useStore } from 'vuex';
-  import { onMounted } from 'vue';
+  import { onMounted, ref } from 'vue';
 
   const store = useStore();
-
-  const stages = store.getters.getStages;
+  const stages = ref([]);
 
   onMounted(() => {
-    const project = store.state.selectedProject;
-    const stages = store.getters.getStages;
+    const project = store.getters.getSelectedProject;
+    stages.value = store.getters.getStages;
     console.log(stages);   //data checking to make sure data was loading in
     console.log(project);  //data checking to make sure data was loading in 
   });
@@ -141,7 +140,7 @@ export default {
           </ul>
         </div>
         <!-- Correct the use of v-for and binding of key -->
-        <div v-for="stage in stages" :key="stage.stageName">
+        <div v-for= "stage in stages" :key= "stage.uid">
           <li class="navButtons row">
             <router-link class="navItem col-8" to="/projectDashboard/stageDetails">{{ stage.stageName }}</router-link>
             <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.uid)"><i class="bi bi-caret-down-fill"></i></div>
@@ -182,7 +181,7 @@ export default {
           </ul>
         </div>
         <!-- Correct the use of v-for and binding of key -->
-        <div v-for="stage in stages" :key="stage.stageName">
+        <div v-for="stage in stages" :key="stage.uid">
           <li class="navButtons row">
             <router-link class="navItem col-8" to="/projectDashboard/stageDetails">{{ stage.stageName }}</router-link>
             <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.uid)"><i class="bi bi-caret-down-fill"></i></div>

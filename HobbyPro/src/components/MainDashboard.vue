@@ -16,13 +16,19 @@ const docPath = auth.currentUser.email+'_Projects';
 
 const fetchProjects = async () => {
   await store.dispatch('fetchProjects', {docPath});
-  projects. value = store.state.projects;
+  projects.value = store.state.projects;
 };
+
+const fetchStages = (project) => {
+  store.dispatch('fetchStages', project);
+}
 
 const selectProject = (project) => {
   store.dispatch('selectProject', project);
   router.push('/projectDashboard/overview/');
 };
+
+
 
 onMounted(fetchProjects);
 
@@ -76,7 +82,7 @@ function log_out(event) {
             <div class="progress-bar" style="width:20%"></div>
             </div>
             <div id="projectDetailsButtonWrapper">
-              <button id="projectDetailsButton" @click = 'selectProject(project)'>
+              <button id="projectDetailsButton" @click = 'fetchStages(project);selectProject(project)'>
                 See Project
               </button>
             </div>
