@@ -74,7 +74,7 @@ function log_out(event) {
 
     <div class="container-fluid">
       <div id="rowMain" class="row">
-        <div class="col-md-5">
+        <div class="col-sm-5">
           <div class="row">
             <!-- <div class="col-md-2"></div> -->
             <div class="col-md-12">
@@ -102,7 +102,7 @@ function log_out(event) {
 
         </div>
 
-        <div class="col-md-7 mt-3">
+        <div class="col-sm-7 mt-3">
           <label for="projectName" class="form-label">Project Name</label>
           <input type="text" class="form-control" id="projectName" required placeholder="Current Project Name">
 
