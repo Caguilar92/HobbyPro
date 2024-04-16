@@ -5,6 +5,7 @@ import {useRouter} from "vue-router";
 export default {
   data() {
     return {
+      isOpen: false,//offcanvas-----
       // State to track if the dropdown is visible
       dropdownOpen: {
         1: false,
@@ -28,6 +29,9 @@ export default {
 
       // Toggle the clicked dropdown
       this.dropdownOpen[dropdownId] = !this.dropdownOpen[dropdownId];
+    },
+    toggle() { //offcanvas----
+      this.isOpen = !this.isOpen;
     },
     
 
@@ -88,23 +92,14 @@ export default {
             <input type="text" placeholder="Search...">
           </div>
         </div>
-        <div class="hamburgerColumn col-1" @mouseover="dropdownOpen[1] = true" @mouseleave="dropdownOpen[1] = false">
+        <div class="hamburgerColumn col-1" @click="toggle">
           <button class="hamburger">&#9776;</button>
-          <div v-if="dropdownOpen[1]" class="dropDownRouterMenu" @mouseover="dropdownOpen[1] = true" @mouseleave="dropdownOpen[1] = false">
-            <ul>
-              <li><router-link to="/dashboard/main"><div>Main Dashboard</div></router-link></li>
-              <!-- <li><router-link to="/dashboard/profile"><div>Profile</div></router-link></li> -->
-              <li><router-link to="/dashboard/library"><div>Library</div></router-link></li>
-              <li><router-link to="/dashboard/completed_projects"><div>Completed Project</div></router-link></li>
-              <li><router-link to="/dashboard/create_project">Create Project</router-link></li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <nav>
+  <nav class="normalNav">
     <div class="container-fluid text-align-center">
     <div class="row margin-60">
       <div class="NavList col-12">
@@ -119,9 +114,34 @@ export default {
     </div>
     </div>
   </nav>
+  <!-- off canvas -->
+  <div>
+    <div :class="['offcanvas', { 'open': isOpen }]">
+      <button class="closeButton" @click="toggle">Close</button>
+      <nav>
+    <div class="container-fluid text-align-center">
+    <div class="row margin-60">
+      <div class="NavList col-12">
+        <ul class="">
+          <li><router-link to="/dashboard/main"><div> <i class="bi bi-grid"></i>  Main Dashboard</div></router-link></li>
+          <li><router-link to="/dashboard/library"><div> <i class="bi bi-book"></i>  Library</div></router-link></li>
+          <li><router-link to="/dashboard/completed_projects"><div> <i class="bi bi-folder-check"></i>  Completed Project</div></router-link></li>
+        </ul>
+        <router-link class="cpButton" to="/dashboard/create_project">Create a Project</router-link>
+      </div>
+    </div>
+    </div>
+  </nav>
+    </div>
+    <div :class="{ 'backdrop': isOpen }" @click="toggle"></div>
+  </div>
 </template>
 
 <style scoped>
+.offcanvas {
+  display: none;
+}
+/** ------ */
 
 body {
   margin: 0;
@@ -372,37 +392,37 @@ nav ul li a:hover {
   display: none;
   padding-left: 0;
   padding-right: 0;
-}
+  }
 
-.searchBarFull {
-  display: none;
-}
+  .searchBarFull {
+    display: none;
+  }
 
-.searchBarColumnShrink {
-  display: block;
-  width: 85%;
-  padding-left: 0;
-  padding-right: 0;
-}
+  .searchBarColumnShrink {
+    display: block;
+    width: 85%;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-.searchBarShrink {
-  padding-top: 12px;
-  padding-left: 12px;
-  padding-right: 0;
-}
+  .searchBarShrink {
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 0;
+  }
 
-.searchBarShrink input[type="text"] {
-  margin: auto;
-  width: 100%;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 5px;
-  border: 2px solid #000;
-}
+  .searchBarShrink input[type="text"] {
+    margin: auto;
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 5px;
+    border: 2px solid #000;
+  }
 
-  nav {
+  .normalNav {
     display: none !important;
   }
 
@@ -420,9 +440,53 @@ nav ul li a:hover {
     background-color: #fff;
     border: 2px solid #000;
   }
+
+  .closeButton {
+    color: black;
+    padding: 5px 75px 5px 75px;
+    margin: 2px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }
 
 @media(max-width: 576px) {
+
+.offcanvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -300px;
+  width: 206px;
+  background-color: #264653;
+  border-right: 4px solid #2a9d8f; 
+  transition: left 0.3s;
+  padding: 2px;
+  z-index: 3;
+  visibility: hidden;
+}
+
+.offcanvas.open {
+  left: 0;
+  visibility: visible;
+}
+
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.backdrop.open {
+  display: block;
+}
+  /** -- offcanvas -- */
   .displayNameFull {
     display: none;
     position: relative !important;
