@@ -380,7 +380,7 @@ nav ul li a:hover {
 
 @media (max-width: 576px) {
   header {
-    height: 100px;
+    height: 105px;
   }
 
   .titleColumn {
@@ -407,7 +407,7 @@ nav ul li a:hover {
   }
 
   .searchBarShrink {
-    padding-top: 12px;
+    padding-top: 10px;
     padding-left: 12px;
     padding-right: 0;
   }
@@ -430,7 +430,7 @@ nav ul li a:hover {
 
   .hamburgerColumn {
     display: block;
-    padding-top: 10px;
+    padding-top: 8px;
     padding-left: 18px;
     width: 55px;
   }
