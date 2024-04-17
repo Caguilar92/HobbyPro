@@ -72,19 +72,19 @@ function log_out(event) {
           <img class="image-fluid" src="/src/assets/defaultProjectImage.png" alt="image here">
           <div class="info">
             <div class="tagarea">
-              <button id="tagName" :disabled>Crochet</button>
+              <button id="tagName" @click = 'fetchStages(project);selectProject(project)'>See Project</button>
+              <!-- <button id="projectDetailsButton" @click = 'fetchStages(project);selectProject(project)'>See Project</button> -->
             </div>
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date:{{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
             <p>Deadline: {{ project.endDate }}  Days Left: 40</p>
+            <p class="card-text"><small class="text-body-secondary">Tag Names: </small></p>
             <div class="progress">
-            <div class="progress-bar" style="width:20%"></div>
+              <div class="progress-bar" style="width:20%"></div>
             </div>
             <div id="projectDetailsButtonWrapper">
-              <button id="projectDetailsButton" @click = 'fetchStages(project);selectProject(project)'>
-                See Project
-              </button>
+              <!-- <button id="projectDetailsButton" @click = 'fetchStages(project);selectProject(project)'>See Project</button> -->
             </div>
           </div>
 

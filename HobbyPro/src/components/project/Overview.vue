@@ -36,11 +36,13 @@ function log_out(event) {
 
 <template>
   <div class="contentInternalWrapper">
-    <header class="col-md-12 mt-3">
-      <p class="h1 text-center">{{ project.projectName }}</p>
-    </header>
-
     <div class="container-fluid">
+      <div class="row">
+        <header class="col-md-12 mt-3">
+          <p class="h1 text-center">{{ project.projectName }}</p>
+        </header>
+      </div>
+      
       <div id="rowMain" class="row">
         <div class="col-2"></div>
 
@@ -79,7 +81,8 @@ function log_out(event) {
 
           <div class="row">
             <div class="col-sm-12">
-              <textarea class="form-control" rows="5" id="details" name="details" disabled placeholder="Details from Create Project Page">{{ project.description }}</textarea>
+              <textarea class="form-control" rows="5" id="details" name="details" disabled
+                placeholder="Details from Create Project Page">{{ project.description }}</textarea>
             </div>
           </div>
 
@@ -88,8 +91,8 @@ function log_out(event) {
 
       </div>
 
+    </div>
   </div>
-</div>
 </template>
 
 <style>

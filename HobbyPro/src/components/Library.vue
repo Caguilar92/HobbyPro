@@ -190,10 +190,12 @@ onMounted(()=> {
 </script>
 
 <template>
-  <h2 class="mt-3">Library</h2>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-6 ">
+      <div class="col-12">
+        <header>
+            <h1>Library</h1>
+          </header>
         <div class="library_formatting">
           <div class="dropdown">
           </div>
@@ -201,8 +203,6 @@ onMounted(()=> {
       </div>
     </div>
   </div>
-  <hr class="m-0">
-
 
 
 
