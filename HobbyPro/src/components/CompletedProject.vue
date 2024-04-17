@@ -17,9 +17,20 @@
     });
   }
 
-  
-  
-  
+  //sort function sorts projects by name and start-date
+  function sortBy(attribute, order = 'asc') {
+    if (attribute === 'name') {
+      projects.value.sort((a, b) => {
+        return order === 'asc' ? a.projectName.localeCompare(b.projectName) :
+                                 b.projectName.localeCompare(a.projectName);
+      });
+    } else if (attribute === 'startDate') {
+      projects.value.sort((a, b) => {
+        return order === 'asc' ? new Date(a.startDate) - new Date(b.startDate) :
+                                 new Date(b.startDate) - new Date(a.startDate);
+      });
+    }
+  }
 </script>
 <template>
   <div class="completed">
@@ -33,7 +44,15 @@
             <div class="dashItems">
               <label>All </label>
               <button class="btn btn-secondary">Filter</button>
-              <button class="btn btn-secondary">Sort</button>
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><button class="dropdown-item" @click="sortBy('name', 'asc')">Name Ascending</button></li>
+                <li><button class="dropdown-item" @click="sortBy('name', 'desc')">Name Descending</button></li>
+                <li><button class="dropdown-item" @click="sortBy('startDate', 'asc')">Start Date Ascending</button></li>
+                <li><button class="dropdown-item" @click="sortBy('startDate', 'desc')">Start Date Descending</button></li>
+              </ul>
             </div>
           </div>
 

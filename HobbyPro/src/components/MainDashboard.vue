@@ -43,18 +43,8 @@ function log_out(event) {
   });
 }
 
-//old one
-/**
-function sortBy(attribute) {
-  if (attribute === 'name') {
-    projects.value.sort((a, b) => a.projectName.localeCompare(b.projectName));
-  } else if (attribute === 'startDate') {
-    projects.value.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-  }
-}
-*/
 
-//new one
+//sort function sorts projects by name and start-date
 function sortBy(attribute, order = 'asc') {
   if (attribute === 'name') {
     projects.value.sort((a, b) => {
