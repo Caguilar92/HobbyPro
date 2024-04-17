@@ -68,9 +68,6 @@ function log_out(event) {
 
 <template>
   <div class="contentInternalWrapper">
-    <header class="col-md-12 mt-3">
-      <p class="h1 text-center">{{ project.projectName }}</p>
-    </header>
 
     <div class="container-fluid">
       <div id="rowMain" class="row">

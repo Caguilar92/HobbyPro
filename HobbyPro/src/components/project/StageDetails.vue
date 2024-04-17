@@ -17,11 +17,64 @@ export default {
 </script>
 
 <template>
-    <div class="contentInternalWrapper">
-    <h1>{{ stageName }}</h1>
-    <p>{{ id }}</p>
+  <div class="contentInternalWrapper">
+    <!-- <h1>{{ stageName }}</h1>
+    <p>{{ id }}</p> -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <p class="display-6">Stage Name Here</p>
+        </div>
+      </div>
     </div>
+    <div class="row g-1">
+      <div class="col-sm-4">
+        <div class="card h-100" id="cardOne">
+          <div class="card-header">
+            To Do
+          </div>
+          <div class="card-body">
+            <!-- <h5 class="card-title">Special title treatment</h5> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card h-100" id="cardTwo">
+          <div class="card-header">
+            Doing
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card h-100" id="cardThree">
+          <div class="card-header">
+            Done
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
+
+/* #cardOne , #cardTwo #cardThree{
+  height: 800px;
+} */
+
+.card > .card-body{
+  height: 300px;
+}
+
 </style>
