@@ -42,6 +42,15 @@ function log_out(event) {
     console.log("something went wrong")
   });
 }
+
+function sortBy(attribute) {
+  if (attribute === 'name') {
+    projects.value.sort((a, b) => a.projectName.localeCompare(b.projectName));
+  } else if (attribute === 'startDate') {
+    projects.value.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  }
+}
+
 </script>
 
 <template>
@@ -58,7 +67,13 @@ function log_out(event) {
               <!-- <label>Favorites </label> -->
               <button class="btn btn-secondary">Filter</button>
               <!-- TODO: this -> this is for the dropdown menu for sorting and such-->
-              <button class="btn btn-secondary">Sort</button>
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><button class="dropdown-item" @click="sortBy('name')">By Name</button></li>
+                <li><button class="dropdown-item" @click="sortBy('startDate')">By Start Date</button></li>
+              </ul>
             </div>
           </div>
       </div>
