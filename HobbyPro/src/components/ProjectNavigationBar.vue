@@ -424,8 +424,8 @@ nav ul li a:hover {
 }
 
 .hamburger {
-    background-color: #fff;
-    border: 2px solid #000;
+    background-color: #e76f51;
+    border: none;
     border-radius: 5px;
 }
 
@@ -553,7 +553,7 @@ nav ul li a:hover {
         padding-top: 2px;
         padding-bottom: 2px;
         border-radius: 5px;
-        border: 2px solid #000;
+        border: none;
     }
 
     .normalNav {
@@ -562,7 +562,7 @@ nav ul li a:hover {
 
     .hamburgerColumn {
         display: block;
-        padding-top: 12px;
+        padding-top: 10px;
         padding-left: 18px;
         width: 55px;
     }
@@ -571,8 +571,9 @@ nav ul li a:hover {
         display: block;
         width: 40px;
         height: 32px;
-        background-color: #fff;
-        border: 2px solid #000;
+        background-color: #e76f51;
+        color: white;
+        border: none;
     }
 
     .closeButton {

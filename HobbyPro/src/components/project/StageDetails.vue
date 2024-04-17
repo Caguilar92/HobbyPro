@@ -45,8 +45,8 @@ export default {
             Doing
           </div>
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
 
           </div>
         </div>
@@ -57,8 +57,8 @@ export default {
             Done
           </div>
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
 
           </div>
         </div>
