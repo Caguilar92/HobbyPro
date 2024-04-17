@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { getAuth } from "firebase/auth";
 import { useStore } from 'vuex';
 //TODO: set google auth and database referances
@@ -31,6 +31,20 @@ import { useStore } from 'vuex';
   };
   
   onMounted(fetchProjects);
+
+  //get total number
+  const totalProjects = computed(() => {
+    return projects.value.length; // This will automatically update whenever projects.value changes.
+  });
+
+  //get total ongoing
+  const totalOngoing = computed(() => {
+    return projects.value.length;// this will automatically update whenever projects.value changes.
+  })
+
+  //placeholder for completedProjects
+  let completedProjects = 2; //this value is going off of the dummy data in the completed projects page.
+
 </script>
 
 
@@ -67,9 +81,9 @@ import { useStore } from 'vuex';
                   <div class="col-12 mt-2">
                   <label class="form-label">Your Statistics</label>
                   <ul class="list-unstyled">
-                    <li>Total Ongoing Project:</li>
-                    <li>Total Completed Projects:</li>
-                    <li>Overal Total:</li>
+                    <li>Total Ongoing Project: {{ totalOngoing }}</li>
+                    <li>Total Completed Projects: {{ completedProjects }}</li>
+                    <li>Overal Total: {{ totalProjects }}</li>
                   </ul>
                   </div>
                 </div>
