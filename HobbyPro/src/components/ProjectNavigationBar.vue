@@ -159,7 +159,11 @@ export default {
   <div>
     <!-- offcanvas -->
     <div :class="['offcanvas', { 'open': isOpen }]">
-      <button class="closeButton" @click="toggle">Close</button>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-white" id="offcanvasLabel">HobbyPro</h5>
+        <button type="button" class="btn-close btn-close-white closeButton" @click="toggle"></button>
+      </div>
+
       <nav><!-- Use @click to call toggleDropdown with the appropriate ID -->
     <div class="mainDropdownButton" @click="toggleDropdown(3)"><i class="bi bi-grid-fill"></i> Menu</div>
     <!-- Use v-if to conditionally render the dropdown based on its state -->
@@ -576,14 +580,14 @@ nav ul li a:hover {
         border: none;
     }
 
-    .closeButton {
+    /* .closeButton {
     color: black;
     padding: 5px 75px 5px 75px;
     margin: 2px;
-    border: 2px solid #000;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+  } */
 }
 
 @media(max-width: 576px) {

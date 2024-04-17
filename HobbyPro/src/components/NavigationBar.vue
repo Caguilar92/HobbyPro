@@ -117,8 +117,12 @@ export default {
   <!-- off canvas -->
   <div>
     <div :class="['offcanvas', { 'open': isOpen }]">
-      <button class="closeButton" @click="toggle">Close</button>
-      <nav>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-white" id="offcanvasLabel">HobbyPro</h5>
+        <button type="button" class="btn-close btn-close-white closeButton" @click="toggle"></button>
+      </div>
+      
+      <nav> 
     <div class="container-fluid text-align-center">
     <div class="row margin-60">
       <div class="NavList col-12">
@@ -443,15 +447,14 @@ nav ul li a:hover {
     color: white;
     border: none;
   }
-
-  .closeButton {
-    color: black;
+  /* .closeButton {
+    color: whitesmoke;
     padding: 5px 75px 5px 75px;
     margin: 2px;
-    border: 2px solid #000;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+  } */
 }
 
 @media(max-width: 576px) {
