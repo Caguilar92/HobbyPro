@@ -43,6 +43,8 @@ function log_out(event) {
   });
 }
 
+//old one
+/**
 function sortBy(attribute) {
   if (attribute === 'name') {
     projects.value.sort((a, b) => a.projectName.localeCompare(b.projectName));
@@ -50,7 +52,22 @@ function sortBy(attribute) {
     projects.value.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
   }
 }
+*/
 
+//new one
+function sortBy(attribute, order = 'asc') {
+  if (attribute === 'name') {
+    projects.value.sort((a, b) => {
+      return order === 'asc' ? a.projectName.localeCompare(b.projectName) :
+                               b.projectName.localeCompare(a.projectName);
+    });
+  } else if (attribute === 'startDate') {
+    projects.value.sort((a, b) => {
+      return order === 'asc' ? new Date(a.startDate) - new Date(b.startDate) :
+                               new Date(b.startDate) - new Date(a.startDate);
+    });
+  }
+}
 </script>
 
 <template>
@@ -71,8 +88,10 @@ function sortBy(attribute) {
                 Sort
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><button class="dropdown-item" @click="sortBy('name')">By Name</button></li>
-                <li><button class="dropdown-item" @click="sortBy('startDate')">By Start Date</button></li>
+                <li><button class="dropdown-item" @click="sortBy('name', 'asc')">Name Ascending</button></li>
+                <li><button class="dropdown-item" @click="sortBy('name', 'desc')">Name Descending</button></li>
+                <li><button class="dropdown-item" @click="sortBy('startDate', 'asc')">Start Date Ascending</button></li>
+                <li><button class="dropdown-item" @click="sortBy('startDate', 'desc')">Start Date Descending</button></li>
               </ul>
             </div>
           </div>
@@ -241,5 +260,11 @@ h1{
 #projectDetailsButton:hover {
   background-color: rgb(69, 69, 69);
   color: white;
+}
+
+.dropdown-item {
+  border-radius: 5px;
+  padding: 8px 8px !important;
+  width: 155px;
 }
 </style>
