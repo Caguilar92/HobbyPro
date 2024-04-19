@@ -1,60 +1,65 @@
-<script>
-export default {
-    props: {
-        uid: String
-    }, data(){
-      return {
-        stages: [
-          {stageName: "stage_one", stageID: "2n1hb1h"},
-          {stageName: "stage_two", stageID: "9cn93uv"},
-          {stageName: "stage_three", stageID: "nnm956b9"}
-        ]
-      }
-    }
-}
-</script>
-
 <script setup>
-import {getAuth,signOut} from "firebase/auth";
-import {doc, getDoc, getFirestore} from 'firebase/firestore';
-import {useRouter} from "vue-router";
+import { getAuth , signOut } from "firebase/auth";
+import { doc, getFirestore, updateDoc } from 'firebase/firestore';
+import { useRouter } from "vue-router";
 import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 
-// this is so we can use the info in the top section
-const props = defineProps({uid: String});
+const updatedProject = {
+          projectName: '',
+          startDate: '',
+          deadline: '',
+          //hours: '',
+          //minutes: '',
+          //tags: [],
+          description: '',
+}
+
+const store = useStore();
 
 const auth = getAuth();
 const router = useRouter();
 const firestore = getFirestore();
 const docPath = auth.currentUser.email + "_Projects";
-const docID = props.uid; 
 let project = ref("");
-
-// Fetch the document
-async function getDocFromDatabase() {
-  try {
-    const documentSnapshot = await getDoc(doc(firestore, docPath, docID));
-    if (documentSnapshot.exists()) {
-      // Document exists, extract its data
-      const documentData = documentSnapshot.data();
-      console.log("Document data:", documentData);
-      return documentData;
-    } else {
-      // Document does not exist
-      console.log("No such document!");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error fetching document:", error);
-    return null;
-  }
-}
 
 //populates project when page is loaded
 onMounted(async () => {
   // Fetch project and assign it to the reactive reference
-  project.value = await getDocFromDatabase();
+  project.value = store.state.selectedProject;
+  console.log(project.value);
 });
+
+const updateProject = async () => {
+  if (!project.value || !project.value.uid) {
+    console.error("No project loaded or project ID is missing");
+    return;
+  }
+
+  // Assuming project ID is stored in `project.value.id`
+  const projectDocRef = doc(firestore, docPath, project.value.uid);
+
+  // Build the update payload dynamically
+  const updatePayload = {};
+  if (updatedProject.projectName.trim() !== "") updatePayload.projectName = updatedProject.projectName;
+  if (updatedProject.startDate.trim() !== "") updatePayload.startDate = updatedProject.startDate;
+  if (updatedProject.deadline.trim() !== "") updatePayload.deadline = updatedProject.deadline;
+  if (updatedProject.description.trim() !== "") updatePayload.description = updatedProject.description;
+  
+  // Check if payload is empty
+  if (Object.keys(updatePayload).length === 0) {
+    console.log("No changes to save.");
+    return;
+  }
+
+  try {
+    await updateDoc(projectDocRef, updatePayload);
+    console.log("Project updated successfully!");
+    // Optionally, refresh the project data or show a success message
+  } catch (error) {
+    console.error("Error updating document: ", error);
+  }
+};
 
 function log_out(event) {
   event.preventDefault();
@@ -101,16 +106,16 @@ function log_out(event) {
 
         <div class="col-sm-7 mt-3">
           <label for="projectName" class="form-label">Project Name</label>
-          <input type="text" class="form-control" id="projectName" required placeholder="Current Project Name">
+          <input type="text" class="form-control" id="projectName" required v-model="updatedProject.projectName" :placeholder="project.projectName">
 
           <div class="row">
             <div class="col-sm-5">
               <label for="startDate" class="form-label">Start Date</label>
-              <input type="date" class="form-control" id="startDate" required>
+              <input type="date" class="form-control" id="startDate" required v-model="updatedProject.startDate">
             </div>
             <div class="col-sm-7">
               <label for="deadline" class="form-label">Deadline</label>
-              <input type="date" class="form-control" id="deadline" required>
+              <input type="date" class="form-control" id="deadline" required v-model="updatedProject.deadline">
             </div>
           </div>
 
@@ -166,8 +171,8 @@ function log_out(event) {
 
           <div class="row">
             <div class="col-md-12 mt-3">
-              <textarea class="form-control" rows="5" id="details" name="details" disabled
-                placeholder="Details from Create Project Page"></textarea>
+              <textarea class="form-control" rows="5" id="details" name="details"
+                :placeholder="project.description" v-model="updatedProject.description"></textarea>
             </div>
           </div>
 
@@ -193,7 +198,7 @@ function log_out(event) {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary">Save Change</button>
+                  <button type="button" class="btn btn-primary" @click="updateProject()">Save Change</button>
                 </div>
               </div>
             </div>
@@ -220,7 +225,6 @@ function log_out(event) {
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
