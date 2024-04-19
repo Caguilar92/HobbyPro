@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted, ref } from "vue";
-import { getAuth,signOut } from "firebase/auth";
+import { onMounted, ref, computed } from "vue";
+import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { useStore } from 'vuex';
 
@@ -28,10 +28,15 @@ const selectProject = (project) => {
   router.push('/projectDashboard/overview/');
 };
 
-
-
 onMounted(fetchProjects);
 
+const daysLeft = (deadline) => {
+  const today = new Date();
+  const deadlineDate = new Date(deadline);
+  const timeDifference = deadlineDate.getTime() - today.getTime();
+  const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  return daysDifference >= 0 ? daysDifference : 0;
+};
 
 
 function log_out(event) {
@@ -102,7 +107,7 @@ function sortBy(attribute, order = 'asc') {
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date:{{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
-            <p>Deadline: {{ project.endDate }}  Days Left: 40</p>
+            <p>Deadline: {{ project.deadline }}  Days Left: {{ daysLeft(project.deadline) }}</p>
             <p class="card-text"><small class="text-body-secondary">Tag Names: </small></p>
             <div class="progress">
               <div class="progress-bar" style="width:20%"></div>
