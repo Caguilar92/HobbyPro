@@ -39,7 +39,7 @@ const daysLeft = (deadline) => {
 const progress = (stages) => {
   const completedStages = 0;
   for (const stage in stages) {
-    if (stage.isDone == True) {
+    if (stage.isDone == true) {
       completedStages++;
     }
   }
