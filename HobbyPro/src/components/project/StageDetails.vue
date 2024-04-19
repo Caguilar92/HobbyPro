@@ -23,55 +23,63 @@ export default {
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <p class="display-6">Stage Name Here</p>
+          <p class="display-6">Stage Name</p>
         </div>
       </div>
-    </div>
-    <div class="row g-1">
-      <div class="col-sm-4">
-        <div class="card h-100" id="cardOne">
-          <div class="card-header">
-            To Do
+      <div class="row mt-3">
+        <div class="col-md-6"><h4>Notes</h4><hr></div>
+        <div class="col-md-6"><textarea class="form-control" rows="8" id="note" name="note"></textarea></div>
+      </div>
+      <div class="row g-1 mt-3">
+        <div class="col-sm-4">
+          <div class="card h-100" id="cardOne">
+            <div class="card-header">
+              To Do
+            </div>
+            <div class="card-body">
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+            </div>
           </div>
-          <div class="card-body">
-            <!-- <h5 class="card-title">Special title treatment</h5> -->
+        </div>
+
+        <div class="col-sm-4">
+          <div class="card h-100" id="cardTwo">
+            <div class="card-header">
+              Doing
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text"></p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card h-100" id="cardThree">
+            <div class="card-header">
+              Done
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text"></p>
+
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-4">
-        <div class="card h-100" id="cardTwo">
-          <div class="card-header">
-            Doing
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
+      <!-- <div class="row mt-3">
+        <div class="col-md-6"><h4>Notes</h4><hr></div>
+        <div class="col-md-6"><textarea class="form-control" rows="8" id="note" name="note"></textarea></div>
+      </div> -->
 
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card h-100" id="cardThree">
-          <div class="card-header">
-            Done
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
-
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <style>
 
-/* #cardOne , #cardTwo #cardThree{
-  height: 800px;
-} */
+
 
 .card > .card-body{
   height: 300px;

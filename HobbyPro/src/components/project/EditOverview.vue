@@ -84,7 +84,7 @@ function log_out(event) {
             <div class="col-md-2"></div>
             <!-- <div class="col-md-10"> -->
             <button id="changeProfileBtn" type="button" class="col-xs-12 col-md-8 btn btn-secondary btn-block mt-3">Change
-              Profile Icon</button>
+              Project Icon</button>
             <!-- </div> -->
             <div class="col-md-2"></div>
           </div>
