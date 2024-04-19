@@ -24,6 +24,14 @@ onMounted(async() => {
   project.value = store.state.selectedProject;
 });
 
+const daysLeft = (deadline) => {
+  const today = new Date();
+  const deadlineDate = new Date(deadline);
+  const timeDifference = deadlineDate.getTime() - today.getTime();
+  const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  return daysDifference >= 0 ? daysDifference : 0;
+};
+
 function log_out(event) {
   event.preventDefault();
   signOut(auth).then(() => {
@@ -54,7 +62,7 @@ function log_out(event) {
               <p>Start Date: {{ project.startDate }}</p>
             </div>
             <div class="col-sm-7">
-              <p>Deadline: {{ project.deadline }} Days Left:</p>
+              <p>Deadline: {{ project.deadline }} Days Left: {{ daysLeft(project.deadline) }}</p>
             </div>
           </div>
 
