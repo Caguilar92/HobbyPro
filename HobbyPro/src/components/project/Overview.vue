@@ -16,13 +16,17 @@ const project = ref('');
 const stages = ref([]);
 
 
-
-
 //populates project when page is loaded
 onMounted(async() => {
   // Fetch project and assign it to the reactive reference
   project.value = store.state.selectedProject;
+  // Fetch stages and assign it to the reactive refrence
+  stages.value = store.getters.getStages;
+  console.log(stages);
+  console.log(project)
 });
+
+
 
 const daysLeft = (deadline) => {
   const today = new Date();
@@ -32,13 +36,18 @@ const daysLeft = (deadline) => {
   return daysDifference >= 0 ? daysDifference : 0;
 };
 
-function log_out(event) {
-  event.preventDefault();
-  signOut(auth).then(() => {
-    router.replace('/login');
-  }).catch((error) => {
-    console.log("something went wrong")
-  });
+const progress = (stages) => {
+  const completedStages = 0;
+  for (const stage in stages) {
+    if (stage.isDone == True) {
+      completedStages++;
+    }
+  }
+
+  // Calculate progress percentage
+  const totalStages = stages.length;
+  const progressPercentage = totalStages > 0 ? (completedStages / totalStages) * 100 : 0;
+  return Math.round(progressPercentage);
 }
 </script>
 
@@ -71,7 +80,7 @@ function log_out(event) {
               <p>Last Update: </p>
             </div>
             <div class="col-sm-7">
-              <p>Progress: # %</p>
+              <p>Progress: {{ progress(stages) }} %</p>
             </div>
           </div>
 
