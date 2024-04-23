@@ -75,7 +75,8 @@ const daysLeft = (deadline, startdate) => {
 
           <div class="row">
             <div class="col-sm-5">
-              <p>Last Update: </p>
+              <p v-if="project.lastUpdated">Last updated: {{ project.lastUpdated }}</p>
+              <p v-else>No updates currently</p>
             </div>
             <div class="col-sm-7">
               <p>Progress: # %</p>
