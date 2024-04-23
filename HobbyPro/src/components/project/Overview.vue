@@ -43,6 +43,9 @@ const daysLeft = (deadline, startdate) => {
     return daysDifference >= 0 ? daysDifference : 0;
   }
 };
+
+//TODO: last updated value will become a vlue upon editing a projects value 
+//      in edit overview or doing things in stages.
 </script>
 
 <template>
