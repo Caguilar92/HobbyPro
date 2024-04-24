@@ -206,7 +206,7 @@ function log_out(event) {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" @click="updateProject()">Save Change</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="updateProject()">Save Change</button>
                 </div>
               </div>
             </div>
