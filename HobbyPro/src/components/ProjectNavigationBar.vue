@@ -151,9 +151,9 @@ export default {
           </ul>
         </div>
         <!-- Correct the use of v-for and binding of key -->
-        <div v-for= "stage in stages" :key= "stage.uid">
+        <div v-for= "stage in stages" :key="stages.indexOf(stage)">
           <li class="navButtons row">
-            <router-link class="navItem col-8" to="/projectDashboard/stageDetails">{{ stage.stageName }}</router-link>
+            <router-link class="navItem col-8" to="/projectDashboard/stageDetails"><i class="bi bi-folder2-open"></i> {{ stage.stageName }}</router-link>
             <div class="StageDropdownButton col-4" @click="toggleDropdown(stage.uid)"><i class="bi bi-caret-down-fill"></i></div>
           </li>
           <div class="StageDropDownMenu" v-if="dropdownOpen[stage.uid]">
@@ -336,6 +336,7 @@ header {
 
 .mainDropdownButton {
     padding: 10px;
+    padding-left: 17px;
     color: white;
 }
 
@@ -355,7 +356,7 @@ header {
     width: 40px;
     height: 30px;
     margin-left: auto;
-    margin-right: 5px;
+    padding: 0;
     border-radius: 10px;
 }
 
@@ -375,7 +376,7 @@ header {
     width: 40px;
     height: 30px;
     margin-left: auto;
-    margin-right: 5px;
+    padding: 0;
     border-radius: 10px;
 }
 
@@ -396,10 +397,16 @@ header {
 .navButtons {
     display: flex;
     align-content: center;
+    width: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0;
 }
 
 .navItem {
     border-radius: 10px;
+    padding-right: 0;
+    width: 145px;
 }
 
 .navItem:hover {
@@ -515,7 +522,7 @@ nav ul li a:hover {
     position: fixed;
     bottom: 0px;
     left: 0px;
-    padding: 10px 74px 10px 5px;
+    padding: 10px 92px 10px 5px;
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
