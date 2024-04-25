@@ -167,6 +167,7 @@ let auth = getAuth();
   border-radius: 50%;
   width: max-content;
   height: 200px;
+  border: 1px solid lightgray;
 }
 
 
