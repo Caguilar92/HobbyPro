@@ -83,7 +83,7 @@ import { useStore } from 'vuex';
                   <ul class="list-unstyled">
                     <li>Total Ongoing Project: {{ totalOngoing }}</li>
                     <li>Total Completed Projects: {{ completedProjects }}</li>
-                    <li>Overal Total: {{ totalProjects }}</li>
+                    <li>Overal Total: {{ totalProjects + 2 }}</li>
                   </ul>
                   </div>
                 </div>
