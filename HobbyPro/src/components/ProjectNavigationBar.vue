@@ -261,6 +261,7 @@ header {
 }
 
 .searchBarColumnFull {
+    display: none;
     padding-left: 0;
     padding-right: 0;
 }
@@ -537,7 +538,7 @@ nav ul li a:hover {
     }
 
     .searchBarColumnShrink {
-        display: block;
+        display: none;
         width: 85%;
         padding-left: 0;
         padding-right: 0;

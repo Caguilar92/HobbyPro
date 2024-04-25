@@ -13,6 +13,7 @@ export default createStore({
     selctedStage: null,
     tasks: [],
     selectedTask: null,
+    profileUrl: ''
   },
   getters: {
     getProjects: state => state.projects,
@@ -21,6 +22,7 @@ export default createStore({
     getSelectedStage: state => state.selctedStage,
     getTasks: state => state.tasks,
     getSelectedTask: state => state.selectedTask,
+    getProfileURL: state => state.profileUrl
   },
   mutations: {
     setProjects(state, projects) {
@@ -41,6 +43,10 @@ export default createStore({
     setSelectedTask(state, task){
       state.setSelectedTask = task;
     },
+    setProfileURL(state, url) {
+      state.profileUrl = url;
+      console.log("current state url: " + state.profileUrl)
+    }
   },
   actions: {
     async fetchProjects({ commit }, {docPath}) {
@@ -91,7 +97,9 @@ export default createStore({
       } catch (error){
         console.log("Error: ", error);
       }
-    }
+    },
+
+
 
   },
 });

@@ -78,13 +78,13 @@ async function createNewFolder() {
   const storageRef = sRef(storage, pathURL)
   document.getElementById('close-button').click();
   showSpinner.value = true;
-  await uploadBytes(storageRef, null).then((snapshot) => {
+  await uploadBytes(storageRef, null).then(() => {
 
     folders.value[folders.value.length] = newFolderName.value;
     newFolderName.value = '';
 
     showSpinner.value = false;
-  }).catch((error) => {
+  }).catch(() => {
     showSpinner.value = true;
     document.getElementById('close-button').click();
   })
@@ -465,9 +465,7 @@ onMounted(() => {
   visibility: hidden;
 }
 
-.folder-highlight {
-  background-color: gray;
-}
+
 
 .image-icon:hover #trash-btn-file {
   visibility: visible; /* Show the trash button when the card is hovered.*/
