@@ -99,7 +99,7 @@ computed: {
         </div>
         <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true" @mouseleave="dropdownOpen[2] = false">
           <div class="profileIcon">
-            <img class="profileIcon" v-show="profileUrl" :src="profileUrl" alt="profile-image"/>
+            <img class="profileImageIcon" v-show="profileUrl" :src="profileUrl" alt="profile-image"/>
           </div>
           <div v-if="dropdownOpen[2]" class="dropDownProfileMenu" @mouseover="dropdownOpen[2] = true" @mouseleave="dropdownOpen[2] = false">
             <ul>
@@ -265,6 +265,13 @@ img {
 }
 
 .profileIcon {
+  width: 40px;
+  height: 40px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+}
+
+.profileImageIcon {
   width: 40px;
   height: 40px;
   background-color: whitesmoke;

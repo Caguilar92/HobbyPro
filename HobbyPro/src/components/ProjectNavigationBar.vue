@@ -1,6 +1,7 @@
 <script>
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
+import { useStore} from 'vuex';
 
 export default {
   data() {
@@ -17,8 +18,7 @@ export default {
       auth: getAuth(),
       router: useRouter(),
       displayName: "Welcome, " + getAuth().currentUser.displayName.toString(),
-            
-
+      vueStore: useStore()
     };
   },
   methods: {
@@ -44,8 +44,17 @@ export default {
       }).catch((error) => {
         console.log("something went wrong")
       });
-    }
-  }
+    },
+  },
+  mounted() {
+      this.vueStore.commit('setProfileURL',this.auth.currentUser.photoURL)
+      this.profileUrl = this.vueStore.state.profileUrl
+    },
+    computed: {
+      profileUrl() {
+        return this.vueStore.getters.getProfileURL
+      }
+    },
 };
 //TODO: Title and display name do not fit on mobile view
 </script>
@@ -96,7 +105,9 @@ export default {
         </div>
         <div class="profileColumn col-1" @mouseover="dropdownOpen[2] = true"
             @mouseleave="dropdownOpen[2] = false">
-          <div class="profileIcon"></div>
+          <div class="profileIcon">
+            <img class="profileImageIcon" v-show="profileUrl" :src="profileUrl" alt="profile-image"/>
+          </div>
           <div v-if="dropdownOpen[2]" class="dropDownProfileMenu" @mouseover="dropdownOpen[2] = true"
               @mouseleave="dropdownOpen[2] = false">
             <ul>
@@ -313,7 +324,14 @@ header {
     height: 40px;
     background-color: whitesmoke;
     border-radius: 50%;
-    border: 2px solid white;
+}
+
+.profileImageIcon {
+  width: 40px;
+  height: 40px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  border: 2px solid white;
 }
 
 .mainDropdownButton {
