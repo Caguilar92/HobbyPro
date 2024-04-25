@@ -30,12 +30,27 @@ const selectProject = (project) => {
 
 onMounted(fetchProjects);
 
-const daysLeft = (deadline) => {
+const daysLeft = (deadline, startdate) => {
+  if(deadline == "") {
+    return "Infinite";
+  }
   const today = new Date();
   const deadlineDate = new Date(deadline);
-  const timeDifference = deadlineDate.getTime() - today.getTime();
-  const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
-  return daysDifference >= 0 ? daysDifference : 0;
+  const beginingDate = new Date(startdate);
+  const startTimeDifference = beginingDate.getTime() - today.getTime();
+  const startDateDifference = Math.ceil(startTimeDifference / (1000 * 3600 * 24));
+  //console.log("check start date difference: " + startDateDifference);
+  if (startDateDifference >= 0) {
+    const timeDifference = deadlineDate.getTime() - beginingDate.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    //console.log("used startdate - deadline: " + daysDifference);
+    return daysDifference >= 0 ? daysDifference : 0;
+  } else {
+    const timeDifference = deadlineDate.getTime() - today.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    //console.log("used today - deadline: " + daysDifference);
+    return daysDifference >= 0 ? daysDifference : 0;
+  }
 };
 
 
@@ -107,7 +122,8 @@ function sortBy(attribute, order = 'asc') {
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date:{{ project.startDate }}</h5>
             <p>Last updated: 03/15/2024</p>
-            <p>Deadline: {{ project.deadline }}  Days Left: {{ daysLeft(project.deadline) }}</p>
+            <p v-if="project.deadline === ''">No Deadline</p>
+            <p v-else>Deadline: {{ project.deadline }}  Days Left: {{ daysLeft(project.deadline, project.startDate) }}</p>
             <p class="card-text"><small class="text-body-secondary">Tag Names: </small></p>
             <div class="progress">
               <div class="progress-bar" style="width:20%"></div>

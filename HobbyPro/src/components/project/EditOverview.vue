@@ -39,15 +39,23 @@ const updateProject = async () => {
   // Assuming project ID is stored in `project.value.id`
   const projectDocRef = doc(firestore, docPath, project.value.uid);
 
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = ((hours + 11) % 12 + 1); // Convert 24h to 12h format
+  const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${formattedHours}:${minutes} ${ampm}`;
+
+  
   // Build the update payload dynamically
-  const updatePayload = {};
+  const updatePayload = { lastUpdated: formattedDate, };
   if (updatedProject.projectName.trim() !== "") updatePayload.projectName = updatedProject.projectName;
   if (updatedProject.startDate.trim() !== "") updatePayload.startDate = updatedProject.startDate;
   if (updatedProject.deadline.trim() !== "") updatePayload.deadline = updatedProject.deadline;
   if (updatedProject.description.trim() !== "") updatePayload.description = updatedProject.description;
   
   // Check if payload is empty
-  if (Object.keys(updatePayload).length === 0) {
+  if (Object.keys(updatePayload).length === 1) {
     console.log("No changes to save.");
     return;
   }
@@ -198,7 +206,7 @@ function log_out(event) {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" @click="updateProject()">Save Change</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="updateProject()">Save Change</button>
                 </div>
               </div>
             </div>
