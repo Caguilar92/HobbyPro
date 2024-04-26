@@ -111,7 +111,8 @@ function sortBy(attribute, order = 'asc') {
             </div>
             <h3>{{ project.projectName }}</h3>
             <h5>Start Date:{{ project.startDate }}</h5>
-            <p>Last updated: 03/15/2024</p>
+            <p v-if="project.lastUpdated">Last updated: {{ project.lastUpdated }}</p>
+              <p v-else>No updates currently</p>
             <p v-if="project.deadline === ''">No Deadline</p>
             <p v-else>Deadline: {{ project.deadline }}  Days Left: {{ daysLeft(project.deadline, project.startDate) }}</p>
             <p class="card-text"><small class="text-body-secondary">Tag Names: </small></p>
