@@ -12,6 +12,8 @@ let deadline = ref('');
 let description = ref('');
 const firestore = getFirestore(); 
 let docPath = auth.currentUser.email+"_Projects";
+const tags = ref([]);
+const tag = ref('');
 
 //sets up the router 
 const router = useRouter();
@@ -33,6 +35,15 @@ function deadlineDate(startDate){
   }
 }
 
+function addTag(){
+  const tagInput = tag.value;
+  if(tag){
+    tags.value.push(tagInput);
+    tag.value = '';
+    console.log(tags.value);
+  }
+}
+
 
 // saves a new Project to the data base
 async function saveToFireStore(event) {
@@ -47,7 +58,8 @@ async function saveToFireStore(event) {
       startDate: startDate.value,
       deadline: deadline.value,
       description: description.value,
-      isFavorite: false
+      isFavorite: false,
+      tags: tags.value,
     });
     // adds a subcollection "Stages" using docRef
     // then adds an intial stage called "intial stage"
@@ -56,6 +68,8 @@ async function saveToFireStore(event) {
     await addDoc(stagesCollectionRef, { stageName: "Stage Two", isDone: false });
     await addDoc(stagesCollectionRef, { stageName: "Stage Three", isDone: false });
 
+    const tagCollectionRef = collection(docRef, "Tags");
+    
     console.log("Document written with ID: ", docRef.id);
     console.log("Project uploaded:", projectName.value);
 
@@ -104,9 +118,9 @@ async function saveToFireStore(event) {
               <label for="tagName" class="form-label">Tag Name</label>
               <div class="input-group mb-3">
                 <span></span>
-                <input v-model="tagname" type="text" class="form-control" id="tagName" list="datalistOptions"
+                <input v-model="tag" type="text" class="form-control" id="tagName" list="datalistOptions"
                   placeholder="example: Sewing">
-                <button class="btn btn-secondary" type="addTagBtn" id="addTagBtn">Add</button>
+                <button class="btn btn-secondary" type="addTagBtn" id="addTagBtn" @click.prevent = "addTag">Add</button>
                 <datalist id="datalistOptions">
                   <option value="Quilting"></option>
                   <option value="Sewing"></option>

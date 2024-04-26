@@ -5,6 +5,10 @@
     "description": "Project Description",
     "startDate": "YYYY-MM-DD",
     "deadline": "YYYY-MM-DD",
+    "tags": [
+    	"tagName1",
+    	"tagName2"
+    	],
     "stages": [
       {
         "stageName": "Stage 1",
