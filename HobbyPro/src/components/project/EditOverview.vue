@@ -68,15 +68,6 @@ const updateProject = async () => {
     console.error("Error updating document: ", error);
   }
 };
-
-function log_out(event) {
-  event.preventDefault();
-  signOut(auth).then(() => {
-    router.replace('/login');
-  }).catch((error) => {
-    console.log("something went wrong")
-  });
-}
 </script>
 
 <template>

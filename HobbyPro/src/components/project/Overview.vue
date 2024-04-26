@@ -44,7 +44,7 @@ const daysLeft = (deadline, startdate) => {
   }
 };
 
-//TODO: last updated value will become a vlue upon editing a projects value 
+//TODO: last updated value will become a value upon editing a projects value 
 //      in edit overview or doing things in stages.
 </script>
 

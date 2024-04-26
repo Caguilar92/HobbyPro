@@ -54,16 +54,6 @@ const daysLeft = (deadline, startdate) => {
 };
 
 
-function log_out(event) {
-  event.preventDefault();
-  signOut(auth).then(() => {
-    router.replace('/login');
-  }).catch((error) => {
-    console.log("something went wrong")
-  });
-}
-
-
 //sort function sorts projects by name and start-date
 function sortBy(attribute, order = 'asc') {
   if (attribute === 'name') {
