@@ -76,9 +76,9 @@ const updateProject = async () => {
     <div class="container-fluid">
       <div id="rowMain" class="row">
         <div class="col-sm-5">
-          <div class="row">
+          <div class="row mt-3">
             <!-- <div class="col-md-2"></div> -->
-            <div class="col-md-12">
+            <div class="col-md-12 mt-3">
               <img id="iconProfile" class="rounded mx-auto d-block" src="/src/assets/defaultProjectImage.png"
                 alt="Card image cap">
             </div>
