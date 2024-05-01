@@ -73,7 +73,6 @@ function saveToFireStore() {
     firstname: firstname.value,
     lastname: lastname.value,
     email: email.value,
-    password: password.value
   });
 
 }
