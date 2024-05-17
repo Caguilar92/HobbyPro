@@ -15,6 +15,19 @@ export default {
     }
 }
 </script>
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const project = ref('');
+
+//populates project when page is loaded
+onMounted(async() => {
+  // Fetch project and assign it to the reactive reference
+  project.value = store.state.selectedProject;
+});
+</script>
 
 <template>
   <div class="contentInternalWrapper">
